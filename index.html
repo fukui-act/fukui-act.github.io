@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="version" content="1.0.0">
+<title>アクトの日 2026 福井 | 世界ポリオデー</title>
+<meta name="description" content="2026年10月25日（日）、福井駅前のPLAYCE（プレイス）1階で、ポリオ根絶に向けた講演・募金・子ども向けの塗り絵を行います。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブです。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="アクトの日 2026 福井 | 世界ポリオデー">
+<meta property="og:description" content="2滴のワクチンで、子どもをポリオから守ることができます。2026年10月25日（日）福井駅前 PLAYCE 1階">
+<meta property="og:url" content="https://fukui-act.github.io/">
+<meta name="theme-color" content="#155a96">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-900: #0d3b66;
+    --blue-700: #155a96;
+    --blue-500: #2f7fc8;
+    --blue-100: #e6f1fb;
+    --blue-50:  #f4f9fe;
+    --ink: #1d2a36;
+    --ink-sub: #4a5a69;
+    --line: #cfe0f0;
+    --white: #ffffff;
+    --accent: #f2b705;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: "BIZ UDPGothic", "BIZ UDPゴシック", "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.8;
+    font-size: 17px;
+  }
+  a { color: var(--blue-700); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  .skip { position: absolute; left: -9999px; }
+  .skip:focus { left: 16px; top: 16px; background: var(--white); padding: 8px 12px; z-index: 10; }
+
+  /* ヘッダー */
+  .hero {
+    background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-700) 55%, var(--blue-500) 100%);
+    color: var(--white);
+    padding: 56px 0 64px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    right: -80px; top: -40px;
+    width: 320px; height: 420px;
+    background: url("assets/drop.svg") no-repeat center / contain;
+    opacity: .12;
+    pointer-events: none;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 14px;
+    letter-spacing: .08em;
+    border: 1px solid rgba(255,255,255,.6);
+    border-radius: 999px;
+    padding: 2px 14px;
+    margin: 0 0 20px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 5.4vw, 42px);
+    line-height: 1.45;
+    margin: 0 0 24px;
+    font-weight: 700;
+  }
+  .hero .date {
+    font-size: clamp(20px, 3.6vw, 26px);
+    font-weight: 700;
+    margin: 0;
+  }
+  .hero .place { margin: 4px 0 0; font-size: 17px; }
+  .badge-draft {
+    display: inline-block;
+    margin-top: 24px;
+    background: var(--accent);
+    color: var(--blue-900);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+
+  /* 本文 */
+  main section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  main section:last-of-type { border-bottom: 0; }
+  h2 {
+    font-size: 24px;
+    color: var(--blue-900);
+    margin: 0 0 20px;
+    padding-left: 14px;
+    border-left: 6px solid var(--blue-500);
+    line-height: 1.4;
+  }
+  h3 { font-size: 19px; color: var(--blue-900); margin: 24px 0 8px; }
+  p { margin: 0 0 14px; }
+
+  .outline { display: grid; grid-template-columns: 7em 1fr; margin: 0; border-top: 1px solid var(--line); }
+  .outline dt, .outline dd { margin: 0; padding: 14px 8px; border-bottom: 1px solid var(--line); }
+  .outline dt { font-weight: 700; color: var(--blue-900); background: var(--blue-50); }
+  .note { color: var(--ink-sub); font-size: 15px; }
+  .tbd {
+    display: inline-block;
+    font-size: 14px;
+    background: var(--blue-100);
+    color: var(--blue-900);
+    border-radius: 4px;
+    padding: 0 8px;
+  }
+
+  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 0; margin: 0; list-style: none; }
+  .cards li { background: var(--blue-50); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+  .cards strong { display: block; color: var(--blue-900); font-size: 18px; margin-bottom: 4px; }
+  .cards span { font-size: 15px; color: var(--ink-sub); }
+
+  .nurie { background: var(--blue-50); border: 2px dashed var(--blue-500); border-radius: 12px; padding: 24px; }
+  .btn {
+    display: inline-block;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--blue-700);
+    color: var(--white);
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 22px;
+    margin-top: 8px;
+  }
+  .btn[aria-disabled="true"] { background: #9aa9b8; cursor: not-allowed; }
+
+  .facts { padding-left: 1.3em; margin: 0 0 14px; }
+  .facts li { margin-bottom: 6px; }
+  .big { font-size: 30px; font-weight: 700; color: var(--blue-700); }
+
+  footer { background: var(--blue-900); color: #dce9f6; padding: 32px 0 40px; font-size: 15px; }
+  footer a { color: var(--white); }
+  footer p { margin: 0 0 8px; }
+
+  @media (max-width: 600px) {
+    body { font-size: 16px; }
+    .hero { padding: 40px 0 48px; }
+    .outline { grid-template-columns: 1fr; }
+    .outline dt { border-bottom: 0; padding-bottom: 4px; }
+    .outline dd { padding-top: 4px; }
+    .cards { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">世界ポリオデー　アクトの日 2026 福井</p>
+    <h1>2滴のワクチンで、<br>子どもをポリオから<br>守ることができます</h1>
+    <p class="date">2026年10月25日（日）</p>
+    <p class="place">福井駅前　PLAYCE（プレイス）1階</p>
+    <p class="badge-draft">内容は準備中です。決まりしだい、このページでお知らせします。</p>
+  </div>
+</header>
+
+<main id="main">
+  <section id="outline" aria-labelledby="h-outline">
+    <div class="wrap">
+      <h2 id="h-outline">開催のご案内</h2>
+      <dl class="outline">
+        <dt>日にち</dt>
+        <dd>2026年10月25日（日）</dd>
+        <dt>時間</dt>
+        <dd><span class="tbd">調整中</span></dd>
+        <dt>会場</dt>
+        <dd>PLAYCE（プレイス）1階<br>福井県福井市中央1丁目3-5 FUKUMACHI BLOCK 1階<br><span class="note">JR福井駅から徒歩3分</span></dd>
+        <dt>主催</dt>
+        <dd>国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ</dd>
+      </dl>
+      <p class="note" style="margin-top:14px">同じ日に、福井県内のロータリークラブも各所でポリオ根絶の募金と啓発を行います。</p>
+    </div>
+  </section>
+
+  <section id="program" aria-labelledby="h-program">
+    <div class="wrap">
+      <h2 id="h-program">当日の内容</h2>
+      <ul class="cards">
+        <li><strong>講演</strong><span>医師の先生に、ポリオと予防接種についてお話しいただきます（予定・1時間程度）。</span></li>
+        <li><strong>募金</strong><span>お預かりした募金は、ポリオ根絶の活動に役立てます。</span></li>
+        <li><strong>パネル展示</strong><span>ポリオのこと、世界で続く根絶の取り組みを紹介します。</span></li>
+        <li><strong>子ども向けの塗り絵</strong><span>塗り絵を持ってきてくれたお子さんに、お菓子をお渡しします。</span></li>
+      </ul>
+      <p class="note" style="margin-top:14px">内容は変わることがあります。</p>
+    </div>
+  </section>
+
+  <section id="nurie" aria-labelledby="h-nurie">
+    <div class="wrap">
+      <h2 id="h-nurie">塗り絵をダウンロード</h2>
+      <div class="nurie">
+        <p>チラシの裏面の塗り絵と同じものを、ここからダウンロードして印刷できます。塗り終えたら、当日会場へお持ちください。お菓子と引き換えます。</p>
+        <!-- 塗り絵のPDFが届いたら assets/nurie.pdf に置き、下の span を次の a に差し替える
+             <a class="btn" href="assets/nurie.pdf" download>塗り絵（PDF）をダウンロード</a> -->
+        <span class="btn" role="link" aria-disabled="true">準備中</span>
+        <p class="note" style="margin:12px 0 0">A4の用紙に印刷してお使いください。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="polio" aria-labelledby="h-polio">
+    <div class="wrap">
+      <h2 id="h-polio">ポリオとは</h2>
+      <p>ポリオ（急性灰白髄炎）は、ポリオウイルスによる感染症です。主に5歳未満の子どもがかかり、手や足にまひが残ることがあります。かかってから治す方法はありませんが、ワクチンで防ぐことができます。</p>
+      <h3>2滴のワクチン</h3>
+      <p>ポリオが今も残る国々では、口に2滴たらす経口ポリオワクチンが使われています。1回分の費用は平均で約0.15米ドルです。</p>
+      <h3>根絶まで、あと少し</h3>
+      <p><span class="big">99.9%</span>　ポリオの症例は、世界的な取り組みによってここまで減りました。</p>
+      <ul class="facts">
+        <li>野生のポリオウイルスが今も広がっている国は、アフガニスタンとパキスタンの2か国です。</li>
+        <li>ウイルスが1か国にでも残っていれば、世界中の子どもにうつるおそれがあります。</li>
+        <li>10月24日は「世界ポリオデー」です。</li>
+      </ul>
+      <p class="note">出典：<a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="h-about">
+    <div class="wrap">
+      <h2 id="h-about">ローターアクトとは</h2>
+      <p>ローターアクトは、国際ロータリーが提唱する18歳以上の若い世代の奉仕団体です。地域や世界の課題に、仕事や学業のかたわら取り組んでいます。</p>
+      <p>国際ロータリーは1985年から、ポリオのない世界をめざして活動を続けています。「アクトの日」は、ローターアクトが企画し、ロータリーとともに取り組む一日です。</p>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="h-contact">
+    <div class="wrap">
+      <h2 id="h-contact">お問い合わせ</h2>
+      <p><span class="tbd">調整中</span></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>アクトの日 2026 福井　主催：国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ</p>
+    <p><a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
+    <p style="opacity:.75">version 1.0.0</p>
+  </div>
+</footer>
+</body>
+</html>
