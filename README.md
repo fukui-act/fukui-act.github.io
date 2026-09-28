@@ -3,14 +3,15 @@
 国際ロータリー第2650地区 福井ゾーンのローターアクトクラブが、2026年10月25日（日）に行う「アクトの日」（世界ポリオデー）の案内ページ。
 
 - 公開URL：https://fukui-act.github.io/
-- バージョン：1.8.5（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
+- バージョン：1.9.0（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
 - 制作：瀬戸 浩太郎（福井東ローターアクトクラブ 2026-27 会長）
 - 公開方法：GitHub Pages（main ブランチのルートをそのまま公開）
 
 ## ファイル構成
 
 ```
-index.html        1ページのサイト本体（CSSも内包）
+index.html        トップページ（CSSも内包）
+story/index.html  サブページ「ありがとう、ロータリー」（ポリオ根絶の物語。CSS・JS・世界地図を内包）。トップからの入口はまだ置いていない
 assets/
   favicon.svg     タブのアイコン（クランベリー地に白と水色の子ども2人）
   favicon-32.png  タブのアイコン（SVGが使えないブラウザ用）
@@ -19,7 +20,7 @@ assets/
   ogp.png         SNSで共有したときのサムネ（1200×630）
   logo-rotaract-d2650.png        地区ロゴ（クランベリー。幹事用/地区ロゴ.png を切り抜いたもの）
   logo-rotaract-d2650-white.png  地区ロゴの白版（フッター用）
-  drop.svg        1.0.0で使っていた雫（1.1.0では未使用）
+  drop.svg        雫の形（トップでは1.1.0から未使用。story/ の「2滴」で使う）
   nurie.pdf       塗り絵（内海さんから届いたら置く。まだ無い）
 favicon.ico       古いブラウザ用のアイコン
 site.webmanifest  ホーム画面に追加したときの名前とアイコン
@@ -43,7 +44,7 @@ CHANGELOG.md      更新履歴
 
 - 測定ID：**G-GGWTF598PY**（瀬戸さんの Google アカウントで作成、2026-09-28）。index.html の `window.GA_ID` に入れている。`G-XXXXXXXXXX` にすると読み込まない。
 - QRの行き先：チラシ `https://fukui-act.github.io/?utm_source=flyer&utm_medium=qr`、ポケットティッシュ `https://fukui-act.github.io/?utm_source=tissue&utm_medium=qr`。GA4の「集客」で参照元（flyer／tissue）ごとに数えられる。
-- タップの計測は `data-track` の付いたリンク。イベント名は map_open／link_rotaract2650／link_rid2650／link_rc_fukui／link_rc_fukuihigashi／link_rc_fukuisuisen／nurie_download。
+- タップの計測は `data-track` の付いたリンク。イベント名は map_open／link_rotaract2650／link_rid2650／link_rc_fukui／link_rc_fukuihigashi／link_rc_fukuisuisen／nurie_download。story/ では story_to_top（トップへ）／story_to_outline（開催のご案内を見る）。
 
 ## 塗り絵を公開するとき
 
@@ -58,5 +59,8 @@ CHANGELOG.md      更新履歴
 - 塗り絵のPDF
 
 ## 使っている素材
+
+- story/ の背景の世界地図：Natural Earth 1:110m の国境データ（パブリックドメイン）を world-atlas 経由で読み込み、太平洋中心の Equal Earth 図法で描いてSVGにしたもの。「125か国」「予防接種が進む」の場面の塗り分けはイメージ（画面にもそう書いている）。
+- story/ の「1979年9月29日、マニラ」の見出し：Noto Serif JP 900（Google Fonts、SIL OFL）。使う文字だけを読み込む。
 
 - 最初の画面とSNSサムネの盾の中の子ども2人、タブやホーム画面のアイコン：Font Awesome Free 7.3.1「children」（https://fontawesome.com 、アイコンは CC BY 4.0）。クレジットは index.html と assets/favicon.svg のコメントに入れている。
