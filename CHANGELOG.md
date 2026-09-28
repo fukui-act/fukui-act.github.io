@@ -1,5 +1,10 @@
 # 更新履歴
 
+## 1.8.1（2026-09-28）
+
+- 最初の画面とSNSサムネ（assets/ogp.png）の盾の中の絵を、人のアイコンから子ども2人のアイコンに変更。Font Awesome Free の「children」（アイコンは CC BY 4.0）を使い、index.html のコメントにクレジットを入れた。
+- SNSに古いサムネが残らないよう、og:image と twitter:image のURLに ?v=1.8.1 を付けた。
+
 ## 1.8.0（2026-09-28）
 
 - Googleアナリティクス（GA4、測定ID G-GGWTF598PY）を追加。IDは index.html の GA_ID。
