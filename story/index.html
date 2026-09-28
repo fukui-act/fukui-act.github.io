@@ -522,6 +522,9 @@
   }
 
   /* 動きを減らす設定の人には、最初から全部見せる */
+  /* 上へ戻るときに出てくるものは、動きを飛ばして出来上がった形で見せる */
+  .js .is-now, .js .is-now *, .js .is-now *::before, .js .is-now *::after { transition-duration: 0s !important; transition-delay: 0s !important; animation-delay: -60s !important; }
+
   @media (prefers-reduced-motion: reduce) {
     .js .rv, .js .lead, .js .type .ch, .js .chat .bubble, .js .chat .chat-meta, .js .hero h1 { opacity: 1 !important; transform: none !important; filter: none !important; animation: none !important; transition: none !important; }
     .js .chat .bubble .msg { display: inline !important; }
@@ -913,18 +916,48 @@
   }
 
   // スクロールで表示
+  // now=true のときは動きを飛ばして、出来上がった形ですぐに見せる
+  var pending = [];
+  function show(el, now) {
+    var i = pending.indexOf(el);
+    if (i < 0) return;
+    pending.splice(i, 1);
+    showIo.unobserve(el);
+    if (now) {
+      el.classList.add('is-now');
+      if (el.hasAttribute('data-chat')) { el.classList.add('is-in', 'is-said'); }
+      else el.classList.add('is-in');
+      if (yTo && el.classList.contains('scene-zero')) yTo.textContent = thisYear;
+      el.querySelectorAll('.big[data-to]').forEach(function (b) { b.classList.add('is-popped'); });
+      return;
+    }
+    if (el.hasAttribute('data-chat')) say(el);
+    else el.classList.add('is-in');
+    if (el.classList.contains('scene-zero')) countYears(el);
+    el.querySelectorAll('[data-to]').forEach(countUp);
+  }
   var showIo = new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
       if (!en.isIntersecting) return;
-      var el = en.target;
-      if (el.hasAttribute('data-chat')) say(el);
-      else el.classList.add('is-in');
-      if (el.classList.contains('scene-zero')) countYears(el);
-      el.querySelectorAll('[data-to]').forEach(countUp);
-      showIo.unobserve(el);
+      // 上から入ってきた（＝上へ戻っている）ときは、すぐに見せる
+      show(en.target, en.boundingClientRect.top < 0);
     });
   }, { rootMargin: '0px 0px -18% 0px', threshold: 0.15 });
-  document.querySelectorAll('.rv, .type, .lead, .soft, .float, .fullmsg, .stats, [data-chat], .scene').forEach(function (el) { showIo.observe(el); });
+  document.querySelectorAll('.rv, .type, .lead, .soft, .float, .fullmsg, .stats, [data-chat], .scene').forEach(function (el) { pending.push(el); showIo.observe(el); });
+  // 勢いよくスクロールして見逃したもの（画面より上へ通り過ぎたもの）は、出来上がった形にしておく
+  var sweepTick = false;
+  function sweep() {
+    sweepTick = false;
+    for (var k = pending.length - 1; k >= 0; k--) {
+      var el = pending[k];
+      if (el.getBoundingClientRect().bottom < 0) show(el, true);
+    }
+  }
+  window.addEventListener('scroll', function () {
+    if (!sweepTick && pending.length) { sweepTick = true; requestAnimationFrame(sweep); }
+  }, { passive: true });
+  window.addEventListener('pageshow', sweep);
+  sweep();
 
   // 背景の地図：画面の真ん中にある場面に合わせて、寄る場所と色を変える
   var svg = document.getElementById('world');
