@@ -74,7 +74,7 @@
 
   /* ロゴのバー */
   .brandbar { background: var(--white); border-bottom: 1px solid var(--line); }
-  .brandbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
+  .brandbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; padding-bottom: 18px; }
   .brandbar img { width: 168px; }
   .logo-link { display: inline-block; border-radius: 6px; }
   .logo-link:hover img { opacity: .85; }
@@ -200,6 +200,7 @@
   @media (max-width: 720px) {
     body { font-size: 16px; }
     .brandbar img { width: 132px; }
+    .brandbar .wrap { padding-top: 15px; padding-bottom: 15px; }
     .brandbar p { font-size: 12px; }
     .hero .wrap { grid-template-columns: 1fr; padding-top: 28px; padding-bottom: 80px; }
     .scene { max-width: 200px; order: -1; justify-self: start; }

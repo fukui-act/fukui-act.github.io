@@ -1,5 +1,9 @@
 # 更新履歴
 
+## 1.8.4（2026-09-28）
+
+- ロータリーのブランド規約（ロゴの周りに「R」の高さ分の余白）に合わせ、上部バーの上下の余白を広げた（PC 10→18px、スマホ 15px）。ロゴの文字部分からバーの端まで、PCで21〜23px（必要19px）、スマホで18〜19px（必要15px）。
+
 ## 1.8.3（2026-09-28）
 
 - タブやホーム画面のアイコン（favicon.svg・favicon-32.png・favicon.ico・apple-touch-icon.png・icon-192.png・icon-512.png）を、2滴の雫から子ども2人（白と水色）に変更。盾の中と同じ Font Awesome Free「children」（CC BY 4.0、クレジットは favicon.svg のコメント）。
