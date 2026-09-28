@@ -1,5 +1,11 @@
 # 更新履歴
 
+## 1.8.2（2026-09-28）
+
+- 主催の欄に、福井ゾーンのローターアクトクラブ3クラブ（福井・福井東・鯖江）の名前を追加。フッターとページ説明（meta description）にも入れた。
+- 協力の3クラブにリンクを付けた（福井RC https://www.fukui-rotary.com/ 、福井東RC https://www.fukui-east-rc.jp/ 、福井水仙RC は独自サイトがないため地区サイトのクラブページ https://rid2650.gr.jp/club-fukuisuisen/ ）。タップはGAで計測（link_rc_fukui／link_rc_fukuihigashi／link_rc_fukuisuisen）。
+- フッターのGoogleアナリティクス利用のお知らせを、わかりやすく改まった文面に変更。
+
 ## 1.8.1（2026-09-28）
 
 - 最初の画面とSNSサムネ（assets/ogp.png）の盾の中の絵を、人のアイコンから子ども2人のアイコンに変更。Font Awesome Free の「children」（アイコンは CC BY 4.0）を使い、index.html のコメントにクレジットを入れた。
