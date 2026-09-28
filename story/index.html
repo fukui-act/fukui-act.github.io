@@ -40,8 +40,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
-<!-- 「1979年9月29日、マニラ」の見出しだけに使う極太の明朝。使う文字だけを読み込む -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@900&text=1279%E3%80%81%E3%83%8B%E3%83%9E%E3%83%A9%E5%B9%B4%E6%97%A5%E6%9C%88&display=swap" rel="stylesheet">
 <style>
   :root {
     --cran: #d41367;       /* ローターアクトの公式色 クランベリー */
@@ -91,7 +89,10 @@
   body[data-stage="plain"] .stage svg { opacity: .35; }
   #world path { fill: var(--land); stroke: #fff; stroke-width: .35; transition: fill 1s ease; }
   body[data-stage="manila"] #m-PHL { fill: var(--cran); }
-  body[data-stage="japan"] #m-JPN { fill: var(--blue); }
+  body[data-stage="japan"] #world #m-JPN { fill: var(--blue); }
+  body[data-stage="japanred"] #world #m-JPN { fill: #d62828; animation: beatRed 1.6s ease-in-out infinite; }
+  @keyframes beatRed { 50% { fill: #f05a5a; } }
+  body[data-stage="japanblue"] #world #m-JPN { fill: var(--blue); }
   body[data-stage="spread"] #world path { fill: #eba3c2; }
   body[data-stage="vaccinate"] #world path { fill: var(--blue-sky); }
   body[data-stage="last2"] #world path { fill: #cfe3f3; }
@@ -118,6 +119,8 @@
   @media (min-width: 1000px) {
     .story { margin-left: max(24px, calc(50% - 600px)); max-width: 560px; }
   }
+  main p, main h1, main h2, main li { word-break: keep-all; overflow-wrap: anywhere; text-wrap: pretty; }
+  .lead, .soft, .float, .finale, .fullmsg p, .dateline p, main h2 { text-wrap: balance; }
   .note { font-size: 14px; color: var(--ink-sub); }
   .num { font-weight: 700; color: var(--cran-deep); font-size: 1.18em; font-variant-numeric: tabular-nums; }
   .is-blue .num { color: var(--blue); }
@@ -144,7 +147,7 @@
   /* 2. メッセージ風の「ありがとう、ロータリー」 */
   .chat { max-width: 440px; margin: 0 auto 30vh; padding: 0 16px; }
   .chat-row { display: flex; align-items: flex-end; gap: 10px; }
-  .chat-face { flex: 0 0 42px; height: 42px; border-radius: 50%; background: var(--blue-sky); display: grid; place-items: center; color: var(--blue); font-weight: 700; font-size: 13px; }
+  .chat-face { flex: 0 0 56px; height: 56px; border-radius: 50%; background: var(--blue-sky) url(../assets/story/face-boy.svg) center 5px / 50px auto no-repeat; }
   .bubble { position: relative; background: var(--white); border-radius: 20px 20px 20px 6px; padding: 14px 20px; font-size: clamp(22px, 5vw, 30px); font-weight: 700; color: var(--ink); box-shadow: 0 6px 22px rgba(42,26,34,.12); min-height: 62px; }
   .bubble .dots { display: none; gap: 6px; padding: 10px 4px; }
   .bubble .dots i { width: 9px; height: 9px; border-radius: 50%; background: #b9a8b0; animation: dot 1s infinite; }
@@ -158,29 +161,318 @@
   .chat-meta { margin: 6px 0 0 52px; font-size: 13px; color: var(--ink-sub); }
   .js .chat .chat-meta { opacity: 0; transition: opacity .6s ease .2s; }
   .js .chat.is-said .chat-meta { opacity: 1; }
-  .chat.in-card { margin: 8px 0 1.2em; padding: 0; }
-  .chat.in-card .bubble { background: var(--cran-tint); box-shadow: none; font-size: clamp(20px, 4.4vw, 26px); }
+  /* 独立した大きな吹き出し「ありがとう、ロータリー」 */
+  .chat-big { max-width: 760px; min-height: 78vh; min-height: 78svh; margin: 0 auto 10vh; display: flex; flex-direction: column; justify-content: center; }
+  .chat-big .chat-row { gap: 14px; }
+  .chat-big .chat-face { flex-basis: 84px; height: 84px; background-size: 76px auto; background-position: center 7px; }
+  .chat-big .bubble { font-size: clamp(28px, 5.4vw, 50px); padding: 22px 30px; border-radius: 32px 32px 32px 8px; background: var(--white); box-shadow: 0 14px 44px rgba(168,15,82,.18); border: 3px solid var(--cran); }
+  .js .chat-big.is-said .bubble { animation: popBig .55s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes popBig { 0% { transform: scale(.86); } 100% { transform: none; } }
+  .chat-note { margin: 18px 0 0 98px; font-size: 15px; color: var(--ink-sub); }
+  .js .chat-note { opacity: 0; transition: opacity 1s ease .6s; }
+  .js .chat.is-said .chat-note { opacity: 1; }
+
+  /* ゆっくり、ふんわり出てくる一文 */
+  .soft { max-width: 680px; margin: 0 auto 45vh; padding: 0 20px; text-align: center; font-size: clamp(20px, 4.2vw, 28px); font-weight: 700; line-height: 1.8; text-shadow: 0 0 18px #fff, 0 0 8px #fff; }
+  .js .soft { opacity: 0; filter: blur(12px); transform: translateY(18px) scale(.98); transition: opacity 3.2s ease, filter 3.2s ease, transform 3.2s ease; }
+  .js .soft.is-in { opacity: 1; filter: none; transform: none; }
+
+  /* 画面いっぱいの一言 */
+  .fullmsg { min-height: 100vh; min-height: 100svh; margin: 0 0 20vh; display: flex; align-items: center; justify-content: center; padding: 0 20px; background: radial-gradient(ellipse at center, rgba(255,255,255,.92) 0%, rgba(255,255,255,.72) 55%, rgba(255,255,255,0) 100%); }
+  .fullmsg p { margin: 0; text-align: center; font-size: min(5.6vw, 58px); line-height: 1.6; color: var(--blue); font-weight: 700; }
+  .js .fullmsg p { opacity: 0; transform: translateY(14px); filter: blur(6px); transition: opacity 2.2s ease, transform 2.2s ease, filter 2.2s ease; }
+  .js .fullmsg.is-in p { opacity: 1; transform: none; filter: none; }
+
+  /* 赤字で、恐怖に揺れる見出し */
+  .card h2.danger { color: #c8102e; }
+  .card h2.danger::after { background: #c8102e; }
+  .js .card h2.danger.is-in { animation: fear .09s linear 14, shiver 4s ease-in-out 1.4s infinite; }
+  @keyframes fear { 0% { transform: translate(0,0) rotate(0); } 25% { transform: translate(-2px,1px) rotate(-.6deg); } 50% { transform: translate(2px,-1px) rotate(.5deg); } 75% { transform: translate(-1px,-1px) rotate(-.3deg); } 100% { transform: translate(1px,1px) rotate(.4deg); } }
+  @keyframes shiver { 0%, 88%, 100% { transform: none; } 90% { transform: translate(-1.5px,0) rotate(-.4deg); } 92% { transform: translate(1.5px,0) rotate(.4deg); } 94% { transform: translate(-1px,0); } 96% { transform: translate(1px,0); } }
 
   /* 3. 浮き上がる導入文 */
   .lead { max-width: 640px; margin: 0 auto 40vh; padding: 0 20px; text-align: center; font-size: clamp(19px, 3.6vw, 24px); font-weight: 700; line-height: 1.8; color: var(--ink); text-shadow: 0 0 18px #fff, 0 0 8px #fff; }
   .js .lead { opacity: 0; transform: translateY(40px); filter: blur(6px); transition: opacity 1.6s ease, transform 1.6s ease, filter 1.6s ease; }
   .js .lead.is-in { opacity: 1; transform: none; filter: none; }
 
-  /* 4. 黒地に白の極太明朝で「1979年9月29日、マニラ」 */
-  .eva { position: relative; z-index: 3; background: #000; color: #fff; min-height: 100vh; min-height: 100svh; margin: 0 0 20vh; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .eva-in { position: relative; width: min(92vw, 980px); height: min(78vh, 620px); font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif; font-weight: 900; line-height: 1; }
-  .eva-date { position: absolute; left: 0; top: 4%; margin: 0; font-size: clamp(40px, 9.6vw, 104px); letter-spacing: -.02em; transform: scale(.84, 1.18); transform-origin: left top; white-space: nowrap; }
-  .eva-date small { font-size: .62em; }
-  .eva-place { position: absolute; right: 2%; bottom: 0; margin: 0; writing-mode: vertical-rl; white-space: nowrap; font-size: min(20vw, 22vh, 210px); letter-spacing: -.04em; transform: scale(1.12, .92); transform-origin: right bottom; }
-  .eva-rule { position: absolute; left: 0; top: calc(4% + clamp(40px, 9.6vw, 104px) * 1.3); height: 2px; width: 58%; background: #fff; }
-  .js .eva .eva-date, .js .eva .eva-place, .js .eva .eva-rule { visibility: hidden; }
-  .js .eva.is-in .eva-date { visibility: visible; animation: cut .01s .35s both; }
-  .js .eva.is-in .eva-rule { visibility: visible; animation: cut .01s .55s both; }
-  .js .eva.is-in .eva-place { visibility: visible; animation: cut .01s .95s both, shake .18s .95s 2; }
-  @keyframes cut { from { visibility: hidden; } to { visibility: visible; } }
-  @keyframes shake { 50% { transform: scale(1.12, .92) translate(3px, -2px); } }
-  .js .eva.is-in::after { content: ""; position: absolute; inset: 0; background: #fff; animation: flash .45s ease-out both; pointer-events: none; }
-  @keyframes flash { 0% { opacity: .95; } 100% { opacity: 0; } }
+  /* 4. 「1979年9月29日、マニラ」（ふつうの見出し） */
+  .dateline { max-width: 680px; margin: 0 auto 26vh; padding: 0 20px; text-align: center; }
+  .dateline p { margin: 0; display: inline-flex; flex-direction: column; align-items: center; gap: 4px; background: rgba(255,255,255,.9); border-radius: 18px; padding: 18px 30px; box-shadow: 0 6px 28px rgba(42,26,34,.08); }
+  .dl-date { font-size: clamp(18px, 3.4vw, 24px); font-weight: 700; color: var(--ink-sub); letter-spacing: .06em; }
+  .dl-place { font-size: clamp(34px, 7vw, 56px); font-weight: 700; color: var(--cran-deep); letter-spacing: .12em; line-height: 1.3; }
+
+  /* 絵のある場面（イラストはソコスト https://soco-st.com/ 。商用可・クレジット不要） */
+  .scene { position: relative; height: 170px; margin: 2px 0 18px; border-radius: 14px; background: linear-gradient(180deg, #eef6fd 0%, #ffffff 80%); overflow: hidden; }
+  .scene img { position: absolute; display: block; max-width: none; }
+  .scene .ground { position: absolute; left: 0; right: 0; bottom: 14px; height: 2px; background: #cfe3f3; }
+  .scene .dropmark { position: absolute; background: var(--blue); -webkit-mask: url(../assets/drop.svg) center / contain no-repeat; mask: url(../assets/drop.svg) center / contain no-repeat; }
+  .scene .star { position: absolute; width: 26px; height: 26px; background: #ffc83d; clip-path: polygon(50% 0, 61% 38%, 100% 50%, 61% 62%, 50% 100%, 39% 62%, 0 50%, 39% 38%); opacity: 0; }
+
+  /* マカティの保健センター：お母さんと子どもが歩いてくる */
+  .scene-clinic .clinic { height: 104px; right: 10px; bottom: 15px; }
+  .scene-clinic .dropmark { width: 22px; height: 28px; right: 78px; top: 10px; }
+  .scene-clinic .walker { bottom: 15px; }
+  .scene-clinic .w1 { height: 132px; left: calc(50% - 150px); }
+  .scene-clinic .w2 { height: 86px; left: calc(50% - 104px); }
+  .scene-clinic .w3 { height: 124px; left: calc(50% - 60px); transform: scaleX(-1); }
+  .js .scene-clinic .walker { translate: -360px 0; }
+  .js .scene-clinic.is-in .walker { animation: walkIn 2.4s cubic-bezier(.25,.8,.35,1) forwards, bob .34s ease-in-out 7 alternate; }
+  .js .scene-clinic.is-in .w2 { animation-delay: .3s, .3s; }
+  .js .scene-clinic.is-in .w3 { animation-delay: .6s, .6s; }
+  @keyframes walkIn { to { translate: 0 0; } }
+  @keyframes bob { 0% { margin-bottom: 0; } 100% { margin-bottom: 6px; } }
+  .js .scene-clinic.is-in .dropmark { animation: float 2.4s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-6px); } }
+  @media (max-width: 400px) { .scene-clinic .clinic { height: 84px; right: 4px; } .scene-clinic .w1 { left: 8px; } .scene-clinic .w2 { left: 54px; } .scene-clinic .w3 { left: 96px; } }
+
+  /* スポイトから雫が2滴、子どもの口へ */
+  .scene-drop { height: 200px; }
+  .scene-drop .dropper { position: absolute; width: 34px; height: 76px; left: calc(50% - 17px); top: -4px; }
+  .scene-drop .face { height: 118px; left: 50%; margin-left: -52px; bottom: -8px; }
+  .scene-drop .fall { width: 14px; height: 18px; left: calc(50% - 7px); top: 66px; opacity: 0; z-index: 2; }
+  .scene-drop .ripple { position: absolute; width: 30px; height: 10px; left: calc(50% - 15px); top: 150px; border: 2px solid var(--blue); border-radius: 50%; opacity: 0; z-index: 2; }
+  .scene-drop .star { left: calc(50% + 50px); top: 92px; }
+  .scene-drop .star.s2 { width: 16px; height: 16px; left: calc(50% + 76px); top: 80px; }
+  .js .scene-drop.is-in .dropper { animation: squeeze 1.1s ease-in-out .3s 2; }
+  .js .scene-drop.is-in .f1 { animation: fall .9s cubic-bezier(.5,0,.9,.5) .6s both; }
+  .js .scene-drop.is-in .f2 { animation: fall .9s cubic-bezier(.5,0,.9,.5) 1.7s both; }
+  .js .scene-drop.is-in .ripple { animation: ripple .7s ease-out 1.45s, ripple .7s ease-out 2.55s; }
+  .js .scene-drop.is-in .star { animation: spark 1.2s ease-out 2.8s both; }
+  .js .scene-drop.is-in .star.s2 { animation-delay: 3s; }
+  .js .scene-drop.is-in .face { animation: gulp .5s ease-in-out 1.5s, gulp .5s ease-in-out 2.6s; }
+  @keyframes squeeze { 30% { transform: scaleY(.94); } 60% { transform: none; } }
+  @keyframes fall { 0% { opacity: 0; transform: translateY(0) scale(.6); } 15% { opacity: 1; transform: translateY(4px) scale(1); } 85% { opacity: 1; transform: translateY(80px); } 100% { opacity: 0; transform: translateY(86px) scale(.5); } }
+  @keyframes ripple { 0% { opacity: .9; transform: scale(.4); } 100% { opacity: 0; transform: scale(1.6); } }
+  @keyframes spark { 0% { opacity: 0; transform: scale(.2) rotate(-30deg); } 50% { opacity: 1; transform: scale(1.15); } 100% { opacity: 1; transform: none; } }
+  @keyframes gulp { 50% { transform: scale(1.04, .96); } }
+
+  /* 国際ロータリーとフィリピン政府の約束（握手） */
+  .scene-deal { height: 150px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .scene-deal .party { position: relative; z-index: 1; font-size: 14px; font-weight: 700; color: #fff; border-radius: 999px; padding: 8px 14px; white-space: nowrap; }
+  .scene-deal .p-left { background: var(--cran); }
+  .scene-deal .p-right { background: var(--blue); }
+  .scene-deal .hands { position: relative; width: 150px; height: 80px; }
+  .scene-deal .hands img { position: static; width: 100%; height: auto; }
+  .js .scene-deal .p-left { transform: translateX(-120px); opacity: 0; }
+  .js .scene-deal .p-right { transform: translateX(120px); opacity: 0; }
+  .js .scene-deal .hands { transform: scale(0); }
+  .js .scene-deal.is-in .p-left, .js .scene-deal.is-in .p-right { animation: meet .9s cubic-bezier(.2,.8,.3,1) .2s forwards; }
+  .js .scene-deal.is-in .hands { animation: pop .6s cubic-bezier(.3,1.6,.5,1) 1s forwards, shakeHands .32s ease-in-out 1.7s 4 alternate; }
+  @keyframes meet { to { transform: none; opacity: 1; } }
+  @keyframes pop { to { transform: scale(1); } }
+  @keyframes shakeHands { from { margin-top: 0; } to { margin-top: 12px; } }
+  @media (max-width: 400px) { .scene-deal .party { font-size: 12px; padding: 7px 9px; } .scene-deal .hands { width: 104px; height: 56px; } }
+
+  /* ポリオという病気：ウイルス→まひ→ワクチンで防ぐ */
+  .scene-polio { height: 190px; }
+  .scene-polio .virus { height: 70px; left: 8%; top: 20px; }
+  .scene-polio .boy { height: 164px; left: 50%; margin-left: -26px; bottom: 6px; }
+  .scene-polio .vial { height: 96px; right: 8%; bottom: 18px; }
+  .scene-polio .shield { position: absolute; right: calc(8% - 22px); bottom: 2px; width: 104px; height: 128px; border-radius: 50% 50% 46% 46%; border: 3px solid var(--blue); opacity: 0; }
+  .js .scene-polio .virus, .js .scene-polio .boy, .js .scene-polio .vial { opacity: 0; }
+  .js .scene-polio.is-in .virus { animation: virusIn 1s ease .2s forwards, wobble 2.2s ease-in-out 1.2s 1, virusOut 1s ease 3.4s forwards; }
+  .js .scene-polio.is-in .boy { animation: fadeUp 1.2s ease 1s forwards; }
+  .js .scene-polio.is-in .vial { animation: fadeUp 1s ease 2.4s forwards; }
+  .js .scene-polio.is-in .shield { animation: shield 1.4s ease-out 3s forwards; }
+  @keyframes virusIn { from { opacity: 0; transform: scale(.4) rotate(-40deg); } to { opacity: 1; transform: none; } }
+  @keyframes wobble { 25% { transform: translate(8px, 6px) rotate(10deg); } 50% { transform: translate(-4px, 12px) rotate(-8deg); } 75% { transform: translate(6px, 2px) rotate(6deg); } }
+  @keyframes virusOut { to { opacity: .12; transform: scale(.55) translate(-30px, -10px); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes shield { 0% { opacity: 0; transform: scale(.6); } 60% { opacity: .9; } 100% { opacity: .55; transform: none; } }
+
+  /* 1961年：母親たちの声 */
+  .scene-mothers { height: 190px; }
+  .scene-mothers .mom { height: 160px; bottom: 6px; }
+  .scene-mothers .m1 { left: calc(50% - 130px); }
+  .scene-mothers .m2 { left: calc(50% - 22px); height: 172px; }
+  .scene-mothers .m3 { left: calc(50% + 82px); transform: scaleX(-1); }
+  .scene-mothers .voice { position: absolute; width: 22px; height: 22px; border: 3px solid var(--cran); border-left-color: transparent; border-bottom-color: transparent; border-radius: 50%; transform: rotate(45deg); opacity: 0; }
+  .scene-mothers .v1 { left: calc(50% - 92px); top: 8px; }
+  .scene-mothers .v2 { left: calc(50% + 14px); top: -2px; width: 30px; height: 30px; }
+  .scene-mothers .v3 { left: calc(50% + 72px); top: 8px; transform: rotate(-45deg) scaleX(-1); }
+  .js .scene-mothers .mom { opacity: 0; }
+  .js .scene-mothers.is-in .mom { animation: fadeUp 1s ease forwards; }
+  .js .scene-mothers.is-in .m2 { animation-delay: .35s; }
+  .js .scene-mothers.is-in .m3 { animation-delay: .7s; }
+  .js .scene-mothers.is-in .voice { animation: voice 1.1s ease-out 1.2s 4; }
+  .js .scene-mothers.is-in .v2 { animation-delay: 1.45s; }
+  .js .scene-mothers.is-in .v3 { animation-delay: 1.7s; }
+  @keyframes voice { 0% { opacity: 0; scale: .6; } 40% { opacity: 1; } 100% { opacity: 0; scale: 1.5; } }
+
+  /* 1961年：子どもたちに一斉に飲ませる */
+  .scene-drink { height: 140px; display: flex; align-items: flex-end; justify-content: center; gap: 6px; padding-bottom: 8px; }
+  .scene-drink .kid { position: relative; width: 15%; max-width: 70px; }
+  .scene-drink .kid img { position: static; width: 100%; height: auto; }
+  .scene-drink .kid .dropmark { width: 12px; height: 15px; left: calc(50% - 6px); top: -46px; opacity: 0; }
+  .js .scene-drink.is-in .kid .dropmark { animation: kidDrop .8s cubic-bezier(.5,0,.9,.5) calc(var(--i) * .3s + .3s) both; }
+  .js .scene-drink.is-in .kid img { animation: gulp .5s ease-in-out calc(var(--i) * .3s + 1s); }
+  @keyframes kidDrop { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: 1; } 85% { opacity: 1; transform: translateY(78px); } 100% { opacity: 0; transform: translateY(82px); } }
+
+  /* 1980年から、新しい患者は0人 */
+  .scene-zero { height: auto; padding: 18px 12px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; text-align: center; background: var(--blue-tint); }
+  .scene-zero .yr { font-size: 14px; color: var(--ink-sub); margin: 0; }
+  .scene-zero .big { margin: 2px 0 0; font-size: clamp(30px, 7vw, 44px); font-weight: 700; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .scene-zero .from .big { color: #c8102e; }
+  .scene-zero .to .big { color: var(--blue); }
+  .scene-zero .arrow { width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; border-left: 16px solid var(--blue); }
+  .scene-zero .cap { grid-column: 1 / -1; margin: 6px 0 0; font-size: 13px; color: var(--ink-sub); }
+  .js .scene-zero.is-in .to .big.zero { animation: popZero .7s cubic-bezier(.3,1.6,.5,1) 2.6s; }
+  @keyframes popZero { 50% { transform: scale(1.25); } }
+
+
+  /* ===== 後半の場面 ===== */
+  .scene-goal { height: 170px; }
+  .scene-goal .glow { position: absolute; left: 50%; top: 50%; width: 220px; height: 220px; margin: -110px 0 0 -110px; border-radius: 50%; background: radial-gradient(circle, rgba(255,218,113,.55) 0%, rgba(255,218,113,0) 65%); opacity: 0; }
+  .scene-goal .globe { height: 140px; left: 50%; margin-left: -74px; bottom: 10px; }
+  .js .scene-goal .globe { opacity: 0; transform: translateY(40px); }
+  .js .scene-goal.is-in .globe { animation: rise 1.6s cubic-bezier(.2,.8,.3,1) .2s forwards; }
+  .js .scene-goal.is-in .glow { animation: glow 3s ease-in-out 1.4s infinite; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @keyframes glow { 0%, 100% { opacity: .3; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.08); } }
+
+  .scene-timeline { height: 220px; }
+  .scene-timeline .tl-line { position: absolute; left: 10%; right: 10%; top: 44px; height: 3px; background: #cfe3f3; transform-origin: left; }
+  .scene-timeline .tl { position: absolute; top: 20px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .scene-timeline .tl1 { left: calc(28% - 50px); width: 100px; }
+  .scene-timeline .tl2 { left: calc(72% - 50px); width: 100px; }
+  .scene-timeline .tl-year { width: 50px; height: 50px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px; color: #fff; background: var(--cran); }
+  .scene-timeline .tl2 .tl-year { background: var(--blue); }
+  .scene-timeline .tl-name { font-weight: 700; font-size: 14px; }
+  .scene-timeline .people { height: 84px; left: 50%; margin-left: -80px; bottom: 34px; }
+  .scene-timeline .partners { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; justify-content: center; gap: 8px; }
+  .scene-timeline .partners span { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #fff; border: 2px solid var(--blue); color: var(--blue); }
+  .js .scene-timeline .tl-line { transform: scaleX(0); }
+  .js .scene-timeline .tl, .js .scene-timeline .people, .js .scene-timeline .partners span { opacity: 0; }
+  .js .scene-timeline.is-in .tl-line { animation: grow 1.6s ease .1s forwards; }
+  .js .scene-timeline.is-in .tl1 { animation: popIn .6s cubic-bezier(.3,1.6,.5,1) .3s forwards; }
+  .js .scene-timeline.is-in .tl2 { animation: popIn .6s cubic-bezier(.3,1.6,.5,1) 1.3s forwards; }
+  .js .scene-timeline.is-in .people { animation: fadeUp 1s ease 1.8s forwards; }
+  .js .scene-timeline.is-in .partners span { animation: popIn .5s cubic-bezier(.3,1.6,.5,1) forwards; }
+  .js .scene-timeline.is-in .partners span:nth-child(1) { animation-delay: 2.5s; }
+  .js .scene-timeline.is-in .partners span:nth-child(2) { animation-delay: 2.75s; }
+  .js .scene-timeline.is-in .partners span:nth-child(3) { animation-delay: 3s; }
+  @keyframes grow { to { transform: scaleX(1); } }
+  @keyframes popIn { 0% { opacity: 0; transform: scale(.4); } 100% { opacity: 1; transform: none; } }
+
+  .scene-second { height: auto; padding: 22px 12px; display: flex; justify-content: center; gap: 18px; }
+  .scene-second .badge { position: relative; display: flex; align-items: center; gap: 10px; background: #fff; border-radius: 16px; padding: 12px 18px; box-shadow: 0 4px 16px rgba(42,26,34,.08); }
+  .scene-second .bn { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #fff; background: #a0a0a0; }
+  .scene-second .b2 .bn { background: var(--cran); }
+  .scene-second .bt { font-weight: 700; font-size: 18px; white-space: nowrap; }
+  @media (max-width: 400px) { .scene-second { gap: 10px; } .scene-second .badge { padding: 10px 12px; gap: 6px; } .scene-second .bt { font-size: 16px; } }
+  .scene-second .check { width: 22px; height: 12px; border-left: 4px solid #3aa655; border-bottom: 4px solid #3aa655; transform: rotate(-45deg) translate(2px, -3px); }
+  .scene-second .ring { position: absolute; inset: -4px; border-radius: 20px; border: 3px solid var(--cran); opacity: 0; }
+  .js .scene-second .badge { opacity: 0; }
+  .js .scene-second.is-in .b1 { animation: popIn .6s cubic-bezier(.3,1.6,.5,1) .2s forwards; }
+  .js .scene-second.is-in .b2 { animation: popIn .6s cubic-bezier(.3,1.6,.5,1) 1s forwards; }
+  .js .scene-second.is-in .check { animation: fadeUp .4s ease .8s both; }
+  .js .scene-second.is-in .ring { animation: ringPulse 1.8s ease-out 1.6s infinite; }
+  @keyframes ringPulse { 0% { opacity: .9; transform: scale(.96); } 100% { opacity: 0; transform: scale(1.12); } }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 18px; }
+  .stat { background: var(--cran-tint); border-radius: 14px; padding: 14px 10px; text-align: center; }
+  .st-lab { margin: 0 !important; font-size: 13px; color: var(--ink-sub); }
+  .st-num { margin: 4px 0 0 !important; font-weight: 700; color: var(--cran-deep); line-height: 1.1; }
+  .st-num .num { font-size: clamp(38px, 8vw, 54px); color: var(--cran-deep); }
+  .st-num small { font-size: 15px; margin-left: 2px; white-space: nowrap; }
+
+  /* 1文ずつ浮かび上がるメッセージ */
+  .msgblock { position: relative; z-index: 2; max-width: 720px; margin: 0 auto 30vh; padding: 0 16px; text-align: center; }
+  .msgblock .float { margin: 0 0 18px; font-size: clamp(19px, 3.8vw, 27px); font-weight: 700; line-height: 1.9; text-shadow: 0 0 18px #fff, 0 0 10px #fff, 0 0 4px #fff; }
+  .js .float { opacity: 0; transform: translateY(40px); filter: blur(5px); transition: opacity 1.4s ease, transform 1.4s ease, filter 1.4s ease; }
+  .js .float.is-in { opacity: 1; transform: none; filter: none; }
+  .hl { background: linear-gradient(transparent 60%, rgba(20,102,184,.22) 60%) no-repeat 0 0 / 0% 100%; transition: background-size 1s ease; }
+  .js .float.is-in .hl { background-size: 100% 100%; }
+  .js .float.is-in .hl:nth-of-type(1) { transition-delay: 1s; }
+  .js .float.is-in .hl:nth-of-type(2) { transition-delay: 1.6s; }
+  .js .float.is-in .hl:nth-of-type(3) { transition-delay: 2.2s; }
+  .num.big { font-size: 1.6em; color: var(--blue); display: inline-block; }
+  .card .num.big, .fullmsg .num.big { color: var(--cran-deep); }
+  .num.is-popped { animation: numPop .6s cubic-bezier(.3,1.6,.5,1); }
+  @keyframes numPop { 50% { transform: scale(1.3); } }
+  .msgblock .scene { background: rgba(255,255,255,.9); }
+
+  .scene-actions { height: auto; padding: 16px 8px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; align-items: end; }
+  .scene-actions .act { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; }
+  .scene-actions img, .scene-actions svg { position: static; display: block; }
+  .scene-actions .dbox { width: 72px; height: 66px; }
+  .scene-actions .act-pic { position: relative; width: 70px; height: 80px; }
+  .scene-actions .act-pic .dsm { position: absolute; width: 16px; height: 36px; left: 27px; top: 0; }
+  .scene-actions .act-pic img { position: absolute; width: 58px; left: 6px; bottom: 0; }
+  .scene-actions .a3 img { width: 100%; max-width: 110px; height: auto; }
+  .js .scene-actions .act { opacity: 0; }
+  .js .scene-actions.is-in .act { animation: popIn .6s cubic-bezier(.3,1.6,.5,1) forwards; }
+  .js .scene-actions.is-in .a1 { animation-delay: 1s; }
+  .js .scene-actions.is-in .a2 { animation-delay: 1.6s; }
+  .js .scene-actions.is-in .a3 { animation-delay: 2.2s; }
+  .js .scene-actions.is-in .a1 circle { animation: coinDrop 1.2s ease-in 1.6s 2; }
+  @keyframes coinDrop { 0% { transform: translateY(-14px); opacity: 0; } 30% { opacity: 1; } 70% { transform: translateY(18px); opacity: 1; } 100% { transform: translateY(22px); opacity: 0; } }
+
+  .scene-kids { height: 150px; display: flex; justify-content: center; align-items: flex-end; gap: 2px; padding-bottom: 10px; }
+  .scene-kids .wk { position: static; height: 120px; width: auto; }
+  .js .scene-kids .wk { opacity: 0; transform: translateY(20px); }
+  .js .scene-kids.is-in .wk { animation: fadeUp .7s ease calc(var(--i) * .15s + .6s) forwards, hop .5s ease-in-out calc(var(--i) * .15s + 2s) 2 alternate; }
+  @keyframes hop { to { translate: 0 -8px; } }
+  @media (max-width: 400px) { .scene-kids .wk { height: 84px; } .scene-kids { height: 110px; } }
+
+  .scene-bar { height: auto; padding: 18px 16px; text-align: left; }
+  .bar-row { display: grid; grid-template-columns: 84px 1fr auto; align-items: center; gap: 8px; margin: 6px 0; font-size: 13px; font-weight: 700; }
+  .bar { position: relative; height: 22px; background: #eef1f4; border-radius: 6px; overflow: hidden; }
+  .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 6px; }
+  .b-full { width: 100%; background: #eba3c2; }
+  .b-now { width: 0.8%; min-width: 3px; background: var(--cran); }
+  .bar-note { color: var(--blue); }
+  .js .scene-bar .b-full { transform: scaleX(0); transform-origin: left; }
+  .js .scene-bar .b-now { width: 100%; background: #eba3c2; }
+  .js .scene-bar.is-in .b-full { animation: grow 1.2s ease .3s forwards; }
+  .js .scene-bar.is-in .b-now { animation: shrink 2.4s cubic-bezier(.5,0,.2,1) 1.2s forwards; }
+  @keyframes shrink { to { width: 0.8%; background: var(--cran); } }
+
+  .scene-door { height: 190px; }
+  .scene-door .town { height: 150px; left: 50%; margin-left: -178px; bottom: 6px; }
+  .scene-door .worker { height: 118px; bottom: 6px; left: 2%; }
+  .scene-door .ok { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: #3aa655; opacity: 0; }
+  .scene-door .ok::after { content: ""; position: absolute; left: 7px; top: 6px; width: 11px; height: 6px; border-left: 3px solid #fff; border-bottom: 3px solid #fff; transform: rotate(-45deg); }
+  .scene-door .o1 { left: calc(50% - 150px); top: 50px; }
+  .scene-door .o2 { left: calc(50% - 60px); top: 84px; }
+  .scene-door .o3 { left: calc(50% + 30px); top: 44px; }
+  .scene-door .o4 { left: calc(50% + 110px); top: 70px; }
+  .js .scene-door.is-in .worker { animation: patrol 5s ease-in-out .3s forwards, bob .34s ease-in-out 14 alternate .3s; }
+  .js .scene-door.is-in .o1 { animation: popIn .5s cubic-bezier(.3,1.6,.5,1) 1.3s forwards; }
+  .js .scene-door.is-in .o2 { animation: popIn .5s cubic-bezier(.3,1.6,.5,1) 2.4s forwards; }
+  .js .scene-door.is-in .o3 { animation: popIn .5s cubic-bezier(.3,1.6,.5,1) 3.5s forwards; }
+  .js .scene-door.is-in .o4 { animation: popIn .5s cubic-bezier(.3,1.6,.5,1) 4.6s forwards; }
+  @keyframes patrol { to { left: calc(96% - 44px); } }
+  @media (max-width: 400px) { .scene-door .town { height: 120px; margin-left: -142px; } .scene-door .o1 { left: calc(50% - 120px); } .scene-door .o4 { left: calc(50% + 86px); } }
+
+  /* 画面いっぱいの一言（クランベリー・500円玉・世界ポリオデー） */
+  .fullmsg .fm-in { max-width: 760px; text-align: center; }
+  .fullmsg.is-cran p { color: var(--cran-deep); }
+  .fm-kid { height: 130px; margin: 0 auto 18px; }
+  .js .fullmsg .fm-kid { opacity: 0; transition: opacity 2.4s ease 1s; }
+  .js .fullmsg.is-in .fm-kid { opacity: 1; }
+  .fullmsg .note { font-size: 13px !important; color: var(--ink-sub) !important; font-weight: 400; margin-top: 16px !important; line-height: 1.7; }
+  .coinmsg .coin { width: 110px; height: 110px; margin: 0 auto 14px; display: block; }
+  .coinmsg p { color: var(--ink); font-size: min(5.2vw, 48px); }
+  .js .coinmsg .coin { transform: rotateY(90deg); }
+  .js .coinmsg.is-in .coin { animation: flip 1.2s ease-out .3s forwards; }
+  @keyframes flip { to { transform: none; } }
+  .kids21 { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px 2px; max-width: 420px; margin: 18px auto 0; }
+  .kids21 img { height: 58px; width: auto; margin: 0 auto; }
+  .js .kids21 img { opacity: 0; transform: scale(.4); }
+  .js .coinmsg.is-in .kids21 img { animation: popIn .45s cubic-bezier(.3,1.6,.5,1) calc(var(--i) * .09s + 1.6s) forwards; }
+  .daymsg p { color: var(--ink); }
+  .daymsg .day-title { font-size: min(6.4vw, 54px); color: var(--cran-deep); }
+  .daymsg br.sp { display: none; }
+  .steps { list-style: none; padding: 0; margin: 26px auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; counter-reset: st; }
+  .steps li { counter-increment: st; font-size: clamp(16px, 3.4vw, 22px); font-weight: 700; background: #fff; border: 2px solid var(--blue); color: var(--blue); border-radius: 999px; padding: 8px 18px; }
+  .steps li::before { content: counter(st); display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 14px; margin-right: 8px; vertical-align: 2px; }
+  .daymsg .day-end { font-size: min(4.6vw, 32px) !important; }
+  .js .daymsg .steps li, .js .daymsg .day-end { opacity: 0; transform: translateY(16px); }
+  .js .daymsg.is-in .steps li { animation: fadeUp .8s ease calc(var(--i) * .7s + 1.4s) forwards; }
+  .js .daymsg.is-in .day-end { animation: fadeUp 1.2s ease 3.8s forwards; }
+  @media (min-width: 641px) { .steps { flex-wrap: nowrap; } .steps li { white-space: nowrap; } }
+  @media (max-width: 640px) { .daymsg br.sp { display: inline; } .steps { flex-direction: column; align-items: center; } }
 
   /* 2滴の雫 */
   .drops { display: flex; justify-content: center; gap: 22px; height: 70px; margin: 0 0 12px; }
@@ -221,10 +513,6 @@
     .stage { align-items: flex-start; padding-top: 16vh; }
     .stage svg { height: auto; }
     .card { padding: 22px 18px; margin-bottom: 55vh; }
-    .eva-in { height: 72vh; }
-    .eva-date { top: 6%; font-size: 13vw; }
-    .eva-rule { top: calc(6% + 13vw * 1.3); }
-    .eva-place { font-size: min(30vw, 20vh); }
   }
 
   /* 動きを減らす設定の人には、最初から全部見せる */
@@ -232,9 +520,21 @@
     .js .rv, .js .lead, .js .type .ch, .js .chat .bubble, .js .chat .chat-meta, .js .hero h1 { opacity: 1 !important; transform: none !important; filter: none !important; animation: none !important; transition: none !important; }
     .js .chat .bubble .msg { display: inline !important; }
     .js .chat .bubble .dots { display: none !important; }
-    .js .eva .eva-date, .js .eva .eva-place, .js .eva .eva-rule { visibility: visible !important; animation: none !important; }
-    .js .eva.is-in::after { display: none; }
     .js .drops span { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .js .scene img, .js .scene .party, .js .scene .hands, .js .scene .star, .js .scene-clinic .walker { translate: none !important; transform: none !important; opacity: 1 !important; animation: none !important; }
+    .js .scene-clinic .w3, .js .scene-mothers .m3 { transform: scaleX(-1) !important; }
+    .js .scene-drop .fall, .js .scene-drop .ripple, .js .scene .voice, .js .scene-drink .dropmark { opacity: 0 !important; animation: none !important; }
+    .js .scene-polio .shield { opacity: .55 !important; animation: none !important; }
+    .js .scene-polio .virus { opacity: .5 !important; }
+    .js .soft, .js .fullmsg p, .js .chat-note { opacity: 1 !important; filter: none !important; transform: none !important; transition: none !important; }
+    .js .card h2.danger.is-in { animation: none !important; }
+    .js .float, .js .scene-goal .globe, .js .scene-timeline .tl, .js .scene-timeline .people, .js .scene-timeline .partners span, .js .scene-second .badge, .js .scene-actions .act, .js .scene-kids .wk, .js .kids21 img, .js .daymsg .steps li, .js .daymsg .day-end, .js .fullmsg .fm-kid, .js .coinmsg .coin { opacity: 1 !important; transform: none !important; filter: none !important; animation: none !important; transition: none !important; }
+    .js .scene-timeline .tl-line, .js .scene-bar .b-full { transform: none !important; animation: none !important; }
+    .js .scene-bar .b-now { width: 0.8% !important; background: var(--cran) !important; animation: none !important; }
+    .js .scene-door .ok { opacity: 1 !important; animation: none !important; }
+    .js .scene-door .worker { animation: none !important; }
+    .hl { background-size: 100% 100% !important; transition: none !important; }
+    body[data-stage] #world #m-JPN { animation: none !important; }
     #pin .ring, .scroll-cue::after { animation: none; }
     .stage svg, #world path { transition: none; animation: none !important; }
   }
@@ -263,91 +563,249 @@
 <main id="main">
 
   <section class="hero" data-stage="hero">
-    <h1><span>ポリオの</span><span>ない世界へ</span></h1>
+    <h1><span>ポリオの</span><span><wbr>ない<wbr>世界へ</span></h1>
     <p class="scroll-cue" aria-hidden="true">SCROLL</p>
   </section>
   <div class="hero-gap" data-stage="world"></div>
 
   <div class="chat" data-stage="world" data-chat>
     <div class="chat-row">
-      <div class="chat-face" aria-hidden="true">1979</div>
-      <p class="bubble"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="msg">ありがとう、ロータリー</span></p>
+      <div class="chat-face" aria-hidden="true"></div>
+      <p class="bubble"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="msg">ありがとう、<wbr>ロータリー</span></p>
     </div>
   </div>
 
-  <p class="lead" data-stage="world">フィリピンで始まったロータリーのポリオ根絶の取り組みと、いまのお話です。</p>
+  <p class="lead" data-stage="world">フィリピンで<wbr>始まった<wbr>ロータリーの<wbr>ポリオ根絶の<wbr>取り組みと、<wbr>いまの<wbr>お話です。</p>
 
-  <section class="eva" data-stage="eva" aria-label="1979年9月29日、マニラ">
-    <div class="eva-in" aria-hidden="true">
-      <p class="eva-date">1979<small>年</small>9<small>月</small>29<small>日</small>、</p>
-      <span class="eva-rule"></span>
-      <p class="eva-place">マニラ</p>
+  <div class="dateline" data-stage="manila" data-cap="フィリピン・マニラ">
+    <p class="rv"><span class="dl-date">1979年9月29日、</span><span class="dl-place"><wbr>マニラ</span></p>
+  </div>
+
+  <div class="story">
+
+    <div class="card" data-stage="manila" data-cap="フィリピン・マニラ">
+      <!-- 保健センターにお母さんと子どもたちが歩いてくる -->
+      <div class="scene scene-clinic" aria-hidden="true">
+        <span class="dropmark"></span>
+        <img class="clinic" src="../assets/story/clinic.svg" alt="">
+        <img class="walker w1" src="../assets/story/mother-baby.svg" alt="">
+        <img class="walker w2" src="../assets/story/toddler.svg" alt="">
+        <img class="walker w3" src="../assets/story/mother-baby.svg" alt="">
+        <span class="ground"></span>
+      </div>
+      <p class="rv">フィリピンの<wbr>マニラ近郊、<wbr>マカティの<wbr>保健センターで、<wbr>子ども<wbr>たちに<wbr>経口ポリオワクチンが<wbr>配られました。<wbr>ロータリーの<wbr>会員と<wbr>フィリピン保健省が<wbr>準備した<wbr>予防接種です。</p>
+      <!-- スポイトから雫が2滴、子どもの口へ -->
+      <div class="scene scene-drop" aria-hidden="true">
+        <svg class="dropper" viewBox="0 0 34 76" aria-hidden="true"><rect x="7" y="2" width="20" height="22" rx="10" fill="#645d5c"/><rect x="5" y="20" width="24" height="7" rx="3" fill="#bdbdbd"/><path d="M10 27h14v30l-5 14h-4l-5-14z" fill="#fff" stroke="#d9d9d9" stroke-width="2.5" stroke-linejoin="round"/><path d="M12 44h10v12l-4 11h-2l-4-11z" fill="#87cce3"/></svg>
+        <span class="dropmark fall f1"></span>
+        <span class="dropmark fall f2"></span>
+        <span class="ripple"></span>
+        <img class="face" src="../assets/story/face-boy.svg" alt="">
+        <span class="star"></span><span class="star s2"></span>
+      </div>
+      <p class="rv">最初の<wbr>子どもの<wbr>口に<wbr>ワクチンを<wbr>たら<wbr>したのは、<wbr>当時の<wbr>国際ロータリー会長、<wbr>ジェームス L. ボーマーさんでした。</p>
+      <!-- 国際ロータリーとフィリピン政府の約束 -->
+      <div class="scene scene-deal" aria-hidden="true">
+        <span class="party p-left">国際ロータリー</span>
+        <span class="hands"><img src="../assets/story/handshake.svg" alt=""></span>
+        <span class="party p-right">フィリピン政府</span>
+      </div>
+      <p class="rv">国際ロータリーと<wbr>フィリピン政府は、<span class="num"><wbr>76万</span>米ドルを<wbr>かけて、<wbr>数年で<span class="num"><wbr>600万人</span>の<wbr>子どもに<wbr>予防接種を<wbr>行う<wbr>約束を<wbr>交わしていました。</p>
+    </div>
+
+    <div class="card" data-stage="manila" data-cap="フィリピン・マニラ">
+      <p class="rv">ある<wbr>子に<wbr>ワクチンを<wbr>たらした<wbr>あと、<wbr>そばに<wbr>いた<wbr>その子の<wbr>お兄さんが、<wbr>会長の<wbr>ズボンを<wbr>引っ張って<wbr>言いました。</p>
+    </div>
+
+  </div>
+
+  <div class="chat chat-big" data-stage="manila" data-cap="フィリピン・マニラ" data-chat>
+    <div class="chat-row">
+      <div class="chat-face" aria-hidden="true"></div>
+      <p class="bubble"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="msg"><span class="nowrap">「ありがとう、</span><span class="nowrap"><wbr>ロータリー」</span></span></p>
+    </div>
+    <p class="chat-note">（ボーマー会長がのちに<wbr>語った<wbr>思い出です。<wbr>）</p>
+  </div>
+
+  <p class="soft" data-stage="manila" data-cap="フィリピン・マニラ">この<wbr>小さな<wbr>一言から、<wbr>ロータリーの<wbr>長い<wbr>取り組みが<wbr>始まります。</p>
+
+  <div class="story">
+
+    <div class="card is-blue" data-stage="plain">
+      <h2 class="rv">ポリオと<wbr>いう<wbr>病気</h2>
+      <!-- ウイルス → まひが残ることがある → ワクチンで防ぐ -->
+      <div class="scene scene-polio" aria-hidden="true">
+        <img class="virus" src="../assets/story/virus.svg" alt="">
+        <img class="boy" src="../assets/story/crutches-boy.svg" alt="">
+        <span class="shield"></span>
+        <img class="vial" src="../assets/story/vial.svg" alt="">
+      </div>
+      <p class="rv">ポリオ<wbr>（急性灰白髄炎）は、<wbr>ポリオウイルスに<wbr>よる<wbr>感染症です。<wbr>主に<span class="num"><wbr>5歳未満</span>の<wbr>子どもが<wbr>かかり、<wbr>手や<wbr>足に<wbr>まひが<wbr>残る<wbr>ことがあります。<wbr>かかってから<wbr>治す方法は<wbr>なく、<wbr>防ぐには<wbr>ワクチンしか<wbr>ありません。</p>
+    </div>
+
+    <div class="card" data-stage="japanred" data-cap="日本（1960年）">
+      <h2 class="rv danger">日本でも、<wbr>大流行が<wbr>ありました</h2>
+      <p class="rv">遠い国だけの<wbr>話ではありません。<wbr>日本では<wbr>1960年、<wbr>ポリオの<wbr>患者が<span class="num"><wbr>5千人</span>を<wbr>超える、<wbr>かつてない<wbr>大流行に<wbr>なりました。</p>
+    </div>
+
+    <div class="card is-blue" data-stage="japanblue" data-cap="日本">
+      <!-- 子どもを守りたいという母親たちの声 -->
+      <div class="scene scene-mothers" aria-hidden="true">
+        <img class="mom m1" src="../assets/story/mother-baby.svg" alt="">
+        <img class="mom m2" src="../assets/story/mother-baby.svg" alt="">
+        <img class="mom m3" src="../assets/story/mother-baby.svg" alt="">
+        <span class="voice v1"></span><span class="voice v2"></span><span class="voice v3"></span>
+      </div>
+      <p class="rv">子どもを<wbr>守りたいと<wbr>いう<wbr>母親たちの<wbr>強い<wbr>声も<wbr>あり、<wbr>翌1961年、<wbr>国は<wbr>生ワクチンを<wbr>緊急に<wbr>輸入し、<wbr>子ども<wbr>たちに<wbr>一斉に<wbr>飲ませました。</p>
+      <!-- 子どもたちに一斉に -->
+      <div class="scene scene-drink" aria-hidden="true">
+        <span class="kid" style="--i:0"><span class="dropmark"></span><img src="../assets/story/baby-a.svg" alt=""></span>
+        <span class="kid" style="--i:1"><span class="dropmark"></span><img src="../assets/story/kid-hat-girl.svg" alt=""></span>
+        <span class="kid" style="--i:2"><span class="dropmark"></span><img src="../assets/story/baby-d.svg" alt=""></span>
+        <span class="kid" style="--i:3"><span class="dropmark"></span><img src="../assets/story/kid-hat-boy.svg" alt=""></span>
+        <span class="kid" style="--i:4"><span class="dropmark"></span><img src="../assets/story/baby-b.svg" alt=""></span>
+        <span class="kid" style="--i:5"><span class="dropmark"></span><img src="../assets/story/baby-c.svg" alt=""></span>
+      </div>
+      <p class="rv">流行は<wbr>おさまり、<wbr>1980年の<wbr>1人を<wbr>最後に、<wbr>日本では<wbr>野生の<wbr>（ワクチンに<wbr>よらない）<wbr>ポリオウイルスに<wbr>よる<wbr>新しい<wbr>患者は<wbr>出ていません。</p>
+      <div class="scene scene-zero" aria-hidden="true">
+        <div class="from"><p class="yr">1980年</p><p class="big">1人</p></div>
+        <span class="arrow"></span>
+        <div class="to"><p class="yr"><span data-year-to>2026</span>年</p><p class="big zero">0人</p></div>
+        <p class="cap">野生の<wbr>ポリオウイルスに<wbr>よる<wbr>新しい<wbr>患者</p>
+      </div>
+    </div>
+
+  </div>
+
+  <section class="fullmsg" data-stage="japanblue" data-cap="日本">
+    <p><b><span class="nowrap">日本の<wbr>子ども<wbr>たちも、</span><br><span class="nowrap"><wbr>ワクチンに<wbr>守られてきたのです。</span></b></p>
+  </section>
+
+  <div class="story">
+
+    <div class="card" data-stage="world">
+      <h2 class="rv">「世界からなくす」と<wbr>いう<wbr>約束</h2>
+      <!-- 「ポリオのない世界」が目標に -->
+      <div class="scene scene-goal" aria-hidden="true">
+        <span class="glow"></span>
+        <img class="globe" src="../assets/story/globe-hands.svg" alt="">
+      </div>
+      <p class="rv">フィリピンでの<wbr>成功を<wbr>きっかけに、<wbr>「ポリオの<wbr>ない<wbr>世界」は<wbr>ロータリーの<wbr>いちばん<wbr>大切な<wbr>目標に<wbr>なりました。</p>
+      <!-- 1985年 ポリオプラス → 1988年 GPEI -->
+      <div class="scene scene-timeline" aria-hidden="true">
+        <div class="tl-line"></div>
+        <div class="tl tl1"><span class="tl-year">1985</span><span class="tl-name">ポリオプラス</span></div>
+        <div class="tl tl2"><span class="tl-year">1988</span><span class="tl-name">GPEI</span></div>
+        <img class="people" src="../assets/story/people-hands.svg" alt="">
+        <div class="partners"><span>ロータリー</span><span>WHO</span><span>ユニセフ</span></div>
+      </div>
+      <p class="rv">1985年に<wbr>「ポリオプラス」と<wbr>いう<wbr>活動を<wbr>始め、<wbr>1988年には<wbr>世界保健機関<wbr>（WHO）<wbr>や<wbr>ユニセフなどとともに<wbr>「世界ポリオ根絶推進活動<wbr>（GPEI）」を<wbr>立ち上げました。</p>
+      <!-- 天然痘に続いて2度目 -->
+      <div class="scene scene-second" aria-hidden="true">
+        <div class="badge b1"><span class="bn">1</span><span class="bt">天然痘</span><span class="check"></span></div>
+        <div class="badge b2"><span class="bn">2</span><span class="bt">ポリオ</span><span class="ring"></span></div>
+      </div>
+      <p class="rv">人類が<wbr>病気を<wbr>根絶するのは、<wbr>天然痘に<wbr>続いて<wbr>2度目となる<wbr>挑戦です。</p>
+    </div>
+
+    <div class="card" data-stage="spread" data-cap="1988年ごろ　125か国以上に広がっていた（地図はイメージ）">
+      <div class="stats" aria-hidden="true">
+        <div class="stat"><p class="st-lab">広がっていた<wbr>国</p><p class="st-num"><span class="num" data-to="125">125</span><small>か<wbr>国以上</small></p></div>
+        <div class="stat"><p class="st-lab">1年に<wbr>かかった<wbr>人<wbr>（推定）</p><p class="st-num"><span class="num" data-to="35">35</span><small>万人</small></p></div>
+      </div>
+      <p class="rv">その<wbr>ころ<wbr>ポリオは<span class="num"><wbr>125</span>か<wbr>国以上で<wbr>広がり、<wbr>1年に<wbr>推定<span class="num">35万人</span>が<wbr>かかっていました。</p>
+    </div>
+
+  </div>
+
+  <!-- 3つのメッセージを1つずつ浮かび上がらせる -->
+  <div class="msgblock" data-stage="vaccinate" data-cap="世界中で予防接種が進む（地図はイメージ）">
+    <p class="float">それから<wbr>世界中の<wbr>ロータリー会員が、<span class="hl"><wbr>お金を<wbr>集め</span>、<span class="hl"><wbr>現地で<wbr>予防接種を<wbr>手伝い</span>、<span class="hl"><wbr>各国の<wbr>政府に<wbr>協力を<wbr>呼びかけて</span>きました。</p>
+    <div class="scene scene-actions" aria-hidden="true">
+      <div class="act a1"><svg class="dbox" viewBox="0 0 120 110" aria-hidden="true"><rect x="10" y="30" width="100" height="74" rx="8" fill="#fff" stroke="#d9d9d9" stroke-width="4"/><rect x="10" y="30" width="100" height="20" rx="6" fill="#7abee6"/><rect x="42" y="36" width="36" height="7" rx="3.5" fill="#645d5c"/><circle cx="60" cy="16" r="11" fill="#ffda71" stroke="#e5b745" stroke-width="3"/><text x="60" y="80" text-anchor="middle" font-size="18" font-weight="700" fill="#d41367" font-family="sans-serif">募金</text></svg><span>お金を集める</span></div>
+      <div class="act a2"><span class="act-pic"><svg class="dsm" viewBox="0 0 34 76" aria-hidden="true"><rect x="7" y="2" width="20" height="22" rx="10" fill="#645d5c"/><rect x="5" y="20" width="24" height="7" rx="3" fill="#bdbdbd"/><path d="M10 27h14v30l-5 14h-4l-5-14z" fill="#fff" stroke="#d9d9d9" stroke-width="2.5" stroke-linejoin="round"/><path d="M12 44h10v12l-4 11h-2l-4-11z" fill="#87cce3"/></svg><img src="../assets/story/face-boy.svg" alt=""></span><span>予防接種を手伝う</span></div>
+      <div class="act a3"><img src="../assets/story/meeting.svg" alt=""><span>政府に呼びかける</span></div>
+    </div>
+  </div>
+
+  <div class="msgblock" data-stage="vaccinate" data-cap="世界中で予防接種が進む（地図はイメージ）">
+    <p class="float">ロータリーは<span class="num big" data-to="122"><wbr>122</span>か国で、<span class="nowrap"><span class="num big" data-to="30"><wbr>30</span><span class="num big">億人</span></span>の<wbr>子どもに<wbr>ワクチンを<wbr>届ける<wbr>活動に<wbr>加わっています。</p>
+    <div class="scene scene-kids" aria-hidden="true"><img class="wk" style="--i:0" src="../assets/story/w-kid1.svg" alt=""><img class="wk" style="--i:1" src="../assets/story/w-kid2.svg" alt=""><img class="wk" style="--i:2" src="../assets/story/w-kid3.svg" alt=""><img class="wk" style="--i:3" src="../assets/story/w-kid4.svg" alt=""><img class="wk" style="--i:4" src="../assets/story/w-kid5.svg" alt=""><img class="wk" style="--i:5" src="../assets/story/w-kid6.svg" alt=""><img class="wk" style="--i:6" src="../assets/story/w-kid7.svg" alt=""><img class="wk" style="--i:7" src="../assets/story/w-kid8.svg" alt=""></div>
+  </div>
+
+  <div class="msgblock" data-stage="vaccinate" data-cap="世界中で予防接種が進む（地図はイメージ）">
+    <p class="float">ポリオの<wbr>症例は<span class="nowrap"><span class="num big" data-to="99.9" data-dec="1"><wbr>99.9</span><span class="num big">%</span></span>以上<wbr>減り、<span class="nowrap"><span class="num big" data-to="2000" data-comma="1"><wbr>2,000</span><span class="num big">万人</span></span>以上が<wbr>まひから<wbr>救われたとされています。</p>
+    <div class="scene scene-bar" aria-hidden="true">
+      <div class="bar-row"><span class="bar-lab">1988年ごろ</span><span class="bar"><i class="b-full"></i></span></div>
+      <div class="bar-row"><span class="bar-lab">いま</span><span class="bar"><i class="b-now"></i></span><span class="bar-note">99.9%以上減</span></div>
+    </div>
+  </div>
+
+  <div class="story">
+
+    <div class="card" data-stage="last2" data-cap="アフガニスタン・パキスタン">
+      <h2 class="rv">最後の<wbr>2か<wbr>国</h2>
+      <p class="rv">いま、<wbr>野生の<wbr>ポリオウイルスが<wbr>広がり続けているのは、<wbr>アフガニスタンと<wbr>パキスタンの<wbr>2か国だけです。</p>
+      <p class="rv">2026年4月には、<wbr>パキスタン全国の<wbr>予防接種で<span class="nowrap"><span class="num big" data-to="4480" data-comma="1"><wbr>4,480</span><span class="num big">万人</span></span>の<wbr>子どもに<wbr>ワクチンが<wbr>届けられました。</p>
+      <!-- 接種の担当者が1軒ずつ家を回る -->
+      <div class="scene scene-door" aria-hidden="true">
+        <img class="town" src="../assets/story/town.svg" alt="">
+        <span class="ok o1"></span><span class="ok o2"></span><span class="ok o3"></span><span class="ok o4"></span>
+        <img class="worker" src="../assets/story/worker.svg" alt="">
+      </div>
+      <p class="rv">治安が<wbr>不安定な<wbr>地域や<wbr>人の<wbr>行き来が<wbr>多い<wbr>地域でも、<wbr>接種の<wbr>担当者が<wbr>1軒ずつ家を<wbr>回り、<wbr>受けそびれた<wbr>子どもが<wbr>いないか<wbr>確かめています。</p>
+      <p class="rv">それでも、<wbr>まだ<wbr>ゼロには<wbr>なっていません。<wbr>ウイルスが<wbr>1か国に<wbr>でも<wbr>残っていれば、<wbr>世界中の<wbr>子どもに<wbr>うつる<wbr>おそれが<wbr>あります。</p>
+    </div>
+
+  </div>
+
+  <section class="fullmsg is-cran" data-stage="last2" data-cap="アフガニスタン・パキスタン">
+    <div class="fm-in">
+      <img class="fm-kid" src="../assets/story/w-kid5.svg" alt="">
+      <p><b><span class="nowrap">最後の<wbr>1人に<wbr>届けるまでが、</span><br><span class="nowrap"><wbr>いちばん難しい<wbr>ところです。</span></b></p>
     </div>
   </section>
 
   <div class="story">
 
-    <div class="card" data-stage="manila" data-cap="フィリピン・マニラ">
-      <p class="rv">フィリピンのマニラ近郊、マカティの保健センターで、子どもたちに経口ポリオワクチンが配られました。ロータリーの会員とフィリピン保健省が準備した予防接種です。</p>
-      <p class="rv">最初の子どもの口にワクチンをたらしたのは、当時の国際ロータリー会長、ジェームス L. ボーマーさんでした。国際ロータリーとフィリピン政府は、<span class="num">76万</span>米ドルをかけて、数年で<span class="num">600万人</span>の子どもに予防接種を行う約束を交わしていました。</p>
-    </div>
-
-    <div class="card" data-stage="manila" data-cap="フィリピン・マニラ">
-      <p class="rv">ある子にワクチンをたらしたあと、そばにいたその子のお兄さんが、会長のズボンを引っ張って言いました。</p>
-      <div class="chat in-card" data-chat>
-        <div class="chat-row">
-          <p class="bubble"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="msg">「ありがとう、ロータリー」</span></p>
-        </div>
-      </div>
-      <p class="rv note">（ボーマー会長がのちに語った思い出です。）</p>
-      <p class="type key">この小さな一言から、ロータリーの長い取り組みが始まります。</p>
-    </div>
-
-    <div class="card is-blue" data-stage="plain">
-      <h2 class="rv">ポリオという病気</h2>
-      <p class="rv">ポリオ（急性灰白髄炎）は、ポリオウイルスによる感染症です。主に<span class="num">5歳未満</span>の子どもがかかり、手や足にまひが残ることがあります。かかってから治す方法はなく、防ぐにはワクチンしかありません。</p>
-    </div>
-
-    <div class="card is-blue" data-stage="japan" data-cap="日本">
-      <h2 class="rv">日本でも、大流行がありました</h2>
-      <p class="rv">遠い国だけの話ではありません。日本では1960年、ポリオの患者が<span class="num">5千人</span>を超える、かつてない大流行になりました。</p>
-      <p class="rv">子どもを守りたいという母親たちの強い声もあり、翌1961年、国は生ワクチンを緊急に輸入し、子どもたちに一斉に飲ませました。流行はおさまり、1980年の1人を最後に、日本では野生の（ワクチンによらない）ポリオウイルスによる新しい患者は出ていません。</p>
-      <p class="type key">日本の子どもたちも、ワクチンに守られてきたのです。</p>
-    </div>
-
-    <div class="card" data-stage="spread" data-cap="1988年ごろ　125か国以上に広がっていた（地図はイメージ）">
-      <h2 class="rv">「世界からなくす」という約束</h2>
-      <p class="rv">フィリピンでの成功をきっかけに、「ポリオのない世界」はロータリーのいちばん大切な目標になりました。1985年に「ポリオプラス」という活動を始め、1988年には世界保健機関（WHO）やユニセフなどとともに「世界ポリオ根絶推進活動（GPEI）」を立ち上げました。人類が病気を根絶するのは、天然痘に続いて2度目となる挑戦です。</p>
-      <p class="rv">そのころポリオは<span class="num" data-to="125">125</span>か国以上で広がり、1年に推定<span class="num" data-to="35">35</span><span class="num">万人</span>がかかっていました。</p>
-    </div>
-
-    <div class="card is-blue" data-stage="vaccinate" data-cap="世界中で予防接種が進む（地図はイメージ）">
-      <p class="rv">それから世界中のロータリー会員が、お金を集め、現地で予防接種を手伝い、各国の政府に協力を呼びかけてきました。ロータリーは<span class="num" data-to="122">122</span>か国で、<span class="num" data-to="30">30</span><span class="num">億人</span>の子どもにワクチンを届ける活動に加わっています。ポリオの症例は<span class="num" data-to="99.9" data-dec="1">99.9</span><span class="num">%</span>以上減り、<span class="num" data-to="2000" data-comma="1">2,000</span><span class="num">万人</span>以上がまひから救われたとされています。</p>
-    </div>
-
-    <div class="card" data-stage="last2" data-cap="アフガニスタン・パキスタン">
-      <h2 class="rv">最後の2か国</h2>
-      <p class="rv">いま、野生のポリオウイルスが広がり続けているのは、アフガニスタンとパキスタンの2か国だけです。</p>
-      <p class="rv">2026年4月には、パキスタン全国の予防接種で<span class="num" data-to="4480" data-comma="1">4,480</span><span class="num">万人</span>の子どもにワクチンが届けられました。治安が不安定な地域や人の行き来が多い地域でも、接種の担当者が1軒ずつ家を回り、受けそびれた子どもがいないか確かめています。</p>
-      <p class="rv">それでも、まだゼロにはなっていません。ウイルスが1か国にでも残っていれば、世界中の子どもにうつるおそれがあります。最後の1人に届けるまでが、いちばん難しいところです。</p>
-    </div>
-
     <div class="card is-blue" data-stage="plain">
       <div class="drops rv" aria-hidden="true"><span></span><span></span></div>
-      <h2 class="rv">2滴のワクチンから</h2>
-      <p class="rv">経口ポリオワクチンは、口に<span class="num">2滴</span>たらすだけのワクチンです。1回分の費用は、平均で約<span class="num" data-to="0.15" data-dec="2">0.15</span>米ドルです。</p>
-      <p class="rv"><span class="key">10月24日は「世界ポリオデー」です。</span>ポリオのことを知る。家族や友だちに話す。募金に協力する。どれも、根絶に近づく一歩になります。</p>
+      <h2 class="rv">2滴の<wbr>ワクチンから</h2>
+      <p class="rv">経口ポリオワクチンは、<wbr>口に<span class="num"><wbr>2滴</span>たらすだけの<wbr>ワクチンです。</p>
+      <p class="rv">1回分の<wbr>費用は、<wbr>平均で<span class="nowrap"><wbr>約<span class="num big" data-to="0.15" data-dec="2">0.15</span>米ドル</span>です。<wbr>日本円で<span class="nowrap"><wbr>約<span class="num big" data-to="24">24</span>円</span>、<span class="nowrap"><wbr>うまい<wbr>棒1本半</span>くらいです。</p>
+      <p class="rv note">（1米ドル＝約157円で<wbr>計算。<wbr>2026年9月時点）</p>
     </div>
 
   </div>
 
-  <p class="finale type" data-stage="end">1979年のマニラで聞いた「ありがとう」を、世界中の子どもたちから聞ける日まで。ロータリーとローターアクトの取り組みは続きます。</p>
+  <section class="fullmsg coinmsg" data-stage="plain">
+    <div class="fm-in">
+      <svg class="coin" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#e5b745"/><circle cx="60" cy="60" r="48" fill="#ffda71"/><circle cx="60" cy="60" r="48" fill="none" stroke="#e5b745" stroke-width="2" stroke-dasharray="3 4"/><text x="60" y="72" text-anchor="middle" font-size="34" font-weight="700" fill="#a07a1e" font-family="sans-serif">500</text><text x="60" y="94" text-anchor="middle" font-size="13" font-weight="700" fill="#a07a1e" font-family="sans-serif">円</text></svg>
+      <p><b><span class="nowrap">500円玉1枚で、</span><br><span class="nowrap"><span class="num big" data-to="21"><wbr>21</span>人の<wbr>子どもに</span><span class="nowrap"><wbr>ワクチンが<wbr>届きます。</span></b></p>
+      <div class="kids21" aria-hidden="true"><img class="k21" style="--i:0" src="../assets/story/w-kid1.svg" alt=""><img class="k21" style="--i:1" src="../assets/story/w-kid2.svg" alt=""><img class="k21" style="--i:2" src="../assets/story/w-kid3.svg" alt=""><img class="k21" style="--i:3" src="../assets/story/w-kid4.svg" alt=""><img class="k21" style="--i:4" src="../assets/story/w-kid5.svg" alt=""><img class="k21" style="--i:5" src="../assets/story/w-kid6.svg" alt=""><img class="k21" style="--i:6" src="../assets/story/w-kid7.svg" alt=""><img class="k21" style="--i:7" src="../assets/story/w-kid8.svg" alt=""><img class="k21" style="--i:8" src="../assets/story/w-kid1.svg" alt=""><img class="k21" style="--i:9" src="../assets/story/w-kid2.svg" alt=""><img class="k21" style="--i:10" src="../assets/story/w-kid3.svg" alt=""><img class="k21" style="--i:11" src="../assets/story/w-kid4.svg" alt=""><img class="k21" style="--i:12" src="../assets/story/w-kid5.svg" alt=""><img class="k21" style="--i:13" src="../assets/story/w-kid6.svg" alt=""><img class="k21" style="--i:14" src="../assets/story/w-kid7.svg" alt=""><img class="k21" style="--i:15" src="../assets/story/w-kid8.svg" alt=""><img class="k21" style="--i:16" src="../assets/story/w-kid1.svg" alt=""><img class="k21" style="--i:17" src="../assets/story/w-kid2.svg" alt=""><img class="k21" style="--i:18" src="../assets/story/w-kid3.svg" alt=""><img class="k21" style="--i:19" src="../assets/story/w-kid4.svg" alt=""><img class="k21" style="--i:20" src="../assets/story/w-kid5.svg" alt=""></div>
+      <p class="note">※ワクチン1回分の<wbr>平均費用<wbr>（約0.15米ドル＝約24円）で<wbr>計算しています。</p>
+    </div>
+  </section>
+
+  <section class="fullmsg daymsg" data-stage="end">
+    <div class="fm-in">
+      <p class="day-title"><b>10月24日は<br class="sp"><wbr>「世界ポリオデー」です。</b></p>
+      <ol class="steps">
+        <li style="--i:0">ポリオの<wbr>ことを<wbr>知る。</li>
+        <li style="--i:1">家族や<wbr>友だちに<wbr>話す。</li>
+        <li style="--i:2">募金に<wbr>協力する。</li>
+      </ol>
+      <p class="day-end"><b>どれも、<wbr>根絶に<wbr>近づく<wbr>一歩に<wbr>なります。</b></p>
+    </div>
+  </section>
+
+  <p class="finale soft" data-stage="end">1979年の<wbr>マニラで<wbr>聞いた<span class="nowrap"><wbr>「ありがとう」を、</span><wbr>世界中の<wbr>子ども<wbr>たちから<wbr>聞ける<wbr>日まで。<wbr>ロータリーと<wbr>ローターアクトの<wbr>取り組みは<wbr>続きます。</p>
 
   <div class="story">
     <div class="card event" data-stage="plain">
-      <h2 class="rv">10月25日（日）、福井駅前で</h2>
-      <p class="rv">福井駅前のPLAYCE（プレイス）1階で、13:00から15:00まで、医師によるミニセミナーと募金、パネル展示、子ども向けの塗り絵を行います。どなたでもお越しください。</p>
-      <p class="btn-wrap rv"><a class="btn" data-track="story_to_outline" href="../#outline">開催のご案内を見る</a></p>
+      <h2 class="rv">10月25日<wbr>（日）、<wbr>福井駅前で</h2>
+      <p class="rv">福井駅前の<wbr>PLAYCE<wbr>（プレイス）<wbr>1階で、<wbr>13:00から<wbr>15:00まで、<wbr>医師に<wbr>よる<wbr>ミニセミナーと<wbr>募金、<wbr>パネル展示、<wbr>子ども<wbr>向けの<wbr>塗り絵を<wbr>行います。<wbr>どなたでも<wbr>お越しください。</p>
+      <p class="btn-wrap rv"><a class="btn" data-track="story_to_outline" href="../#outline">開催の<wbr>ご案内を<wbr>見る</a></p>
     </div>
   </div>
 
@@ -364,7 +822,7 @@
       <li>ニッセイ基礎研究所「60年前のポリオ騒動で考える感染症対策のディレンマ」<br><a href="https://www.nli-research.co.jp/report/detail/id=66565?site=nli" target="_blank" rel="noopener">https://www.nli-research.co.jp/report/detail/id=66565?site=nli</a></li>
       <li>世界ポリオ根絶推進活動（GPEI）「Pakistan and Afghanistan unite to protect millions of children in synchronized polio campaigns」（2026年5月、英語）<br><a href="https://polioeradication.org/news/pakistan-and-afghanistan-unite-to-protect-millions-of-children-in-synchronized-polio-campaigns/" target="_blank" rel="noopener">https://polioeradication.org/news/pakistan-and-afghanistan-unite-to-protect-millions-of-children-in-synchronized-polio-campaigns/</a></li>
     </ul>
-    <p class="note">背景の世界地図は Natural Earth（パブリックドメイン）の国境データをもとに作成したイメージです。</p>
+    <p class="note">イラストは <a href="https://soco-st.com/" target="_blank" rel="noopener">ソコスト</a> の素材を使っています。</p>
     <p class="back"><a data-track="story_to_top" href="../">アクトの日 2026 福井のトップページへ</a></p>
   </div>
 </section>
@@ -420,9 +878,26 @@
       var p = Math.min((t - t0) / 1500, 1);
       var e = 1 - Math.pow(1 - p, 3);
       el.textContent = p < 1 ? fmt(to * e) : final;
-      if (p < 1) requestAnimationFrame(step);
+      if (p < 1) requestAnimationFrame(step); else if (el.classList.contains('big')) el.classList.add('is-popped');
     }
     el.textContent = fmt(0);
+    requestAnimationFrame(step);
+  }
+
+  // 1980年からの年を、いまの年まで数え上げる
+  var yTo = document.querySelector('[data-year-to]');
+  var thisYear = Math.max(2026, new Date().getFullYear());
+  if (yTo) yTo.textContent = thisYear;
+  function countYears(scene) {
+    if (!yTo || reduce) return;
+    var t0 = null;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 2400, 1);
+      yTo.textContent = Math.round(1981 + (thisYear - 1981) * (1 - Math.pow(1 - p, 2)));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    yTo.textContent = 1981;
     requestAnimationFrame(step);
   }
 
@@ -440,11 +915,12 @@
       var el = en.target;
       if (el.hasAttribute('data-chat')) say(el);
       else el.classList.add('is-in');
+      if (el.classList.contains('scene-zero')) countYears(el);
       el.querySelectorAll('[data-to]').forEach(countUp);
       showIo.unobserve(el);
     });
   }, { rootMargin: '0px 0px -18% 0px', threshold: 0.15 });
-  document.querySelectorAll('.rv, .type, .lead, [data-chat], .eva').forEach(function (el) { showIo.observe(el); });
+  document.querySelectorAll('.rv, .type, .lead, .soft, .float, .fullmsg, .stats, [data-chat], .scene').forEach(function (el) { showIo.observe(el); });
 
   // 背景の地図：画面の真ん中にある場面に合わせて、寄る場所と色を変える
   var svg = document.getElementById('world');
@@ -456,6 +932,8 @@
     eva:       [314, 175, 180, 90],
     manila:    [314, 175, 180, 90],
     japan:     [333, 75, 240, 120],
+    japanred:  [333, 75, 240, 120],
+    japanblue: [333, 75, 240, 120],
     spread:    [0, 20, 1000, 460],
     vaccinate: [0, 20, 1000, 460],
     last2:     [160, 105, 220, 110],
