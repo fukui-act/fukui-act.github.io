@@ -1,5 +1,10 @@
 # 更新履歴
 
+## 1.5.0（2026-09-28）
+
+- 検索に出さない設定（noindex）を外し、Googleなどの検索に出るようにした。
+- 正規URL（canonical）、robots.txt、sitemap.xml を追加。
+
 ## 1.4.0（2026-09-28）
 
 - SNSで共有したときのサムネ画像（assets/ogp.png、1200×630）を追加。X（旧Twitter）では大きい画像で表示する。
