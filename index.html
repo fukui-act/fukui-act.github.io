@@ -25,6 +25,20 @@
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
+<!-- Googleアナリティクス（GA4）。測定IDは GA_ID に入れる。未設定（G-XXXXXXXXXX のまま）なら読み込まない -->
+<script>
+  window.GA_ID = 'G-GGWTF598PY';
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  if (/^G-[A-Z0-9]{6,}$/.test(window.GA_ID) && window.GA_ID !== 'G-XXXXXXXXXX') {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_ID;
+    document.head.appendChild(s);
+    gtag('js', new Date());
+    gtag('config', window.GA_ID);
+  }
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -177,6 +191,7 @@
   footer img { width: 180px; margin-bottom: 14px; }
   footer a { color: var(--white); }
   footer p { margin: 0 0 8px; }
+  footer .privacy { font-size: 13px; opacity: .85; margin-top: 16px; line-height: 1.7; }
 
   /* スクロールで浮き上がる */
   .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease-out, transform .7s ease-out; }
@@ -214,7 +229,7 @@
 
 <div class="brandbar">
   <div class="wrap">
-    <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
+    <a class="logo-link" data-track="link_rotaract2650" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
     <p>アクトの日 2026 福井<br>世界ポリオデー</p>
   </div>
 </div>
@@ -278,7 +293,7 @@
         <div class="map-frame">
           <iframe src="https://www.google.com/maps?q=PLAYCE%20%E7%A6%8F%E4%BA%95%E7%9C%8C%E7%A6%8F%E4%BA%95%E5%B8%82%E4%B8%AD%E5%A4%AE1%E4%B8%81%E7%9B%AE3-5%20FUKUMACHI%20BLOCK&amp;z=17&amp;hl=ja&amp;output=embed" title="会場 PLAYCE（プレイス）の地図" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
         </div>
-        <a class="btn" href="https://www.google.com/maps/search/?api=1&amp;query=PLAYCE%20FUKUMACHI%20BLOCK%20%E7%A6%8F%E4%BA%95%E5%B8%82&amp;query_place_id=ChIJURD41xe_-F8R3pufZpBSrsc" target="_blank" rel="noopener">Googleマップで開く</a>
+        <a class="btn" data-track="map_open" href="https://www.google.com/maps/search/?api=1&amp;query=PLAYCE%20FUKUMACHI%20BLOCK%20%E7%A6%8F%E4%BA%95%E5%B8%82&amp;query_place_id=ChIJURD41xe_-F8R3pufZpBSrsc" target="_blank" rel="noopener">Googleマップで開く</a>
       </div>
     </div>
   </section>
@@ -314,7 +329,7 @@
         <h2 id="h-nurie">塗り絵をダウンロード</h2>
         <p>チラシの裏面の塗り絵と同じものを、ここからダウンロードして印刷できます。塗り終えたら当日会場へお持ちください。お菓子と引き換えます。</p>
         <!-- 塗り絵のPDFが届いたら assets/nurie.pdf に置き、下の span を次の a に差し替える
-             <a class="btn" href="assets/nurie.pdf" download>塗り絵（PDF）をダウンロード</a> -->
+             <a class="btn" data-track="nurie_download" href="assets/nurie.pdf" download>塗り絵（PDF）をダウンロード</a> -->
         <span class="btn" role="link" aria-disabled="true">準備中</span>
         <p class="note" style="margin:12px 0 0">A4の用紙に印刷してお使いください。</p>
       </div>
@@ -362,7 +377,7 @@
         <p>ローターアクトは、国際ロータリーが提唱する18歳以上の若い世代の奉仕団体です。地域や世界の課題に、仕事や学業のかたわら取り組んでいます。</p>
         <p>国際ロータリーは1985年から、ポリオのない世界をめざして活動を続けています。「アクトの日」は、ローターアクトが企画し、ロータリーとともに取り組む一日です。</p>
       </div>
-      <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
+      <a class="logo-link" data-track="link_rotaract2650" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
     </div>
   </section>
 
@@ -376,15 +391,23 @@
 
 <footer>
   <div class="wrap">
-    <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650-white.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
-    <p>アクトの日 2026 福井　主催：<a href="https://www.rid2650.gr.jp/" target="_blank" rel="noopener">国際ロータリー第2650地区</a> 福井ゾーンのローターアクトクラブ</p>
+    <a class="logo-link" data-track="link_rotaract2650" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650-white.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
+    <p>アクトの日 2026 福井　主催：<a data-track="link_rid2650" href="https://www.rid2650.gr.jp/" target="_blank" rel="noopener">国際ロータリー第2650地区</a> 福井ゾーンのローターアクトクラブ</p>
     <p><a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
+    <p class="privacy">このサイトでは、見られ方を知って案内を良くするために Google アナリティクス（Cookie を使います）を利用しています。個人を特定する情報は集めていません。<a href="https://policies.google.com/technologies/partner-sites?hl=ja" target="_blank" rel="noopener">Google によるデータの使用について</a></p>
   </div>
 </footer>
 
 <script>
 (function () {
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 計測：data-track の付いたリンクが押されたら記録する（GA未設定なら何もしない）
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('[data-track]');
+    if (!a || typeof gtag !== 'function') return;
+    gtag('event', a.getAttribute('data-track'), { link_url: a.href || '', transport_type: 'beacon' });
+  });
 
   // ヒーローの再生
   var hero = document.getElementById('hero');

@@ -1,5 +1,12 @@
 # 更新履歴
 
+## 1.8.0（2026-09-28）
+
+- Googleアナリティクス（GA4、測定ID G-GGWTF598PY）を追加。IDは index.html の GA_ID。
+- 計測するタップ：Googleマップで開く（map_open）、地区ローターアクトのサイト（link_rotaract2650）、ロータリー地区のサイト（link_rid2650）、塗り絵のダウンロード（nurie_download・PDF公開後）。
+- チラシとポケットティッシュのQRは、見分けられるよう行き先に印を付けた（?utm_source=flyer / tissue &utm_medium=qr）。
+- フッターに Google アナリティクス利用のお知らせを追加。
+
 ## 1.7.2（2026-09-28）
 
 - ページに表示していたバージョン番号（フッターの「version」とページ情報の version）を削除。版はこの CHANGELOG.md と README.md で管理する。

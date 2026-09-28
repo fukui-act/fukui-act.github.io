@@ -3,7 +3,7 @@
 国際ロータリー第2650地区 福井ゾーンのローターアクトクラブが、2026年10月25日（日）に行う「アクトの日」（世界ポリオデー）の案内ページ。
 
 - 公開URL：https://fukui-act.github.io/
-- バージョン：1.7.2（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
+- バージョン：1.8.0（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
 - 制作：瀬戸 浩太郎（福井東ローターアクトクラブ 2026-27 会長）
 - 公開方法：GitHub Pages（main ブランチのルートをそのまま公開）
 
@@ -38,6 +38,12 @@ CHANGELOG.md      更新履歴
 - ポリオの説明は、国際ロータリーなどが公表している確立した事実に限る。
 - 講師のお名前は、ご本人の了承が取れるまで載せない（「医師の先生」と表記）。
 - 1.5.0（2026-09-28）で noindex を外し、検索に出るようにした。robots.txt と sitemap.xml を置いている。
+
+## アクセス解析（Googleアナリティクス）
+
+- 測定ID：**G-GGWTF598PY**（瀬戸さんの Google アカウントで作成、2026-09-28）。index.html の `window.GA_ID` に入れている。`G-XXXXXXXXXX` にすると読み込まない。
+- QRの行き先：チラシ `https://fukui-act.github.io/?utm_source=flyer&utm_medium=qr`、ポケットティッシュ `https://fukui-act.github.io/?utm_source=tissue&utm_medium=qr`。GA4の「集客」で参照元（flyer／tissue）ごとに数えられる。
+- タップの計測は `data-track` の付いたリンク。イベント名は map_open／link_rotaract2650／link_rid2650／nurie_download。
 
 ## 塗り絵を公開するとき
 
