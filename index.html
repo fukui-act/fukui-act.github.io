@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="version" content="1.6.0">
+<meta name="version" content="1.7.0">
 <link rel="canonical" href="https://fukui-act.github.io/">
 <title>アクトの日 2026 福井 | 世界ポリオデー</title>
 <meta name="description" content="福井からつなぐ ポリオ根絶！プロジェクト。2026年10月25日（日）13:00〜15:00、福井駅前のPLAYCE（プレイス）1階で、医師によるミニセミナー・募金・子ども向けの塗り絵を行います。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブです。">
@@ -83,11 +83,12 @@
   /* ヒーローの動き（JSが動くときだけ初期状態を隠す） */
   .js .hero h1 span, .js .hero-date, .js .hero-place, .js .hero-kicker { opacity: 0; transform: translateY(14px); }
   .js .is-play .hero-kicker { animation: rise .6s ease-out .1s forwards; }
-  .js .is-play h1 span:nth-child(1) { animation: rise .7s ease-out 1.9s forwards; }
-  .js .is-play h1 span:nth-child(2) { animation: rise .7s ease-out 2.1s forwards; }
-  .js .is-play h1 span:nth-child(3) { animation: rise .7s ease-out 2.3s forwards; }
-  .js .is-play .hero-date { animation: rise .7s ease-out 2.6s forwards; }
-  .js .is-play .hero-place { animation: rise .7s ease-out 2.75s forwards; }
+  .js .is-play h1 span:nth-child(1) { animation: rise .7s ease-out .35s forwards; }
+  .js .is-play h1 span:nth-child(2) { animation: rise .7s ease-out .5s forwards; }
+  .js .is-play h1 span:nth-child(3) { animation: rise .7s ease-out .65s forwards; }
+  .js .is-play .hero-date { animation: rise .7s ease-out .95s forwards; }
+  .js .is-play .hero-place { animation: rise .7s ease-out 1.1s forwards; }
+
   .js .drop { opacity: 0; }
   .js .is-play .drop-1 { animation: fall 1.0s cubic-bezier(.55,0,.8,.4) .3s forwards; }
   .js .is-play .drop-2 { animation: fall 1.0s cubic-bezier(.55,0,.8,.4) .95s forwards; }
@@ -116,7 +117,12 @@
   }
   .count-box p { margin: 0; }
   .count-lead { font-weight: 700; color: var(--cran-deep); }
-  .count-num { font-size: clamp(44px, 9vw, 64px); font-weight: 700; color: var(--cran); line-height: 1; font-variant-numeric: tabular-nums; }
+  .count-num { font-size: clamp(44px, 9vw, 64px); font-weight: 700; color: var(--cran); line-height: 1; font-variant-numeric: tabular-nums; position: relative; display: inline-block; padding-bottom: 8px; min-width: 1.2em; text-align: center; }
+  .count-num::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 6px; border-radius: 3px; background: var(--cran); opacity: .35; transform: scaleX(1); transform-origin: left center; }
+  .js .count-num::after { transform: scaleX(0); transition: transform .7s cubic-bezier(.6,0,.2,1); }
+  .js .count-num.is-done::after { transform: scaleX(1); }
+  .count-num.is-pop { animation: pop .45s cubic-bezier(.2,.9,.3,1.4); }
+  @keyframes pop { 0% { transform: scale(1); } 40% { transform: scale(1.18); } 100% { transform: scale(1); } }
   .count-unit { font-weight: 700; font-size: 20px; }
   .count-sub { width: 100%; font-size: 15px; color: var(--ink-sub); }
 
@@ -194,6 +200,8 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .count-num::after { transform: none !important; transition: none !important; }
+    .count-num.is-pop { animation: none !important; }
     .js .hero h1 span, .js .hero-date, .js .hero-place, .js .hero-kicker,
     .js .reveal, .js .drop, .js .shield { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
     .ripple { display: none; }
@@ -372,7 +380,7 @@
     <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650-white.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
     <p>アクトの日 2026 福井　主催：<a href="https://www.rid2650.gr.jp/" target="_blank" rel="noopener">国際ロータリー第2650地区</a> 福井ゾーンのローターアクトクラブ</p>
     <p><a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
-    <p style="opacity:.75">version 1.6.0</p>
+    <p style="opacity:.75">version 1.7.0</p>
   </div>
 </footer>
 
@@ -392,12 +400,33 @@
   var num = document.getElementById('count-num');
   var unit = document.getElementById('count-unit');
   if (now < start) {
-    num.textContent = Math.ceil((start - now) / 86400000);
+    var days = Math.ceil((start - now) / 86400000);
+    if (reduce) {
+      num.textContent = days;
+      num.classList.add('is-done');
+    } else {
+      // 0 から数え上がって当日までの日数で止まり、はずんで下線が引かれる
+      num.textContent = '0';
+      setTimeout(function () {
+        var t0 = null, dur = 1300;
+        function tick(t) {
+          if (!t0) t0 = t;
+          var p = Math.min((t - t0) / dur, 1);
+          var e = 1 - Math.pow(1 - p, 3);
+          num.textContent = Math.round(days * e);
+          if (p < 1) { requestAnimationFrame(tick); }
+          else { num.classList.add('is-pop'); num.classList.add('is-done'); }
+        }
+        requestAnimationFrame(tick);
+      }, 900);
+    }
   } else if (now < end) {
+    num.classList.add('is-done');
     lead.textContent = '本日開催';
     num.textContent = '10.25';
     unit.textContent = '';
   } else {
+    num.classList.add('is-done');
     lead.textContent = 'ご来場ありがとうございました';
     num.textContent = '10.25';
     unit.textContent = '';
