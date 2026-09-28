@@ -266,15 +266,15 @@
 
   /* ポリオという病気：ウイルス→まひ→ワクチンで防ぐ */
   .scene-polio { height: 190px; }
-  .scene-polio .virus { height: 70px; left: 8%; top: 20px; }
+  .scene-polio .virus { height: 78px; left: calc(50% - 130px); top: 34px; }
   .scene-polio .boy { height: 164px; left: 50%; margin-left: -26px; bottom: 6px; }
-  .scene-polio .vial { height: 96px; right: 8%; bottom: 18px; }
-  .scene-polio .shield { position: absolute; right: calc(8% - 22px); bottom: 2px; width: 104px; height: 128px; border-radius: 50% 50% 46% 46%; border: 3px solid var(--blue); opacity: 0; }
+  .scene-polio .vial { height: 110px; left: calc(50% + 30px); bottom: 22px; }
+  .scene-polio .shield { position: absolute; left: calc(50% + 2px); bottom: 4px; width: 118px; height: 146px; border-radius: 50% 50% 46% 46%; border: 3px solid var(--blue); opacity: 0; }
   .js .scene-polio .virus, .js .scene-polio .boy, .js .scene-polio .vial { opacity: 0; }
-  .js .scene-polio.is-in .virus { animation: virusIn 1s ease .2s forwards, wobble 2.2s ease-in-out 1.2s 1, virusOut 1s ease 3.4s forwards; }
+  .js .scene-polio.is-in .virus { animation: virusIn 1s ease .2s forwards, wobble 1.8s ease-in-out 1.2s 1, virusOut 1s ease 3.2s forwards; }
   .js .scene-polio.is-in .boy { animation: fadeUp 1.2s ease 1s forwards; }
-  .js .scene-polio.is-in .vial { animation: fadeUp 1s ease 2.4s forwards; }
-  .js .scene-polio.is-in .shield { animation: shield 1.4s ease-out 3s forwards; }
+  .js .scene-polio.is-in .vial { animation: fadeUp 1s ease 1.6s forwards; }
+  .js .scene-polio.is-in .shield { animation: shield 1.4s ease-out 2.4s forwards; }
   @keyframes virusIn { from { opacity: 0; transform: scale(.4) rotate(-40deg); } to { opacity: 1; transform: none; } }
   @keyframes wobble { 25% { transform: translate(8px, 6px) rotate(10deg); } 50% { transform: translate(-4px, 12px) rotate(-8deg); } 75% { transform: translate(6px, 2px) rotate(6deg); } }
   @keyframes virusOut { to { opacity: .12; transform: scale(.55) translate(-30px, -10px); } }
@@ -341,7 +341,9 @@
   .scene-timeline .tl-name { font-weight: 700; font-size: 14px; }
   .scene-timeline .people { height: 84px; left: 50%; margin-left: -80px; bottom: 34px; }
   .scene-timeline .partners { position: absolute; left: 0; right: 0; bottom: 8px; display: flex; justify-content: center; gap: 8px; }
-  .scene-timeline .partners span { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #fff; border: 2px solid var(--blue); color: var(--blue); }
+  .scene-timeline .partners { flex-wrap: wrap; padding: 0 6px; gap: 6px !important; }
+  @media (max-width: 380px) { .scene-timeline .partners span { font-size: 11px !important; padding: 3px 7px !important; } .scene-timeline .partners { gap: 4px !important; } }
+  .scene-timeline .partners span { white-space: nowrap; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #fff; border: 2px solid var(--blue); color: var(--blue); }
   .js .scene-timeline .tl-line { transform: scaleX(0); }
   .js .scene-timeline .tl, .js .scene-timeline .people, .js .scene-timeline .partners span { opacity: 0; }
   .js .scene-timeline.is-in .tl-line { animation: grow 1.6s ease .1s forwards; }
@@ -352,6 +354,7 @@
   .js .scene-timeline.is-in .partners span:nth-child(1) { animation-delay: 2.5s; }
   .js .scene-timeline.is-in .partners span:nth-child(2) { animation-delay: 2.75s; }
   .js .scene-timeline.is-in .partners span:nth-child(3) { animation-delay: 3s; }
+  .js .scene-timeline.is-in .partners span:nth-child(4) { animation-delay: 3.25s; }
   @keyframes grow { to { transform: scaleX(1); } }
   @keyframes popIn { 0% { opacity: 0; transform: scale(.4); } 100% { opacity: 1; transform: none; } }
 
@@ -639,7 +642,6 @@
       <!-- ウイルス → まひが残ることがある → ワクチンで防ぐ -->
       <div class="scene scene-polio" aria-hidden="true">
         <img class="virus" src="../assets/story/virus.svg" alt="">
-        <img class="boy" src="../assets/story/crutches-boy.svg" alt="">
         <span class="shield"></span>
         <img class="vial" src="../assets/story/vial.svg" alt="">
       </div>
@@ -700,7 +702,7 @@
         <div class="tl tl1"><span class="tl-year">1985</span><span class="tl-name">ポリオプラス</span></div>
         <div class="tl tl2"><span class="tl-year">1988</span><span class="tl-name">GPEI</span></div>
         <img class="people" src="../assets/story/people-hands.svg" alt="">
-        <div class="partners"><span>ロータリー</span><span>WHO</span><span>ユニセフ</span></div>
+        <div class="partners"><span>ロータリー</span><span>WHO</span><span>ユニセフ</span><span>CDC</span></div>
       </div>
       <p class="rv">1985年に<wbr>「ポリオプラス」と<wbr>いう<wbr>活動を<wbr>始め、<wbr>1988年には<wbr>世界保健機関<wbr>（WHO）<wbr>や<wbr>ユニセフなどとともに<wbr>「世界ポリオ根絶推進活動<wbr>（GPEI）」を<wbr>立ち上げました。</p>
       <!-- 天然痘に続いて2度目 -->
@@ -775,7 +777,7 @@
       <div class="drops rv" aria-hidden="true"><span></span><span></span></div>
       <h2 class="rv">2滴の<wbr>ワクチンから</h2>
       <p class="rv">経口ポリオワクチンは、<wbr>口に<span class="num"><wbr>2滴</span>たらすだけの<wbr>ワクチンです。</p>
-      <p class="rv">1回分の<wbr>費用は、<wbr>平均で<span class="nowrap"><wbr>約<span class="num big" data-to="0.15" data-dec="2">0.15</span>米ドル</span>です。<wbr>日本円で<span class="nowrap"><wbr>約<span class="num big" data-to="24">24</span>円</span>、<span class="nowrap"><wbr>うまい<wbr>棒1本半</span>くらいです。</p>
+      <p class="rv">1回分の<wbr>費用は、<wbr>平均で<span class="nowrap"><wbr>約<span class="num big" data-to="0.15" data-dec="2">0.15</span>米ドル</span>です。<wbr>日本円で<span class="nowrap"><wbr>約<span class="num big" data-to="24">24</span>円</span>、<span class="nowrap"><wbr>10円玉2枚と<wbr>少し</span>です。</p>
       <p class="rv note">（1米ドル＝約157円で<wbr>計算。<wbr>2026年9月時点）</p>
     </div>
 
