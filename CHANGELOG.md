@@ -1,5 +1,10 @@
 # 更新履歴
 
+## 1.8.3（2026-09-28）
+
+- タブやホーム画面のアイコン（favicon.svg・favicon-32.png・favicon.ico・apple-touch-icon.png・icon-192.png・icon-512.png）を、2滴の雫から子ども2人（白と水色）に変更。盾の中と同じ Font Awesome Free「children」（CC BY 4.0、クレジットは favicon.svg のコメント）。
+- 古いアイコンが残らないよう、index.html のアイコン読み込みに ?v=1.8.3 を付けた。
+
 ## 1.8.2（2026-09-28）
 
 - 主催の欄に、福井ゾーンのローターアクトクラブ3クラブ（福井・福井東・鯖江）の名前を追加。フッターとページ説明（meta description）にも入れた。
