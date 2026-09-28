@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="version" content="1.7.0">
+<meta name="version" content="1.7.1">
 <link rel="canonical" href="https://fukui-act.github.io/">
 <title>アクトの日 2026 福井 | 世界ポリオデー</title>
 <meta name="description" content="福井からつなぐ ポリオ根絶！プロジェクト。2026年10月25日（日）13:00〜15:00、福井駅前のPLAYCE（プレイス）1階で、医師によるミニセミナー・募金・子ども向けの塗り絵を行います。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブです。">
@@ -380,7 +380,7 @@
     <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650-white.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
     <p>アクトの日 2026 福井　主催：<a href="https://www.rid2650.gr.jp/" target="_blank" rel="noopener">国際ロータリー第2650地区</a> 福井ゾーンのローターアクトクラブ</p>
     <p><a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
-    <p style="opacity:.75">version 1.7.0</p>
+    <p style="opacity:.75">version 1.7.1</p>
   </div>
 </footer>
 
@@ -405,15 +405,19 @@
       num.textContent = days;
       num.classList.add('is-done');
     } else {
-      // 0 から数え上がって当日までの日数で止まり、はずんで下線が引かれる
-      num.textContent = '0';
+      // 100 から数え下がって当日までの日数で止まり、はずんで下線が引かれる（0 から始めると「残り0日」に見えるため）
+      var from = Math.max(100, days + 30);
+      // 数え始めるまでは数字を隠しておく（止まった数字を「残り100日」と読まれないように）
+      num.textContent = from;
+      num.style.opacity = '0';
       setTimeout(function () {
-        var t0 = null, dur = 1300;
+        num.style.opacity = '';
+        var t0 = null, dur = 1000;
         function tick(t) {
           if (!t0) t0 = t;
           var p = Math.min((t - t0) / dur, 1);
           var e = 1 - Math.pow(1 - p, 3);
-          num.textContent = Math.round(days * e);
+          num.textContent = Math.round(from - (from - days) * e);
           if (p < 1) { requestAnimationFrame(tick); }
           else { num.classList.add('is-pop'); num.classList.add('is-done'); }
         }
