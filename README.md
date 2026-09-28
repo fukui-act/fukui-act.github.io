@@ -3,7 +3,7 @@
 国際ロータリー第2650地区 福井ゾーンのローターアクトクラブが、2026年10月25日（日）に行う「アクトの日」（世界ポリオデー）の案内ページ。
 
 - 公開URL：https://fukui-act.github.io/
-- バージョン：1.3.0（更新のたびに上げる。履歴は CHANGELOG.md）
+- バージョン：1.4.0（更新のたびに上げる。履歴は CHANGELOG.md）
 - 制作：瀬戸 浩太郎（福井東ローターアクトクラブ 2026-27 会長）
 - 公開方法：GitHub Pages（main ブランチのルートをそのまま公開）
 
@@ -12,11 +12,17 @@
 ```
 index.html        1ページのサイト本体（CSSも内包）
 assets/
-  favicon.svg     タブのアイコン（クランベリー地に白い雫）
+  favicon.svg     タブのアイコン（クランベリー地に白と水色の2滴）
+  favicon-32.png  タブのアイコン（SVGが使えないブラウザ用）
+  apple-touch-icon.png  iPhoneのホーム画面用（180×180）
+  icon-192.png / icon-512.png  Androidのホーム画面用
+  ogp.png         SNSで共有したときのサムネ（1200×630）
   logo-rotaract-d2650.png        地区ロゴ（クランベリー。幹事用/地区ロゴ.png を切り抜いたもの）
   logo-rotaract-d2650-white.png  地区ロゴの白版（フッター用）
   drop.svg        1.0.0で使っていた雫（1.1.0では未使用）
   nurie.pdf       塗り絵（内海さんから届いたら置く。まだ無い）
+favicon.ico       古いブラウザ用のアイコン
+site.webmanifest  ホーム画面に追加したときの名前とアイコン
 .nojekyll         Jekyllの変換を止める
 CHANGELOG.md      更新履歴
 ```
