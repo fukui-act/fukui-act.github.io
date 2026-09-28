@@ -4,30 +4,30 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="version" content="1.0.0">
+<meta name="version" content="1.1.0">
 <title>アクトの日 2026 福井 | 世界ポリオデー</title>
 <meta name="description" content="2026年10月25日（日）、福井駅前のPLAYCE（プレイス）1階で、ポリオ根絶に向けた講演・募金・子ども向けの塗り絵を行います。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブです。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="アクトの日 2026 福井 | 世界ポリオデー">
 <meta property="og:description" content="2滴のワクチンで、子どもをポリオから守ることができます。2026年10月25日（日）福井駅前 PLAYCE 1階">
 <meta property="og:url" content="https://fukui-act.github.io/">
-<meta name="theme-color" content="#155a96">
+<meta name="theme-color" content="#d41367">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --blue-900: #0d3b66;
-    --blue-700: #155a96;
-    --blue-500: #2f7fc8;
-    --blue-100: #e6f1fb;
-    --blue-50:  #f4f9fe;
-    --ink: #1d2a36;
-    --ink-sub: #4a5a69;
-    --line: #cfe0f0;
+    --cran: #d41367;       /* ローターアクトの公式色 クランベリー */
+    --cran-deep: #a80f52;
+    --cran-tint: #fff1f6;
+    --blue: #1466b8;       /* 雫の青（ポリオ・ワクチンの説明に使う） */
+    --blue-sky: #bfe3ff;
+    --blue-tint: #eef6fd;
+    --ink: #2a1a22;
+    --ink-sub: #5d4b54;
+    --line: #f1cfdc;
     --white: #ffffff;
-    --accent: #f2b705;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
@@ -36,145 +36,199 @@
     font-family: "BIZ UDPGothic", "BIZ UDPゴシック", "Hiragino Sans", "Yu Gothic", sans-serif;
     color: var(--ink);
     background: var(--white);
-    line-height: 1.8;
+    line-height: 1.85;
     font-size: 17px;
   }
-  a { color: var(--blue-700); text-underline-offset: 3px; }
-  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 20px; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--cran-deep); text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
   .skip { position: absolute; left: -9999px; }
   .skip:focus { left: 16px; top: 16px; background: var(--white); padding: 8px 12px; z-index: 10; }
 
-  /* ヘッダー */
-  .hero {
-    background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-700) 55%, var(--blue-500) 100%);
-    color: var(--white);
-    padding: 56px 0 64px;
-    position: relative;
-    overflow: hidden;
+  /* ロゴのバー */
+  .brandbar { background: var(--white); border-bottom: 1px solid var(--line); }
+  .brandbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
+  .brandbar img { width: 168px; }
+  .brandbar p { margin: 0; font-size: 14px; color: var(--ink-sub); text-align: right; line-height: 1.5; }
+
+  /* ヒーロー */
+  .hero { background: var(--cran); color: var(--white); overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: 24px; padding-top: 48px; padding-bottom: 88px; }
+  .hero-kicker { margin: 0 0 18px; font-size: 15px; font-weight: 700; letter-spacing: .06em; }
+  .hero h1 { margin: 0 0 28px; font-size: clamp(30px, 5.6vw, 52px); line-height: 1.38; font-weight: 700; letter-spacing: .01em; }
+  .hero h1 span { display: block; }
+  .hero-date { margin: 0; font-size: clamp(20px, 3.4vw, 28px); font-weight: 700; }
+  .hero-place { margin: 2px 0 0; font-size: 17px; }
+  .scene { width: 100%; max-width: 340px; justify-self: center; }
+  .scene svg { width: 100%; height: auto; overflow: visible; }
+
+  /* ヒーローの動き（JSが動くときだけ初期状態を隠す） */
+  .js .hero h1 span, .js .hero-date, .js .hero-place, .js .hero-kicker { opacity: 0; transform: translateY(14px); }
+  .js .is-play .hero-kicker { animation: rise .6s ease-out .1s forwards; }
+  .js .is-play h1 span:nth-child(1) { animation: rise .7s ease-out 1.9s forwards; }
+  .js .is-play h1 span:nth-child(2) { animation: rise .7s ease-out 2.1s forwards; }
+  .js .is-play h1 span:nth-child(3) { animation: rise .7s ease-out 2.3s forwards; }
+  .js .is-play .hero-date { animation: rise .7s ease-out 2.6s forwards; }
+  .js .is-play .hero-place { animation: rise .7s ease-out 2.75s forwards; }
+  .js .drop { opacity: 0; }
+  .js .is-play .drop-1 { animation: fall 1.0s cubic-bezier(.55,0,.8,.4) .3s forwards; }
+  .js .is-play .drop-2 { animation: fall 1.0s cubic-bezier(.55,0,.8,.4) .95s forwards; }
+  .ripple { fill: none; stroke: var(--blue-sky); stroke-width: 3; opacity: 0; transform-origin: 170px 318px; transform-box: view-box; }
+  .js .is-play .ripple-1 { animation: ripple 1.6s ease-out 1.25s forwards; }
+  .js .is-play .ripple-2 { animation: ripple 1.6s ease-out 1.9s forwards; }
+  .shield { transform-origin: 170px 230px; transform-box: view-box; }
+  .js .shield { opacity: 0; }
+  .js .is-play .shield { animation: grow .9s cubic-bezier(.2,.9,.3,1.3) 2.0s forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  @keyframes fall {
+    0% { opacity: 0; transform: translateY(-30px); }
+    15% { opacity: 1; }
+    85% { opacity: 1; transform: translateY(236px); }
+    100% { opacity: 0; transform: translateY(246px) scaleY(.6); }
   }
-  .hero::after {
-    content: "";
-    position: absolute;
-    right: -80px; top: -40px;
-    width: 320px; height: 420px;
-    background: url("assets/drop.svg") no-repeat center / contain;
-    opacity: .12;
-    pointer-events: none;
+  @keyframes ripple { 0% { opacity: .9; transform: scale(.2); } 100% { opacity: 0; transform: scale(1.6); } }
+  @keyframes grow { 0% { opacity: 0; transform: scale(.6); } 100% { opacity: 1; transform: scale(1); } }
+
+  /* カウントダウン */
+  .count { position: relative; margin-top: -52px; }
+  .count-box {
+    background: var(--white); border-radius: 18px; border: 2px solid var(--cran);
+    padding: 18px 26px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px;
+    box-shadow: 0 10px 30px rgba(168, 15, 82, .18);
   }
-  .eyebrow {
-    display: inline-block;
-    font-size: 14px;
-    letter-spacing: .08em;
-    border: 1px solid rgba(255,255,255,.6);
-    border-radius: 999px;
-    padding: 2px 14px;
-    margin: 0 0 20px;
-  }
-  .hero h1 {
-    font-size: clamp(26px, 5.4vw, 42px);
-    line-height: 1.45;
-    margin: 0 0 24px;
-    font-weight: 700;
-  }
-  .hero .date {
-    font-size: clamp(20px, 3.6vw, 26px);
-    font-weight: 700;
-    margin: 0;
-  }
-  .hero .place { margin: 4px 0 0; font-size: 17px; }
-  .badge-draft {
-    display: inline-block;
-    margin-top: 24px;
-    background: var(--accent);
-    color: var(--blue-900);
-    font-size: 14px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 4px;
-  }
+  .count-box p { margin: 0; }
+  .count-lead { font-weight: 700; color: var(--cran-deep); }
+  .count-num { font-size: clamp(44px, 9vw, 64px); font-weight: 700; color: var(--cran); line-height: 1; font-variant-numeric: tabular-nums; }
+  .count-unit { font-weight: 700; font-size: 20px; }
+  .count-sub { width: 100%; font-size: 15px; color: var(--ink-sub); }
 
   /* 本文 */
-  main section { padding: 48px 0; border-bottom: 1px solid var(--line); }
-  main section:last-of-type { border-bottom: 0; }
-  h2 {
-    font-size: 24px;
-    color: var(--blue-900);
-    margin: 0 0 20px;
-    padding-left: 14px;
-    border-left: 6px solid var(--blue-500);
-    line-height: 1.4;
-  }
-  h3 { font-size: 19px; color: var(--blue-900); margin: 24px 0 8px; }
+  main section { padding: 64px 0; }
+  h2 { font-size: clamp(24px, 3.6vw, 30px); line-height: 1.45; margin: 0 0 24px; color: var(--cran-deep); }
+  h2::after { content: ""; display: block; width: 56px; height: 5px; border-radius: 3px; background: var(--cran); margin-top: 10px; }
+  h3 { font-size: 20px; margin: 28px 0 8px; }
   p { margin: 0 0 14px; }
-
-  .outline { display: grid; grid-template-columns: 7em 1fr; margin: 0; border-top: 1px solid var(--line); }
-  .outline dt, .outline dd { margin: 0; padding: 14px 8px; border-bottom: 1px solid var(--line); }
-  .outline dt { font-weight: 700; color: var(--blue-900); background: var(--blue-50); }
   .note { color: var(--ink-sub); font-size: 15px; }
-  .tbd {
-    display: inline-block;
-    font-size: 14px;
-    background: var(--blue-100);
-    color: var(--blue-900);
-    border-radius: 4px;
-    padding: 0 8px;
-  }
+  .tbd { display: inline-block; font-size: 14px; background: var(--cran-tint); color: var(--cran-deep); border: 1px solid var(--line); border-radius: 999px; padding: 0 12px; }
 
-  .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 0; margin: 0; list-style: none; }
-  .cards li { background: var(--blue-50); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
-  .cards strong { display: block; color: var(--blue-900); font-size: 18px; margin-bottom: 4px; }
-  .cards span { font-size: 15px; color: var(--ink-sub); }
+  .outline { display: grid; grid-template-columns: 7em 1fr; margin: 0; }
+  .outline dt, .outline dd { margin: 0; padding: 16px 4px; border-bottom: 1px solid var(--line); }
+  .outline dt { font-weight: 700; color: var(--cran-deep); }
 
-  .nurie { background: var(--blue-50); border: 2px dashed var(--blue-500); border-radius: 12px; padding: 24px; }
-  .btn {
-    display: inline-block;
-    font: inherit;
-    font-weight: 700;
-    text-decoration: none;
-    background: var(--blue-700);
-    color: var(--white);
-    border: 0;
-    border-radius: 8px;
-    padding: 12px 22px;
-    margin-top: 8px;
-  }
-  .btn[aria-disabled="true"] { background: #9aa9b8; cursor: not-allowed; }
+  .program { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0 40px; }
+  .program li { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start; padding: 22px 0; border-top: 1px solid var(--line); }
+  .program .ic { width: 56px; height: 56px; border-radius: 50%; background: var(--cran-tint); display: grid; place-items: center; }
+  .program .ic svg { width: 30px; height: 30px; stroke: var(--cran); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .program strong { display: block; font-size: 19px; margin-bottom: 2px; }
+  .program span { font-size: 15px; color: var(--ink-sub); }
 
+  .nurie { background: var(--cran-tint); }
+  .nurie-grid { display: grid; grid-template-columns: 1fr 200px; gap: 32px; align-items: center; }
+  .nurie-art svg { width: 100%; height: auto; }
+  .js .crayon { stroke-dasharray: 900; stroke-dashoffset: 900; }
+  .js .is-in .crayon { transition: stroke-dashoffset 2.4s ease-in-out .2s; stroke-dashoffset: 0; }
+  .btn { display: inline-block; font: inherit; font-weight: 700; text-decoration: none; background: var(--cran); color: var(--white); border: 0; border-radius: 999px; padding: 14px 28px; margin-top: 6px; }
+  .btn[aria-disabled="true"] { background: #b9a8b0; cursor: not-allowed; }
+
+  .polio { background: var(--blue-tint); }
+  .polio h2 { color: var(--blue); }
+  .polio h2::after { background: var(--blue); }
+  .polio h3 { color: var(--blue); }
+  .stat { display: flex; align-items: center; gap: 20px; margin: 8px 0 20px; flex-wrap: wrap; }
+  .stat-num { font-size: clamp(56px, 12vw, 96px); font-weight: 700; color: var(--blue); line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat-num small { font-size: .45em; }
+  .stat p { margin: 0; max-width: 22em; }
+  .two-drops { display: flex; gap: 10px; margin: 6px 0 12px; }
+  .two-drops svg { width: 34px; height: 44px; fill: var(--blue); }
   .facts { padding-left: 1.3em; margin: 0 0 14px; }
   .facts li { margin-bottom: 6px; }
-  .big { font-size: 30px; font-weight: 700; color: var(--blue-700); }
 
-  footer { background: var(--blue-900); color: #dce9f6; padding: 32px 0 40px; font-size: 15px; }
+  .about-grid { display: grid; grid-template-columns: 1fr 240px; gap: 32px; align-items: center; }
+
+  footer { background: var(--cran-deep); color: #ffe6ef; padding: 36px 0 44px; font-size: 15px; }
+  footer img { width: 180px; margin-bottom: 14px; }
   footer a { color: var(--white); }
   footer p { margin: 0 0 8px; }
 
-  @media (max-width: 600px) {
+  /* スクロールで浮き上がる */
+  .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease-out, transform .7s ease-out; }
+  .js .reveal.is-in { opacity: 1; transform: none; }
+
+  @media (max-width: 720px) {
     body { font-size: 16px; }
-    .hero { padding: 40px 0 48px; }
+    .brandbar img { width: 132px; }
+    .brandbar p { font-size: 12px; }
+    .hero .wrap { grid-template-columns: 1fr; padding-top: 28px; padding-bottom: 80px; }
+    .scene { max-width: 200px; order: -1; justify-self: start; }
     .outline { grid-template-columns: 1fr; }
-    .outline dt { border-bottom: 0; padding-bottom: 4px; }
+    .outline dt { border-bottom: 0; padding-bottom: 0; }
     .outline dd { padding-top: 4px; }
-    .cards { grid-template-columns: 1fr; }
+    .program { grid-template-columns: 1fr; }
+    .nurie-grid, .about-grid { grid-template-columns: 1fr; }
+    .nurie-art { max-width: 160px; }
+    .about-grid img { max-width: 200px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js .hero h1 span, .js .hero-date, .js .hero-place, .js .hero-kicker,
+    .js .reveal, .js .drop, .js .shield { opacity: 1 !important; transform: none !important; animation: none !important; transition: none !important; }
+    .ripple { display: none; }
+    .js .crayon { stroke-dashoffset: 0 !important; transition: none !important; }
   }
 </style>
+<script>document.documentElement.className = 'js';</script>
 </head>
 <body>
 <a class="skip" href="#main">本文へ移動</a>
 
-<header class="hero">
+<div class="brandbar">
   <div class="wrap">
-    <p class="eyebrow">世界ポリオデー　アクトの日 2026 福井</p>
-    <h1>2滴のワクチンで、<br>子どもをポリオから<br>守ることができます</h1>
-    <p class="date">2026年10月25日（日）</p>
-    <p class="place">福井駅前　PLAYCE（プレイス）1階</p>
-    <p class="badge-draft">内容は準備中です。決まりしだい、このページでお知らせします。</p>
+    <img src="assets/logo-rotaract-d2650.png" alt="Rotaract District 2650（国際ロータリー第2650地区 ローターアクト）" width="720" height="279">
+    <p>アクトの日 2026 福井<br>世界ポリオデー</p>
+  </div>
+</div>
+
+<header class="hero" id="hero">
+  <div class="wrap">
+    <div>
+      <p class="hero-kicker">10月24日は世界ポリオデー</p>
+      <h1><span>2滴のワクチンで、</span><span>子どもをポリオから</span><span>守ることができます</span></h1>
+      <p class="hero-date">2026年10月25日（日）</p>
+      <p class="hero-place">福井駅前　PLAYCE（プレイス）1階</p>
+    </div>
+    <div class="scene" aria-hidden="true">
+      <svg viewBox="0 0 340 380" role="presentation">
+        <!-- 守られる子どもを表す盾 -->
+        <g class="shield">
+          <path d="M170 150 L250 180 V240 C250 290 214 318 170 334 C126 318 90 290 90 240 V180 Z" fill="#ffffff" opacity=".16"/>
+          <path d="M170 172 L232 195 V240 C232 280 204 302 170 314 C136 302 108 280 108 240 V195 Z" fill="none" stroke="#ffffff" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="170" cy="222" r="17" fill="#ffffff"/>
+          <path d="M136 290 C136 256 204 256 204 290 Q170 298 136 290Z" fill="#ffffff"/>
+        </g>
+        <!-- 2滴 -->
+        <g class="drop drop-1"><path d="M170 20 C170 20 150 48 150 62 a20 20 0 0 0 40 0 C190 48 170 20 170 20z" fill="#bfe3ff"/></g>
+        <g class="drop drop-2"><path d="M170 20 C170 20 150 48 150 62 a20 20 0 0 0 40 0 C190 48 170 20 170 20z" fill="#ffffff"/></g>
+        <ellipse class="ripple ripple-1" cx="170" cy="318" rx="60" ry="12"/>
+        <ellipse class="ripple ripple-2" cx="170" cy="318" rx="60" ry="12"/>
+      </svg>
+    </div>
   </div>
 </header>
 
+<div class="count">
+  <div class="wrap">
+    <div class="count-box" id="countdown" aria-live="polite">
+      <p class="count-lead" id="count-lead">10月25日（日）まで</p>
+      <p><span class="count-num" id="count-num">--</span> <span class="count-unit" id="count-unit">日</span></p>
+      <p class="count-sub">福井ゾーンのローターアクトとロータリーが、同じ日に福井県内でポリオ根絶を呼びかけます。</p>
+    </div>
+  </div>
+</div>
+
 <main id="main">
   <section id="outline" aria-labelledby="h-outline">
-    <div class="wrap">
+    <div class="wrap reveal">
       <h2 id="h-outline">開催のご案内</h2>
       <dl class="outline">
         <dt>日にち</dt>
@@ -186,63 +240,94 @@
         <dt>主催</dt>
         <dd>国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ</dd>
       </dl>
-      <p class="note" style="margin-top:14px">同じ日に、福井県内のロータリークラブも各所でポリオ根絶の募金と啓発を行います。</p>
     </div>
   </section>
 
   <section id="program" aria-labelledby="h-program">
     <div class="wrap">
-      <h2 id="h-program">当日の内容</h2>
-      <ul class="cards">
-        <li><strong>講演</strong><span>医師の先生に、ポリオと予防接種についてお話しいただきます（予定・1時間程度）。</span></li>
-        <li><strong>募金</strong><span>お預かりした募金は、ポリオ根絶の活動に役立てます。</span></li>
-        <li><strong>パネル展示</strong><span>ポリオのこと、世界で続く根絶の取り組みを紹介します。</span></li>
-        <li><strong>子ども向けの塗り絵</strong><span>塗り絵を持ってきてくれたお子さんに、お菓子をお渡しします。</span></li>
+      <h2 id="h-program" class="reveal">当日の内容</h2>
+      <ul class="program">
+        <li class="reveal">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="11" y="3" width="10" height="16" rx="5"/><path d="M6 15a10 10 0 0 0 20 0M16 25v4M11 29h10"/></svg></span>
+          <div><strong>講演</strong><span>医師の先生に、ポリオと予防接種についてお話しいただきます（予定・1時間程度）。</span></div>
+        </li>
+        <li class="reveal">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="12" width="22" height="16" rx="2"/><path d="M12 12h8M16 4v8M12 8l4 4 4-4"/></svg></span>
+          <div><strong>募金</strong><span>お預かりした募金は、ポリオ根絶の活動に役立てます。</span></div>
+        </li>
+        <li class="reveal">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="4" y="5" width="24" height="16" rx="2"/><path d="M10 27l6-6 6 6M9 11h8M9 15h14"/></svg></span>
+          <div><strong>パネル展示</strong><span>ポリオのこと、世界で続く根絶の取り組みを紹介します。</span></div>
+        </li>
+        <li class="reveal">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M20 4l8 8-15 15H5v-8z"/><path d="M17 7l8 8"/></svg></span>
+          <div><strong>子ども向けの塗り絵</strong><span>塗り絵を持ってきてくれたお子さんに、お菓子をお渡しします。</span></div>
+        </li>
       </ul>
-      <p class="note" style="margin-top:14px">内容は変わることがあります。</p>
+      <p class="note reveal" style="margin-top:14px">内容は変わることがあります。</p>
     </div>
   </section>
 
-  <section id="nurie" aria-labelledby="h-nurie">
-    <div class="wrap">
-      <h2 id="h-nurie">塗り絵をダウンロード</h2>
-      <div class="nurie">
-        <p>チラシの裏面の塗り絵と同じものを、ここからダウンロードして印刷できます。塗り終えたら、当日会場へお持ちください。お菓子と引き換えます。</p>
+  <section id="nurie" class="nurie" aria-labelledby="h-nurie">
+    <div class="wrap nurie-grid reveal">
+      <div>
+        <h2 id="h-nurie">塗り絵をダウンロード</h2>
+        <p>チラシの裏面の塗り絵と同じものを、ここからダウンロードして印刷できます。塗り終えたら当日会場へお持ちください。お菓子と引き換えます。</p>
         <!-- 塗り絵のPDFが届いたら assets/nurie.pdf に置き、下の span を次の a に差し替える
              <a class="btn" href="assets/nurie.pdf" download>塗り絵（PDF）をダウンロード</a> -->
         <span class="btn" role="link" aria-disabled="true">準備中</span>
         <p class="note" style="margin:12px 0 0">A4の用紙に印刷してお使いください。</p>
       </div>
+      <div class="nurie-art" aria-hidden="true">
+        <svg viewBox="0 0 200 240">
+          <path d="M100 14 C100 14 26 110 26 158 a74 74 0 0 0 148 0 C174 110 100 14 100 14z" fill="#ffffff" stroke="#d41367" stroke-width="4" stroke-dasharray="10 8"/>
+          <path class="crayon" d="M62 150 C90 120 120 126 140 150 C120 170 84 172 60 178 C92 186 132 186 150 172 C130 200 86 206 66 196" fill="none" stroke="#1466b8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" opacity=".85"/>
+        </svg>
+      </div>
     </div>
   </section>
 
-  <section id="polio" aria-labelledby="h-polio">
+  <section id="polio" class="polio" aria-labelledby="h-polio">
     <div class="wrap">
-      <h2 id="h-polio">ポリオとは</h2>
-      <p>ポリオ（急性灰白髄炎）は、ポリオウイルスによる感染症です。主に5歳未満の子どもがかかり、手や足にまひが残ることがあります。かかってから治す方法はありませんが、ワクチンで防ぐことができます。</p>
-      <h3>2滴のワクチン</h3>
-      <p>ポリオが今も残る国々では、口に2滴たらす経口ポリオワクチンが使われています。1回分の費用は平均で約0.15米ドルです。</p>
-      <h3>根絶まで、あと少し</h3>
-      <p><span class="big">99.9%</span>　ポリオの症例は、世界的な取り組みによってここまで減りました。</p>
-      <ul class="facts">
-        <li>野生のポリオウイルスが今も広がっている国は、アフガニスタンとパキスタンの2か国です。</li>
-        <li>ウイルスが1か国にでも残っていれば、世界中の子どもにうつるおそれがあります。</li>
-        <li>10月24日は「世界ポリオデー」です。</li>
-      </ul>
-      <p class="note">出典：<a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
+      <h2 id="h-polio" class="reveal">ポリオとは</h2>
+      <p class="reveal">ポリオ（急性灰白髄炎）は、ポリオウイルスによる感染症です。主に5歳未満の子どもがかかり、手や足にまひが残ることがあります。かかってから治す方法はありませんが、ワクチンで防ぐことができます。</p>
+      <div class="reveal">
+        <h3>2滴のワクチン</h3>
+        <div class="two-drops" aria-hidden="true">
+          <svg viewBox="0 0 34 44"><path d="M17 2C17 2 3 20 3 29a14 14 0 0 0 28 0C31 20 17 2 17 2z"/></svg>
+          <svg viewBox="0 0 34 44"><path d="M17 2C17 2 3 20 3 29a14 14 0 0 0 28 0C31 20 17 2 17 2z"/></svg>
+        </div>
+        <p>ポリオが今も残る国々では、口に2滴たらす経口ポリオワクチンが使われています。1回分の費用は平均で約0.15米ドルです。</p>
+      </div>
+      <div class="reveal">
+        <h3>根絶まで、あと少し</h3>
+        <div class="stat">
+          <span class="stat-num"><span id="stat" data-to="99.9">99.9</span><small>%</small></span>
+          <p>ポリオの症例は、世界的な取り組みによってここまで減りました。</p>
+        </div>
+        <ul class="facts">
+          <li>野生のポリオウイルスが今も広がっている国は、アフガニスタンとパキスタンの2か国です。</li>
+          <li>ウイルスが1か国にでも残っていれば、世界中の子どもにうつるおそれがあります。</li>
+          <li>10月24日は「世界ポリオデー」です。</li>
+        </ul>
+        <p class="note">出典：<a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
+      </div>
     </div>
   </section>
 
   <section id="about" aria-labelledby="h-about">
-    <div class="wrap">
-      <h2 id="h-about">ローターアクトとは</h2>
-      <p>ローターアクトは、国際ロータリーが提唱する18歳以上の若い世代の奉仕団体です。地域や世界の課題に、仕事や学業のかたわら取り組んでいます。</p>
-      <p>国際ロータリーは1985年から、ポリオのない世界をめざして活動を続けています。「アクトの日」は、ローターアクトが企画し、ロータリーとともに取り組む一日です。</p>
+    <div class="wrap about-grid reveal">
+      <div>
+        <h2 id="h-about">ローターアクトとは</h2>
+        <p>ローターアクトは、国際ロータリーが提唱する18歳以上の若い世代の奉仕団体です。地域や世界の課題に、仕事や学業のかたわら取り組んでいます。</p>
+        <p>国際ロータリーは1985年から、ポリオのない世界をめざして活動を続けています。「アクトの日」は、ローターアクトが企画し、ロータリーとともに取り組む一日です。</p>
+      </div>
+      <img src="assets/logo-rotaract-d2650.png" alt="" width="720" height="279">
     </div>
   </section>
 
   <section id="contact" aria-labelledby="h-contact">
-    <div class="wrap">
+    <div class="wrap reveal">
       <h2 id="h-contact">お問い合わせ</h2>
       <p><span class="tbd">調整中</span></p>
     </div>
@@ -251,10 +336,73 @@
 
 <footer>
   <div class="wrap">
+    <img src="assets/logo-rotaract-d2650-white.png" alt="Rotaract District 2650" width="720" height="279">
     <p>アクトの日 2026 福井　主催：国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ</p>
     <p><a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
-    <p style="opacity:.75">version 1.0.0</p>
+    <p style="opacity:.75">version 1.1.0</p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ヒーローの再生
+  var hero = document.getElementById('hero');
+  requestAnimationFrame(function () { hero.classList.add('is-play'); });
+
+  // 当日までのカウントダウン（日本時間）
+  var start = Date.UTC(2026, 9, 24, 15, 0, 0);   // 2026-10-25 00:00 JST
+  var end = start + 24 * 60 * 60 * 1000;
+  var now = Date.now();
+  var lead = document.getElementById('count-lead');
+  var num = document.getElementById('count-num');
+  var unit = document.getElementById('count-unit');
+  if (now < start) {
+    num.textContent = Math.ceil((start - now) / 86400000);
+  } else if (now < end) {
+    lead.textContent = '本日開催';
+    num.textContent = '10.25';
+    unit.textContent = '';
+  } else {
+    lead.textContent = 'ご来場ありがとうございました';
+    num.textContent = '10.25';
+    unit.textContent = '';
+  }
+
+  // スクロールで表示
+  var items = document.querySelectorAll('.reveal');
+  var stat = document.getElementById('stat');
+  function countUp() {
+    if (reduce) return;
+    var to = parseFloat(stat.getAttribute('data-to'));
+    var t0 = null;
+    function step(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / 1600, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      stat.textContent = (to * e).toFixed(1);
+      if (p < 1) requestAnimationFrame(step);
+    }
+    stat.textContent = '0.0';
+    requestAnimationFrame(step);
+  }
+  if (!('IntersectionObserver' in window) || reduce) {
+    for (var i = 0; i < items.length; i++) items[i].classList.add('is-in');
+    return;
+  }
+  stat.textContent = '0.0';
+  var counted = false;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('is-in');
+      if (!counted && en.target.contains(stat)) { counted = true; countUp(); }
+      io.unobserve(en.target);
+    });
+  }, { threshold: 0.15 });
+  for (var j = 0; j < items.length; j++) io.observe(items[j]);
+})();
+</script>
 </body>
 </html>
