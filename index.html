@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="version" content="1.1.0">
+<meta name="version" content="1.3.0">
 <title>アクトの日 2026 福井 | 世界ポリオデー</title>
-<meta name="description" content="2026年10月25日（日）、福井駅前のPLAYCE（プレイス）1階で、ポリオ根絶に向けた講演・募金・子ども向けの塗り絵を行います。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブです。">
+<meta name="description" content="福井からつなぐ ポリオ根絶！プロジェクト。2026年10月25日（日）13:00〜15:00、福井駅前のPLAYCE（プレイス）1階で、医師によるミニセミナー・募金・子ども向けの塗り絵を行います。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブです。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="アクトの日 2026 福井 | 世界ポリオデー">
-<meta property="og:description" content="2滴のワクチンで、子どもをポリオから守ることができます。2026年10月25日（日）福井駅前 PLAYCE 1階">
+<meta property="og:description" content="2滴のワクチンで、子どもをポリオから守ることができます。2026年10月25日（日）13:00〜15:00 福井駅前 PLAYCE 1階">
 <meta property="og:url" content="https://fukui-act.github.io/">
 <meta name="theme-color" content="#d41367">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -50,6 +50,9 @@
   .brandbar { background: var(--white); border-bottom: 1px solid var(--line); }
   .brandbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 10px; padding-bottom: 10px; }
   .brandbar img { width: 168px; }
+  .logo-link { display: inline-block; border-radius: 6px; }
+  .logo-link:hover img { opacity: .85; }
+  .logo-link:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
   .brandbar p { margin: 0; font-size: 14px; color: var(--ink-sub); text-align: right; line-height: 1.5; }
 
   /* ヒーロー */
@@ -59,6 +62,7 @@
   .hero h1 { margin: 0 0 28px; font-size: clamp(30px, 5.6vw, 52px); line-height: 1.38; font-weight: 700; letter-spacing: .01em; }
   .hero h1 span { display: block; }
   .hero-date { margin: 0; font-size: clamp(20px, 3.4vw, 28px); font-weight: 700; }
+  .nowrap { white-space: nowrap; display: inline-block; }
   .hero-place { margin: 2px 0 0; font-size: 17px; }
   .scene { width: 100%; max-width: 340px; justify-self: center; }
   .scene svg { width: 100%; height: auto; overflow: visible; }
@@ -145,6 +149,7 @@
   .facts li { margin-bottom: 6px; }
 
   .about-grid { display: grid; grid-template-columns: 1fr 240px; gap: 32px; align-items: center; }
+  .about-grid .logo-link { justify-self: start; }
 
   footer { background: var(--cran-deep); color: #ffe6ef; padding: 36px 0 44px; font-size: 15px; }
   footer img { width: 180px; margin-bottom: 14px; }
@@ -184,7 +189,7 @@
 
 <div class="brandbar">
   <div class="wrap">
-    <img src="assets/logo-rotaract-d2650.png" alt="Rotaract District 2650（国際ロータリー第2650地区 ローターアクト）" width="720" height="279">
+    <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
     <p>アクトの日 2026 福井<br>世界ポリオデー</p>
   </div>
 </div>
@@ -192,9 +197,9 @@
 <header class="hero" id="hero">
   <div class="wrap">
     <div>
-      <p class="hero-kicker">10月24日は世界ポリオデー</p>
+      <p class="hero-kicker">福井からつなぐ　ポリオ根絶！プロジェクト</p>
       <h1><span>2滴のワクチンで、</span><span>子どもをポリオから</span><span>守ることができます</span></h1>
-      <p class="hero-date">2026年10月25日（日）</p>
+      <p class="hero-date">2026年10月25日（日）<span class="nowrap">13:00〜15:00</span></p>
       <p class="hero-place">福井駅前　PLAYCE（プレイス）1階</p>
     </div>
     <div class="scene" aria-hidden="true">
@@ -234,11 +239,15 @@
         <dt>日にち</dt>
         <dd>2026年10月25日（日）</dd>
         <dt>時間</dt>
-        <dd><span class="tbd">調整中</span></dd>
+        <dd>13:00〜15:00<br><span class="note">医師によるミニセミナーは 13:30／14:00／14:30 の3回（各20分ほど）</span></dd>
         <dt>会場</dt>
         <dd>PLAYCE（プレイス）1階<br>福井県福井市中央1丁目3-5 FUKUMACHI BLOCK 1階<br><span class="note">JR福井駅から徒歩3分</span></dd>
         <dt>主催</dt>
         <dd>国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ</dd>
+        <dt>協力</dt>
+        <dd>福井ロータリークラブ、福井東ロータリークラブ、福井水仙ロータリークラブ</dd>
+        <dt>参加</dt>
+        <dd>どなたでもお越しください。親子での参加を歓迎します。</dd>
       </dl>
     </div>
   </section>
@@ -249,7 +258,7 @@
       <ul class="program">
         <li class="reveal">
           <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="11" y="3" width="10" height="16" rx="5"/><path d="M6 15a10 10 0 0 0 20 0M16 25v4M11 29h10"/></svg></span>
-          <div><strong>講演</strong><span>医師の先生に、ポリオと予防接種についてお話しいただきます（予定・1時間程度）。</span></div>
+          <div><strong>医師によるミニセミナー</strong><span>ポリオとはどんな病気か、世界でいまどうなっているかを、医師の先生がお話しします。13:30／14:00／14:30の3回、各20分ほどです。</span></div>
         </li>
         <li class="reveal">
           <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="12" width="22" height="16" rx="2"/><path d="M12 12h8M16 4v8M12 8l4 4 4-4"/></svg></span>
@@ -322,7 +331,7 @@
         <p>ローターアクトは、国際ロータリーが提唱する18歳以上の若い世代の奉仕団体です。地域や世界の課題に、仕事や学業のかたわら取り組んでいます。</p>
         <p>国際ロータリーは1985年から、ポリオのない世界をめざして活動を続けています。「アクトの日」は、ローターアクトが企画し、ロータリーとともに取り組む一日です。</p>
       </div>
-      <img src="assets/logo-rotaract-d2650.png" alt="" width="720" height="279">
+      <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
     </div>
   </section>
 
@@ -336,10 +345,10 @@
 
 <footer>
   <div class="wrap">
-    <img src="assets/logo-rotaract-d2650-white.png" alt="Rotaract District 2650" width="720" height="279">
-    <p>アクトの日 2026 福井　主催：国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ</p>
+    <a class="logo-link" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-d2650-white.png" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="720" height="279"></a>
+    <p>アクトの日 2026 福井　主催：<a href="https://www.rid2650.gr.jp/" target="_blank" rel="noopener">国際ロータリー第2650地区</a> 福井ゾーンのローターアクトクラブ</p>
     <p><a href="https://www.rotary.org/ja/our-causes/ending-polio" rel="noopener">国際ロータリー「ポリオ根絶」</a></p>
-    <p style="opacity:.75">version 1.1.0</p>
+    <p style="opacity:.75">version 1.3.0</p>
   </div>
 </footer>
 
