@@ -168,6 +168,7 @@
   .chat-big .bubble { font-size: clamp(28px, 5.4vw, 50px); padding: 22px 30px; border-radius: 32px 32px 32px 8px; background: var(--white); box-shadow: 0 14px 44px rgba(168,15,82,.18); border: 3px solid var(--cran); }
   .js .chat-big.is-said .bubble { animation: popBig .55s cubic-bezier(.3,1.6,.5,1); }
   @keyframes popBig { 0% { transform: scale(.86); } 100% { transform: none; } }
+  @media (max-width: 420px) { .chat-big .chat-row { gap: 10px; } .chat-big .chat-face { flex-basis: 60px; height: 60px; background-size: 54px auto; } .chat-big .bubble { font-size: min(7vw, 28px); padding: 16px 18px; } .chat-big .chat-note { margin-left: 70px; } }
   .chat-note { margin: 18px 0 0 98px; font-size: 15px; color: var(--ink-sub); }
   .js .chat-note { opacity: 0; transition: opacity 1s ease .6s; }
   .js .chat.is-said .chat-note { opacity: 1; }
@@ -471,7 +472,9 @@
   .js .daymsg .steps li, .js .daymsg .day-end { opacity: 0; transform: translateY(16px); }
   .js .daymsg.is-in .steps li { animation: fadeUp .8s ease calc(var(--i) * .7s + 1.4s) forwards; }
   .js .daymsg.is-in .day-end { animation: fadeUp 1.2s ease 3.8s forwards; }
-  @media (min-width: 641px) { .steps { flex-wrap: nowrap; } .steps li { white-space: nowrap; } }
+  .steps li { white-space: nowrap; text-wrap: nowrap; flex: 0 0 auto; }
+  @media (min-width: 900px) { .steps { flex-wrap: nowrap; } }
+  @media (max-width: 899px) { .steps { flex-direction: column; align-items: center; } }
   @media (max-width: 640px) { .daymsg br.sp { display: inline; } .steps { flex-direction: column; align-items: center; } }
 
   /* 2滴の雫 */
@@ -791,9 +794,9 @@
     <div class="fm-in">
       <p class="day-title"><b>10月24日は<br class="sp"><wbr>「世界ポリオデー」です。</b></p>
       <ol class="steps">
-        <li style="--i:0">ポリオの<wbr>ことを<wbr>知る。</li>
-        <li style="--i:1">家族や<wbr>友だちに<wbr>話す。</li>
-        <li style="--i:2">募金に<wbr>協力する。</li>
+        <li style="--i:0">ポリオのことを知る。</li>
+        <li style="--i:1">家族や友だちに話す。</li>
+        <li style="--i:2">募金に協力する。</li>
       </ol>
       <p class="day-end"><b>どれも、<wbr>根絶に<wbr>近づく<wbr>一歩に<wbr>なります。</b></p>
     </div>
@@ -822,7 +825,6 @@
       <li>ニッセイ基礎研究所「60年前のポリオ騒動で考える感染症対策のディレンマ」<br><a href="https://www.nli-research.co.jp/report/detail/id=66565?site=nli" target="_blank" rel="noopener">https://www.nli-research.co.jp/report/detail/id=66565?site=nli</a></li>
       <li>世界ポリオ根絶推進活動（GPEI）「Pakistan and Afghanistan unite to protect millions of children in synchronized polio campaigns」（2026年5月、英語）<br><a href="https://polioeradication.org/news/pakistan-and-afghanistan-unite-to-protect-millions-of-children-in-synchronized-polio-campaigns/" target="_blank" rel="noopener">https://polioeradication.org/news/pakistan-and-afghanistan-unite-to-protect-millions-of-children-in-synchronized-polio-campaigns/</a></li>
     </ul>
-    <p class="note">イラストは <a href="https://soco-st.com/" target="_blank" rel="noopener">ソコスト</a> の素材を使っています。</p>
     <p class="back"><a data-track="story_to_top" href="../">アクトの日 2026 福井のトップページへ</a></p>
   </div>
 </section>
