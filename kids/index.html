@@ -54,9 +54,13 @@
   a:focus-visible, button:focus-visible { outline: 4px solid var(--blue); outline-offset: 3px; }
   .skip { position: absolute; left: -9999px; }
   .skip:focus { left: 16px; top: 16px; background: var(--white); padding: 8px 12px; z-index: 10; }
-  main p, main h1, main h2, main li { word-break: keep-all; overflow-wrap: anywhere; }
+  main p, main h1, main h2, main li { word-break: keep-all; overflow-wrap: anywhere; line-break: strict; }
+  .nw { white-space: nowrap; }
+  /* おうちの方へ（大人向けの文はスペースで区切っていないので、ふつうの折り返しにする） */
+  main .parents p, main .parents h2 { word-break: normal; }
+  @media (max-width: 480px) { .choices button { font-size: 18px; padding: 12px 14px 12px 54px; } }
   ruby rt { font-size: .5em; font-weight: 400; letter-spacing: 0; }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 18px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 
   .brandbar { background: var(--white); border-bottom: 1px solid var(--line); }
   .brandbar .wrap { max-width: 960px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; padding-bottom: 16px; }
@@ -77,7 +81,7 @@
   .jump { display: inline-block; margin-top: 18px; background: var(--sun); color: var(--ink); font-weight: 700; text-decoration: none; border-radius: 999px; padding: 10px 22px; font-size: 17px; }
 
   /* おはなしのカード */
-  .story { padding: 26px 0 10px; }
+  .story { padding-top: 26px; padding-bottom: 10px; }
   .card { background: var(--white); border-radius: 24px; padding: 24px 24px 22px; margin: 0 0 22px; box-shadow: 0 4px 18px rgba(42,26,34,.07); border: 3px solid var(--line); position: relative; }
   .card .no { position: absolute; left: -6px; top: -16px; width: 44px; height: 44px; border-radius: 50%; background: var(--cran); color: var(--white); font-weight: 700; font-size: 22px; display: flex; align-items: center; justify-content: center; border: 3px solid var(--white); }
   .card h2 { margin: 0 0 10px; font-size: clamp(24px, 4.8vw, 30px); line-height: 1.5; color: var(--cran-deep); }
@@ -104,7 +108,7 @@
   .quiz { background: var(--blue-tint); padding: 34px 0 40px; margin-top: 10px; }
   .quiz h2 { margin: 0 0 6px; font-size: clamp(28px, 5.6vw, 38px); color: var(--blue); line-height: 1.4; }
   .quiz .intro { margin: 0 0 18px; }
-  .qbox { background: var(--white); border-radius: 24px; padding: 22px 22px 24px; box-shadow: 0 4px 18px rgba(20,102,184,.10); }
+  .qbox { background: var(--white); border-radius: 24px; padding: 22px 20px 24px; box-shadow: 0 4px 18px rgba(20,102,184,.10); }
   .qhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 8px; }
   .qnum { font-weight: 700; color: var(--blue); font-size: 18px; margin: 0; }
   .dots { display: flex; gap: 6px; }
@@ -143,7 +147,7 @@
   .again { background: var(--white); color: var(--blue); border: 3px solid var(--blue); }
 
   /* おうちの方へ */
-  .parents { padding: 32px 0 10px; font-size: 16px; line-height: 1.85; }
+  .parents { padding-top: 32px; padding-bottom: 10px; font-size: 16px; line-height: 1.85; }
   .parents h2 { font-size: 20px; margin: 0 0 8px; }
   .parents p { margin: 0 0 10px; }
   .event { background: var(--cran); color: var(--white); border-radius: 20px; padding: 22px 22px; margin: 18px 0 0; }
@@ -220,7 +224,7 @@
       <div class="row">
         <div>
           <h2 id="s1">ポリオは、ウイルスの びょうき</h2>
-          <p>ポリオは、「ポリオウイルス」という、目に 見えないほど 小さな ものが、からだに 入って おこる びょうきです。</p>
+          <p>ポリオは、<span class="nw">「ポリオウイルス」</span>という、目に 見えないほど 小さな ものが、からだに 入って おこる びょうきです。</p>
           <p>とくに、<span class="mark">5さいより 小さい 子</span>が かかりやすい びょうきです。</p>
         </div>
         <div class="pic" aria-hidden="true"><img src="../assets/story/virus.svg" alt="" width="96" height="112"></div>
@@ -275,8 +279,8 @@
       <div class="row">
         <div>
           <h2 id="s6">世界中の 子どもに ワクチンを</h2>
-          <p>「ロータリー」という なかまたちは、40年 いじょう、世界中の 子どもに ワクチンを とどける お手つだいを して います。</p>
-          <p>毎年 <span class="mark">10月24日は「世界ポリオデー」</span>。ポリオを なくそうと、世界中で よびかける 日です。</p>
+          <p><span class="nw">「ロータリー」</span>という なかまたちは、40年 いじょう、世界中の 子どもに ワクチンを とどける お手つだいを して います。</p>
+          <p>毎年 <span class="mark">10月24日は<span class="nw">「世界ポリオデー」</span></span>。ポリオを なくそうと、世界中で よびかける 日です。</p>
         </div>
         <div class="pic" aria-hidden="true"><img src="../assets/story/people-hands.svg" alt="" width="504" height="274"></div>
       </div>
@@ -296,11 +300,11 @@
     <h2>おうちの方へ</h2>
     <p>このページは、小学校低学年〜中学年のお子さんを想定しています。小さなお子さんには、読み聞かせでお使いください。ポリオワクチンの接種の時期などは、お住まいの市町や、かかりつけの医師にご確認ください。</p>
     <section class="event" aria-labelledby="h-ev">
-      <h2 id="h-ev">10月25日（日）、福井駅前で「アクトの日」</h2>
+      <h2 id="h-ev">10月25日（日）、福井駅前で<span class="nw">「アクトの日」</span></h2>
       <p>医師によるミニセミナー、募金、パネル展示、子ども向けの塗り絵。入場無料です。親子でお越しください。</p>
       <a class="btn" data-track="kids_to_outline" href="../#outline">開催のご案内を見る</a>
     </section>
-    <p class="src">出典：<a href="https://www.who.int/news-room/fact-sheets/detail/poliomyelitis" target="_blank" rel="noopener">世界保健機関（WHO）「Poliomyelitis」</a>、<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/polio/index_00001.html" target="_blank" rel="noopener">厚生労働省「世界的なポリオ根絶に向けた対応」</a>、<a href="https://www.rotary.org/ja/our-causes/ending-polio" target="_blank" rel="noopener">国際ロータリー「ポリオ根絶」</a>、<a href="https://polioeradication.org/about-polio/polio-this-week/" target="_blank" rel="noopener">世界ポリオ根絶推進活動（GPEI）</a>。ワクチン1回分の費用は平均約0.15米ドル（1米ドル＝約157円、2026年9月時点で計算）。</p>
+    <p class="src">出典：<a href="https://www.who.int/news-room/fact-sheets/detail/poliomyelitis" target="_blank" rel="noopener">世界保健機関（WHO）<span class="nw">「Poliomyelitis」</span></a>、<a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/kekkaku-kansenshou/polio/index_00001.html" target="_blank" rel="noopener">厚生労働省「世界的なポリオ根絶に向けた対応」</a>、<a href="https://www.rotary.org/ja/our-causes/ending-polio" target="_blank" rel="noopener">国際ロータリー<span class="nw">「ポリオ根絶」</span></a>、<a href="https://polioeradication.org/about-polio/polio-this-week/" target="_blank" rel="noopener">世界ポリオ根絶推進活動（GPEI）</a>。ワクチン1回分の費用は平均約0.15米ドル（1米ドル＝約157円、2026年9月時点で計算）。</p>
     <p class="back"><a data-track="kids_to_top" href="../">アクトの日 2026 福井のトップページへ</a></p>
   </div>
 </main>
@@ -339,6 +343,7 @@
   var marks = ['あ', 'い', 'う'];
   var i = 0, answers = [];
   function esc(s) { return String(s).replace(/[&<>"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[m]; }); }
+  function nw(h) { return h.replace(/「[^「」<>]{1,14}」/g, function (m) { return '<span class="nw">' + m + '</span>'; }); }
   function dots() {
     return '<div class="dots" aria-hidden="true">' + Q.map(function (_, k) {
       var c = k < answers.length ? (answers[k] === Q[k].a ? 'ok' : 'ng') : (k === i ? 'now' : '');
@@ -364,7 +369,7 @@
     box.querySelector('.dots').outerHTML = dots();
     var div = document.createElement('div');
     div.className = 'answer ' + (ok ? 'ok' : 'ng') + (reduce ? '' : ' pop');
-    div.innerHTML = '<span class="v">' + (ok ? 'せいかい！' : 'ざんねん！') + '</span><p>' + (ok ? '' : 'こたえは「' + esc(d.c[d.a]) + '」。') + esc(d.e) + '</p>';
+    div.innerHTML = '<span class="v">' + (ok ? 'せいかい！' : 'ざんねん！') + '</span><p>' + nw((ok ? '' : 'こたえは「' + esc(d.c[d.a]) + '」。') + esc(d.e)) + '</p>';
     box.appendChild(div);
     var nx = document.createElement('button');
     nx.type = 'button'; nx.className = 'next';
@@ -380,7 +385,7 @@
     box.innerHTML = '<div class="result"><p class="score">5もん中<b>' + n + '</b>もん せいかい</p><p class="msg">' + msg + '</p>' +
       '<ol class="review">' + Q.map(function (d, k) {
         var ok = answers[k] === d.a;
-        return '<li><p class="rq">だい' + (k + 1) + 'もん　' + esc(d.q) + '</p><p class="ra"><span class="' + (ok ? 'ok' : 'ng') + '">' + (ok ? '○ せいかい' : '× こたえは「' + esc(d.c[d.a]) + '」') + '</span>　' + esc(d.e) + '</p></li>';
+        return '<li><p class="rq">だい' + (k + 1) + 'もん　' + esc(d.q) + '</p><p class="ra"><span class="' + (ok ? 'ok' : 'ng') + '">' + nw(ok ? '○ せいかい' : '× こたえは「' + esc(d.c[d.a]) + '」') + '</span>　' + nw(esc(d.e)) + '</p></li>';
       }).join('') + '</ol>' +
       '<button type="button" class="next again">もういちど あそぶ</button></div>';
     box.querySelector('.again').addEventListener('click', function () { i = 0; answers = []; show(); track('kids_quiz_retry'); });
