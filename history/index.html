@@ -13,14 +13,14 @@
 <meta property="og:url" content="https://fukui-act.github.io/history/">
 <meta property="og:site_name" content="アクトの日 2026 福井">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://fukui-act.github.io/assets/ogp-history.png?v=1.18.1">
+<meta property="og:image" content="https://fukui-act.github.io/assets/ogp-history.png?v=1.19.0">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ロータリーとポリオの歴史 1789—2026。ワクチンの誕生から、ロータリーの取り組み、最後の2か国まで。">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="ロータリーとポリオの歴史">
 <meta name="twitter:description" content="ワクチンの誕生から、ロータリーのポリオ根絶の取り組み、最後の2か国まで。">
-<meta name="twitter:image" content="https://fukui-act.github.io/assets/ogp-history.png?v=1.18.1">
+<meta name="twitter:image" content="https://fukui-act.github.io/assets/ogp-history.png?v=1.19.0">
 <meta name="theme-color" content="#d41367">
 <link rel="icon" href="../assets/favicon.svg?v=1.8.3" type="image/svg+xml">
 <link rel="icon" href="../assets/favicon-32.png?v=1.8.3" sizes="32x32" type="image/png">
@@ -41,20 +41,20 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cran: #d41367; --cran-deep: #a80f52; --cran-tint: #fff1f6;
-    --blue: #1466b8; --blue-sky: #bfe3ff; --blue-tint: #eef6fd;
-    --amber: #8a5300; --amber-tint: #fff3df;
-    --red: #d62828;
-    --land: #e3dde0; --free: #9fd0f5;
-    --ink: #2a1a22; --ink-sub: #5d4b54; --line: #f1cfdc; --rule: #e6dce1; --white: #ffffff;
-    --paper: #fbf8f9;
+    --cran: #d41367; --cran-deep: #d41367; --cran-tint: #fceef4;
+    --blue: #0067c8; --blue-sky: #bfe8f7; --blue-tint: #edf8fd;
+    --amber: #901f93; --amber-tint: #f6edf6;
+    --red: #e02927;
+    --land: #e2dfda; --free: #99daf3;
+    --ink: #54565a; --ink-sub: #7a6e66; --line: #f6d0e1; --rule: #d0cfcd; --white: #ffffff;
+    --paper: #f9f8f7;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; font-family: "BIZ UDPGothic", "BIZ UDPゴシック", "Hiragino Sans", "Yu Gothic", sans-serif; color: var(--ink); background: var(--paper); line-height: 1.85; font-size: 17px; }
+  body { margin: 0; font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif; color: var(--ink); background: var(--paper); line-height: 1.85; font-size: 17px; }
   img { max-width: 100%; height: auto; display: block; }
   a { color: var(--cran-deep); text-underline-offset: 3px; }
   a:focus-visible, summary:focus-visible, .btn:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
@@ -76,7 +76,7 @@
   body.is-staged .stage svg { opacity: 1; }
   #hmap path { fill: var(--land); stroke: #fff; stroke-width: .35; transition: fill .9s ease; }
   #hmap.f-amr .r-amr, #hmap.f-wpr .r-wpr, #hmap.f-eur .r-eur, #hmap.f-sear .r-sear, #hmap.f-afr .r-afr { fill: var(--free); }
-  #hmap.m-endemic path { fill: #efb3cc; }
+  #hmap.m-endemic path { fill: #f0acca; }
   #hmap.m-endemic.f-amr .r-amr { fill: var(--free); }
   #hmap #c-JPN { transition: fill .9s ease; }
   #hmap.m-jpred #c-JPN { fill: var(--red); animation: beatRed 1.6s ease-in-out infinite; }
@@ -84,8 +84,8 @@
   #hmap path.hl { fill: var(--cran); animation: beat 2.4s ease-in-out infinite; }
   #hmap.m-last2 #c-AFG, #hmap.m-last2 #c-PAK { fill: var(--cran); animation: beat 2.4s ease-in-out infinite; }
   #hmap.m-end #c-AFG, #hmap.m-end #c-PAK { fill: var(--cran); }
-  @keyframes beat { 50% { fill: #f06a9f; } }
-  @keyframes beatRed { 50% { fill: #f05a5a; } }
+  @keyframes beat { 50% { fill: #e15a95; } }
+  @keyframes beatRed { 50% { fill: #e65452; } }
   #pins circle { opacity: 0; transition: opacity .5s ease; }
   #pins circle.on { opacity: 1; }
   #pins .ring { fill: none; stroke: var(--cran); stroke-width: .8; transform-box: fill-box; transform-origin: center; }
@@ -105,12 +105,12 @@
   /* 右の目印：年表のどこにいるか・あとどれくらいか */
   .prog { position: fixed; right: 10px; top: 110px; bottom: 40px; width: 58px; z-index: 4; display: flex; flex-direction: column; align-items: flex-end; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
   body.is-staged .prog { opacity: 1; }
-  .prog .rail { position: relative; flex: 1; width: 4px; margin-right: 10px; border-radius: 2px; background: rgba(93,75,84,.18); }
+  .prog .rail { position: relative; flex: 1; width: 4px; margin-right: 10px; border-radius: 2px; background: rgba(122,110,102,.18); }
   .prog .fill { position: absolute; left: 0; right: 0; top: 0; height: 0; border-radius: 2px; background: var(--cran); }
-  .prog .tick { position: absolute; right: -4px; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--white); border: 2px solid rgba(93,75,84,.35); }
+  .prog .tick { position: absolute; right: -4px; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--white); border: 2px solid rgba(122,110,102,.35); }
   .prog .tick.on { border-color: var(--cran); background: var(--cran); }
   .prog .tick span { position: absolute; right: 16px; top: -4px; font-size: 11px; font-weight: 700; color: var(--ink-sub); white-space: nowrap; background: rgba(255,255,255,.85); border-radius: 4px; padding: 0 3px; }
-  .prog .knob { position: absolute; right: -7px; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--white); border: 3px solid var(--cran); box-shadow: 0 1px 6px rgba(168,15,82,.35); top: 0; }
+  .prog .knob { position: absolute; right: -7px; width: 18px; height: 18px; margin-top: -9px; border-radius: 50%; background: var(--white); border: 3px solid var(--cran); box-shadow: 0 1px 6px rgba(212,19,103,.35); top: 0; }
 
   /* 最初の画面 */
   .hero { position: relative; z-index: 2; min-height: calc(100vh - 70px); min-height: calc(100svh - 70px); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px 20px 90px; background: var(--cran); color: var(--white); overflow: hidden; }
@@ -134,14 +134,14 @@
   .col { max-width: 640px; margin: 0 auto; padding: 0 16px; }
   @media (min-width: 1000px) { .col { margin-left: max(24px, calc(50% - 580px)); max-width: 540px; } }
   .era-card { min-height: 100vh; min-height: 100svh; display: flex; align-items: center; }
-  .era-in { background: rgba(255,255,255,.9); border-radius: 22px; padding: 30px 28px; box-shadow: 0 8px 30px rgba(42,26,34,.08); width: 100%; }
+  .era-in { background: rgba(255,255,255,.9); border-radius: 22px; padding: 30px 28px; box-shadow: 0 8px 30px rgba(84,86,90,.08); width: 100%; }
   .era-no { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--cran); letter-spacing: .12em; }
   .era-card h2 { margin: 0 0 8px; font-size: clamp(28px, 5vw, 40px); line-height: 1.4; color: var(--ink); }
   .era-span { margin: 0; font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: var(--ink-sub); font-variant-numeric: tabular-nums; }
 
   .ev { padding: 0 0 36vh; }
   .ev.is-feat { padding-bottom: 42vh; }
-  .card { background: rgba(255,255,255,.95); border-radius: 18px; padding: 24px 24px 18px; box-shadow: 0 6px 26px rgba(42,26,34,.08); border-top: 5px solid var(--cran); }
+  .card { background: rgba(255,255,255,.95); border-radius: 18px; padding: 24px 24px 18px; box-shadow: 0 6px 26px rgba(84,86,90,.08); border-top: 5px solid var(--cran); }
   .t-polio .card { border-top-color: var(--blue); }
   .t-japan .card { border-top-color: var(--amber); }
   .when { margin: 0 0 8px; line-height: 1.1; color: var(--cran-deep); }
@@ -226,7 +226,7 @@
   .sc-bars .bar { display: grid; grid-template-columns: 7.5em 1fr; grid-template-rows: auto auto; column-gap: 12px; align-items: center; margin-bottom: 10px; }
   .sc-bars .bl { font-size: 13px; color: var(--ink-sub); grid-row: 1 / 3; }
   .sc-bars .track { height: 18px; background: var(--rule); border-radius: 4px; overflow: hidden; }
-  .sc-bars .fill { display: block; height: 100%; width: var(--w); background: #e79ab9; border-radius: 4px; transform-origin: left center; }
+  .sc-bars .fill { display: block; height: 100%; width: var(--w); background: #ec95bb; border-radius: 4px; transform-origin: left center; }
   .sc-bars .f2 { background: var(--cran); }
   .sc-bars .bv { font-size: 14px; font-weight: 700; }
   .sc-bars .bv.strong { color: var(--cran-deep); font-size: 17px; }
@@ -247,7 +247,7 @@
   .meter-t strong { color: var(--blue); }
   .meter { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
   .meter li { display: flex; flex-direction: column; align-items: center; text-align: center; }
-  .meter .dot { width: 34px; height: 34px; border-radius: 50%; border: 2px dashed #c9bcc2; display: flex; align-items: center; justify-content: center; background: var(--white); }
+  .meter .dot { width: 34px; height: 34px; border-radius: 50%; border: 2px dashed #b1b1b1; display: flex; align-items: center; justify-content: center; background: var(--white); }
   .meter .done .dot, .meter .now .dot { border: 0; background: var(--free); }
   .meter .now .dot { background: var(--blue); }
   .chk { width: 20px; height: 20px; fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
@@ -298,8 +298,8 @@
   .chart { margin: 8px 0 0; }
   .chart + .chart { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--rule); }
   .chart-t { margin: 0 0 2px; font-size: 13px; font-weight: 700; color: var(--ink-sub); }
-  .chart .g { stroke: #ece6e9; stroke-width: 1; }
-  .chart .ax { stroke: #b9adb3; stroke-width: 1; }
+  .chart .g { stroke: #e8e7e6; stroke-width: 1; }
+  .chart .ax { stroke: #b1b1b1; stroke-width: 1; }
   .chart .yl { font-size: 11px; fill: var(--ink-sub); text-anchor: end; }
   .chart .xl { font-size: 11px; fill: var(--ink-sub); text-anchor: middle; }
   .chart .area { fill: var(--blue); opacity: .12; }
@@ -332,7 +332,7 @@
 
   /* 終わり */
   .finale { padding: 10vh 0 0; }
-  .fin { background: var(--cran); color: var(--white); border-radius: 22px; padding: 34px 28px; box-shadow: 0 10px 30px rgba(168,15,82,.2); }
+  .fin { background: var(--cran); color: var(--white); border-radius: 22px; padding: 34px 28px; box-shadow: 0 10px 30px rgba(212,19,103,.2); }
   .fin h2 { margin: 0 0 10px; font-size: clamp(24px, 4vw, 32px); line-height: 1.45; }
   .fin p { margin: 0 0 14px; }
   .btn { display: inline-block; font-weight: 700; text-decoration: none; background: var(--white); color: var(--cran-deep); border-radius: 999px; padding: 14px 28px; margin-top: 4px; }
@@ -346,7 +346,7 @@
   .back { margin: 26px 0 64px; }
   .back a { background: rgba(255,255,255,.9); padding: 4px 8px; border-radius: 6px; }
 
-  footer { position: relative; z-index: 2; background: var(--cran-deep); color: #ffe6ef; padding: 36px 0 44px; font-size: 15px; }
+  footer { position: relative; z-index: 2; background: var(--cran-deep); color: #ffffff; padding: 36px 0 44px; font-size: 15px; }
   footer .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
   footer img { width: 240px; margin-bottom: 14px; }
   footer img.on-dark { background: #fff; padding: 20px; border-radius: 10px; box-sizing: content-box; max-width: calc(100% - 40px); height: auto; }
@@ -364,7 +364,7 @@
     .prog { top: 68px; bottom: 16px; right: 4px; width: 40px; }
     .prog .tick span { display: none; }
     .col { padding-right: 34px; }
-    .yearbig { right: 12px; bottom: auto; top: 10px; z-index: 4; background: rgba(255,255,255,.92); border-radius: 12px; padding: 4px 10px 5px; box-shadow: 0 2px 10px rgba(42,26,34,.12); }
+    .yearbig { right: 12px; bottom: auto; top: 10px; z-index: 4; background: rgba(255,255,255,.92); border-radius: 12px; padding: 4px 10px 5px; box-shadow: 0 2px 10px rgba(84,86,90,.12); }
     body.is-staged .yearbig { opacity: 1; }
     .yearbig .yv { font-size: 30px; }
     .yearbig .yu { font-size: 14px; }
