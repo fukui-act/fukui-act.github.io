@@ -13,7 +13,7 @@
 <meta property="og:url" content="https://fukui-act.github.io/kids/">
 <meta property="og:site_name" content="アクトの日 2026 福井">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.18.1">
+<meta property="og:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.19.0">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,18 +37,18 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cran: #d41367; --cran-deep: #a80f52; --cran-tint: #fff1f6;
-    --blue: #1466b8; --blue-sky: #bfe3ff; --blue-tint: #eef6fd;
-    --sun: #ffd84d; --sun-tint: #fff8d9;
-    --green: #1f8a5b; --green-tint: #e7f6ee;
-    --ink: #2a1a22; --ink-sub: #5d4b54; --line: #f1cfdc; --rule: #e6dce1; --white: #ffffff;
+    --cran: #d41367; --cran-deep: #d41367; --cran-tint: #fceef4;
+    --blue: #0067c8; --blue-sky: #bfe8f7; --blue-tint: #edf8fd;
+    --sun: #f7a81b; --sun-tint: #fef2dd;
+    --green: #009739; --green-tint: #e6f5eb;
+    --ink: #54565a; --ink-sub: #7a6e66; --line: #f6d0e1; --rule: #d0cfcd; --white: #ffffff;
   }
   * { box-sizing: border-box; }
   html { -webkit-text-size-adjust: 100%; }
-  body { margin: 0; font-family: "BIZ UDPGothic", "BIZ UDPゴシック", "Hiragino Sans", "Yu Gothic", sans-serif; color: var(--ink); background: #fffdf8; line-height: 1.9; font-size: 19px; }
+  body { margin: 0; font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif; color: var(--ink); background: #faf9f9; line-height: 1.9; font-size: 19px; }
   img { max-width: 100%; height: auto; display: block; }
   a { color: var(--cran-deep); text-underline-offset: 3px; }
   a:focus-visible, button:focus-visible { outline: 4px solid var(--blue); outline-offset: 3px; }
@@ -82,13 +82,13 @@
 
   /* おはなしのカード */
   .story { padding-top: 26px; padding-bottom: 10px; }
-  .card { background: var(--white); border-radius: 24px; padding: 24px 24px 22px; margin: 0 0 22px; box-shadow: 0 4px 18px rgba(42,26,34,.07); border: 3px solid var(--line); position: relative; }
+  .card { background: var(--white); border-radius: 24px; padding: 24px 24px 22px; margin: 0 0 22px; box-shadow: 0 4px 18px rgba(84,86,90,.07); border: 3px solid var(--line); position: relative; }
   .card .no { position: absolute; left: -6px; top: -16px; width: 44px; height: 44px; border-radius: 50%; background: var(--cran); color: var(--white); font-weight: 700; font-size: 22px; display: flex; align-items: center; justify-content: center; border: 3px solid var(--white); }
   .card h2 { margin: 0 0 10px; font-size: clamp(24px, 4.8vw, 30px); line-height: 1.5; color: var(--cran-deep); }
   .card.is-blue { border-color: var(--blue-sky); }
   .card.is-blue .no { background: var(--blue); }
   .card.is-blue h2 { color: var(--blue); }
-  .card.is-green { border-color: #bfe6d1; }
+  .card.is-green { border-color: #bfe5ce; }
   .card.is-green .no { background: var(--green); }
   .card.is-green h2 { color: var(--green); }
   .card p { margin: 0 0 10px; }
@@ -108,23 +108,23 @@
   .quiz { background: var(--blue-tint); padding: 34px 0 40px; margin-top: 10px; }
   .quiz h2 { margin: 0 0 6px; font-size: clamp(28px, 5.6vw, 38px); color: var(--blue); line-height: 1.4; }
   .quiz .intro { margin: 0 0 18px; }
-  .qbox { background: var(--white); border-radius: 24px; padding: 22px 20px 24px; box-shadow: 0 4px 18px rgba(20,102,184,.10); }
+  .qbox { background: var(--white); border-radius: 24px; padding: 22px 20px 24px; box-shadow: 0 4px 18px rgba(0,103,200,.10); }
   .qhead { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 8px; }
   .qnum { font-weight: 700; color: var(--blue); font-size: 18px; margin: 0; }
   .dots { display: flex; gap: 6px; }
-  .dots span { width: 14px; height: 14px; border-radius: 50%; background: #d5e3f1; }
+  .dots span { width: 14px; height: 14px; border-radius: 50%; background: #d1eef9; }
   .dots span.now { background: var(--blue); }
   .dots span.ok { background: var(--green); }
-  .dots span.ng { background: #e6a1bd; }
+  .dots span.ng { background: #eea1c2; }
   .qtext { margin: 0 0 16px; font-size: clamp(21px, 4.4vw, 26px); font-weight: 700; line-height: 1.6; }
   .choices { display: grid; gap: 12px; }
-  .choices button { font: inherit; font-size: 20px; font-weight: 700; text-align: left; background: var(--white); color: var(--ink); border: 3px solid #cfe0f1; border-radius: 18px; padding: 14px 18px 14px 58px; position: relative; cursor: pointer; min-height: 64px; line-height: 1.5; }
+  .choices button { font: inherit; font-size: 20px; font-weight: 700; text-align: left; background: var(--white); color: var(--ink); border: 3px solid #ccecf9; border-radius: 18px; padding: 14px 18px 14px 58px; position: relative; cursor: pointer; min-height: 64px; line-height: 1.5; }
   .choices button::before { content: attr(data-mark); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border-radius: 50%; background: var(--blue-tint); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: 18px; }
   .choices button:hover:not(:disabled) { border-color: var(--blue); }
   .choices button:disabled { cursor: default; }
   .choices button.is-right { border-color: var(--green); background: var(--green-tint); }
   .choices button.is-right::before { background: var(--green); color: var(--white); content: "\25CB"; }
-  .choices button.is-wrong { border-color: #e6a1bd; background: var(--cran-tint); }
+  .choices button.is-wrong { border-color: #eea1c2; background: var(--cran-tint); }
   .choices button.is-wrong::before { background: var(--cran); color: var(--white); content: "\00D7"; }
   .answer { margin: 16px 0 0; border-radius: 16px; padding: 14px 16px; }
   .answer.ok { background: var(--green-tint); }
@@ -158,7 +158,7 @@
   .src a { color: var(--ink-sub); }
   .back { margin: 22px 0 50px; font-size: 16px; }
 
-  footer { background: var(--cran-deep); color: #ffe6ef; padding: 32px 0 40px; font-size: 14px; }
+  footer { background: var(--cran-deep); color: #ffffff; padding: 32px 0 40px; font-size: 14px; }
   footer .wrap { max-width: 960px; }
   footer img { width: 240px; margin-bottom: 12px; }
   footer img.on-dark { background: #fff; padding: 20px; border-radius: 10px; box-sizing: content-box; max-width: calc(100% - 40px); height: auto; }
