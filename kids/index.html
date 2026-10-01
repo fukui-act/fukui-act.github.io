@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
 <link rel="canonical" href="https://fukui-act.github.io/kids/">
+<link rel="alternate" hreflang="ja" href="https://fukui-act.github.io/kids/">
+<link rel="alternate" hreflang="en" href="https://fukui-act.github.io/en/kids/">
+<link rel="alternate" hreflang="x-default" href="https://fukui-act.github.io/kids/">
 <title>ポリオってなあに？ こども向けのおはなしとクイズ | アクトの日 2026 福井</title>
 <meta name="description" content="小学生向けに、ポリオという病気とワクチンのことを、やさしい言葉と絵で紹介します。さいごに5問のクイズがあります。">
 <meta property="og:type" content="article">
@@ -190,6 +193,11 @@
     .js .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
     .pop { animation: none; }
   }
+  /* 言語の切り替え */
+  .brandbar .bb-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .brandbar .lang-sw { display: inline-block; font-size: 13px; line-height: 1.4; font-weight: 700; color: var(--cran); text-decoration: none; border: 1px solid currentColor; border-radius: 999px; padding: 2px 12px; white-space: nowrap; }
+  .brandbar .lang-sw:hover, .brandbar .lang-sw:focus-visible { background: var(--cran); color: #fff; }
+  @media (max-width: 720px) { .brandbar .lang-sw { font-size: 12px; padding: 1px 10px; } }
 </style>
 <script>document.documentElement.className = 'js';</script>
 </head>
@@ -199,7 +207,7 @@
 <div class="brandbar">
   <div class="wrap">
     <a class="logo-link" data-track="link_rotaract2650" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="../assets/logo-rotaract-epn.svg" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="671" height="156"></a>
-    <p><a data-track="kids_to_top" href="../">アクトの日 2026 福井<br>世界ポリオデー</a></p>
+    <div class="bb-side"><p><a data-track="kids_to_top" href="../">アクトの日 2026 福井<br>世界ポリオデー</a></p><a class="lang-sw" data-track="lang_en" href="../en/kids/" hreflang="en" lang="en">English</a></div>
   </div>
 </div>
 
