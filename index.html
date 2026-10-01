@@ -6,28 +6,28 @@
 <meta name="google-site-verification" content="Pr5hMQMBPZFhzEFWG4FFHYChh_o5mVt60m1KGkx9ru4">
 <link rel="canonical" href="https://fukui-act.github.io/">
 <title>アクトの日 2026 福井｜10月25日 世界ポリオデーのイベント（福井駅前 PLAYCE）</title>
-<meta name="description" content="2026年10月25日（日）13:00〜15:30、福井駅前のPLAYCE（プレイス）1階で、世界ポリオデーにあわせた「アクトの日」を開きます。医師によるミニセミナー、募金、パネル展示、子ども向けの塗り絵。入場無料で、どなたでもお越しください。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ（福井・福井東・鯖江）です。">
+<meta name="description" content="2026年10月25日（日）13:00〜15:30、福井駅前のPLAYCE（プレイス）1階で、世界ポリオデーにあわせた「アクトの日」を開きます。医師のお話「みんなで学ぼう！ポリオのこと」、募金、パネル展示、子ども向けの塗り絵。入場無料で、どなたでもお越しください。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ（福井・福井東・鯖江）です。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="アクトの日 2026 福井 | 世界ポリオデー">
 <meta property="og:description" content="ワクチンで、子どもをポリオから守ることができます。2026年10月25日（日）13:00〜15:30 福井駅前 PLAYCE 1階">
 <meta property="og:url" content="https://fukui-act.github.io/">
 <meta property="og:site_name" content="アクトの日 2026 福井">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.20.0">
+<meta property="og:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.22.0">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ワクチンで、子どもをポリオから守ることができます。10月25日（日）13:00〜15:30 福井駅前 PLAYCE 1階">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="アクトの日 2026 福井 | 世界ポリオデー">
 <meta name="twitter:description" content="ワクチンで、子どもをポリオから守ることができます。10月25日（日）13:00〜15:30 福井駅前 PLAYCE 1階">
-<meta name="twitter:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.20.0">
+<meta name="twitter:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.22.0">
 <script type="application/ld+json">
 [
  {
   "@context": "https://schema.org",
   "@type": "Event",
   "name": "アクトの日 2026 福井（世界ポリオデー）",
-  "description": "福井からつなぐ ポリオ根絶！プロジェクト。医師によるミニセミナー（14:00〜・15:00〜の2回、各20分）、募金、パネル展示、子ども向けの塗り絵を行います。",
+  "description": "福井からつなぐ ポリオ根絶！プロジェクト。医師のお話「みんなで学ぼう！ポリオのこと」（14:00〜・15:00〜の2回、各20分）、募金、パネル展示、子ども向けの塗り絵を行います。",
   "startDate": "2026-10-25T13:00:00+09:00",
   "endDate": "2026-10-25T15:30:00+09:00",
   "eventStatus": "https://schema.org/EventScheduled",
@@ -231,9 +231,21 @@
   .program .ic svg { width: 30px; height: 30px; stroke: var(--cran); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .program strong { display: block; font-size: 19px; margin-bottom: 2px; }
   .program span { font-size: 15px; color: var(--ink-sub); }
-  .speaker { margin-top: 28px; padding: 26px 28px; background: var(--cran-tint); border-radius: 14px; }
+  .person-link { font: inherit; color: var(--cran); background: none; border: 0; padding: 0; margin: 0; cursor: pointer; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; white-space: nowrap; }
+  .person-link:hover, .person-link:focus-visible { text-decoration-thickness: 2px; }
+  .person-link:focus-visible { outline: 2px solid var(--cran); outline-offset: 2px; border-radius: 4px; }
+  .person-link .pill { display: inline-block; margin-left: 4px; padding: 0 7px; font-size: 12px; line-height: 1.6; font-weight: 700; color: var(--white); background: var(--cran); border-radius: 999px; vertical-align: 2px; text-decoration: none; }
+  .speaker-dlg { width: min(640px, calc(100% - 32px)); max-height: min(85vh, 860px); margin: auto; padding: 0; border: 0; border-radius: 16px; background: var(--white); color: var(--ink); overflow: auto; box-shadow: 0 20px 60px rgba(0,0,0,.25); }
+  .speaker-dlg::backdrop { background: rgba(40, 20, 30, .55); }
+  html.dlg-open { overflow: hidden; }
+  html:not(.js) .speaker-dlg { display: block; position: static; width: auto; max-height: none; margin-top: 28px; box-shadow: none; }
+  html:not(.js) .dlg-close, html:not(.js) .person-link .pill { display: none; }
+  .speaker { position: relative; padding: 26px 28px; background: var(--cran-tint); }
+  .dlg-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--white); cursor: pointer; display: grid; place-items: center; }
+  .dlg-close svg { width: 20px; height: 20px; stroke: var(--ink); stroke-width: 2.2; stroke-linecap: round; fill: none; }
+  .dlg-close:focus-visible { outline: 2px solid var(--cran); outline-offset: 2px; }
   .speaker .label { display: inline-block; font-size: 13px; font-weight: 700; color: var(--white); background: var(--cran); border-radius: 999px; padding: 2px 12px; margin-bottom: 10px; }
-  .speaker h3 { margin: 0 0 2px; font-size: 22px; }
+  .speaker h3 { margin: 0 0 2px; padding-right: 44px; font-size: 22px; }
   .speaker h3 small { font-size: 14px; font-weight: 500; color: var(--ink-sub); margin-left: .5em; }
   .speaker .role { margin: 0 0 14px; font-size: 15px; color: var(--ink-sub); }
   .speaker p { margin: 0 0 12px; font-size: 16px; }
@@ -289,6 +301,7 @@
     .outline dd { padding-top: 4px; }
     .program { grid-template-columns: 1fr; }
     .speaker { padding: 22px 18px; }
+    .speaker h3 small { display: block; margin: 4px 0 0; }
     .speaker dl { grid-template-columns: 1fr; gap: 2px; }
     .speaker dd { margin-bottom: 8px; }
     .map-frame { aspect-ratio: 4 / 3; }
@@ -361,7 +374,7 @@
         <dt>日にち</dt>
         <dd>2026年10月25日（日）</dd>
         <dt>時間</dt>
-        <dd>13:00〜15:30<br><span class="note">医師によるミニセミナーは 14:00〜・15:00〜 の2回（各20分）</span></dd>
+        <dd>13:00〜15:30<br><span class="note">医師のお話「みんなで学ぼう！ポリオのこと」は 14:00〜・15:00〜 の2回（各20分）</span></dd>
         <dt>会場</dt>
         <dd>PLAYCE（プレイス）1階<br>福井県福井市中央1丁目3-5 FUKUMACHI BLOCK 1階<br><span class="note">募金は建物前の出入り口付近で行います。</span><br><span class="note">JR福井駅から徒歩2分</span></dd>
         <dt>主催</dt>
@@ -386,7 +399,7 @@
       <ul class="program">
         <li class="reveal">
           <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="11" y="3" width="10" height="16" rx="5"/><path d="M6 15a10 10 0 0 0 20 0M16 25v4M11 29h10"/></svg></span>
-          <div><strong>医師によるミニセミナー</strong><span>ポリオとはどんな病気か、世界でいまどうなっているかを、<span class="nowrap">貴志医院 院長の</span><span class="nowrap">貴志 英生 先生</span>（福井東ロータリークラブ）がお話しします。14:00〜と15:00〜の2回、各20分です。</span></div>
+          <div><strong>みんなで学ぼう！ポリオのこと</strong><span>ポリオとはどんな病気か、世界でいまどうなっているかを、<span class="nowrap">貴志医院 院長の</span><button type="button" class="person-link" data-track="speaker_open" aria-haspopup="dialog" aria-controls="speaker">貴志 英生 先生<span class="pill">経歴</span></button>（福井東ロータリークラブ）がお話しします。14:00〜と15:00〜の2回、各20分です。</span></div>
         </li>
         <li class="reveal">
           <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="12" width="22" height="16" rx="2"/><path d="M12 12h8M16 4v8M12 8l4 4 4-4"/></svg></span>
@@ -398,11 +411,13 @@
         </li>
         <li class="reveal">
           <span class="ic" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M20 4l8 8-15 15H5v-8z"/><path d="M17 7l8 8"/></svg></span>
-          <div><strong>子ども向けの塗り絵</strong><span>塗り絵を持ってきてくれたお子さんに、お菓子をお渡しします。</span></div>
+          <div><strong>子ども向けの塗り絵</strong><span>塗り絵をご持参の親子の方に、お菓子をお渡しします。先着順で、数に限りがあります。</span></div>
         </li>
       </ul>
-      <div class="speaker reveal" id="speaker" aria-labelledby="h-speaker">
-        <span class="label">ミニセミナーの講師</span>
+      <dialog class="speaker-dlg" id="speaker" aria-labelledby="h-speaker">
+      <div class="speaker">
+        <button type="button" class="dlg-close" aria-label="閉じる"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <span class="label">お話をする先生</span>
         <h3 id="h-speaker">貴志 英生 先生<small>福井東ロータリークラブ</small></h3>
         <p class="role"><span class="nowrap">医療法人英和会 貴志医院 院長</span>／<span class="nowrap">特別養護老人ホーム美山貴寿苑 理事長</span></p>
         <!-- 写真が届いたら assets/kishi.jpg に置き、ここに入れる -->
@@ -417,6 +432,7 @@
           <dd><span class="nowrap">2010年 ロータリーポリオ撲滅運動特別功労賞</span><br><span class="nowrap">2012年 ポリオのない世界を目指す国際奉仕賞</span></dd>
         </dl>
       </div>
+      </dialog>
       <p class="note reveal" style="margin-top:14px">内容は変わることがあります。</p>
     </div>
   </section>
@@ -425,7 +441,7 @@
     <div class="wrap nurie-grid reveal">
       <div>
         <h2 id="h-nurie">塗り絵をダウンロード</h2>
-        <p>チラシの裏面の塗り絵と同じものを、ここからダウンロードして印刷できます。塗り終えたら当日会場へお持ちください。お菓子と引き換えます。</p>
+        <p>チラシの裏面の塗り絵と同じものを、ここからダウンロードして印刷できます。塗り終えたら、親子で当日会場へお持ちください。お菓子と引き換えます（先着順・数に限りがあります）。</p>
         <!-- 塗り絵のPDFが届いたら assets/nurie.pdf に置き、下の span を次の a に差し替える
              <a class="btn" data-track="nurie_download" href="assets/nurie.pdf" download>塗り絵（PDF）をダウンロード</a> -->
         <span class="btn" role="link" aria-disabled="true">準備中</span>
@@ -506,6 +522,20 @@
     if (!a || typeof gtag !== 'function') return;
     gtag('event', a.getAttribute('data-track'), { link_url: a.href || '', transport_type: 'beacon' });
   });
+
+  // 講師の経歴：名前を押すと重ねて表示する（背景・Esc・閉じるボタンで閉じる）
+  var dlg = document.getElementById('speaker');
+  var opener = document.querySelector('.person-link');
+  if (dlg && opener) {
+    var closeDlg = function () { if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); };
+    opener.addEventListener('click', function () {
+      if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+      document.documentElement.classList.add('dlg-open');
+    });
+    dlg.querySelector('.dlg-close').addEventListener('click', closeDlg);
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) closeDlg(); });
+    dlg.addEventListener('close', function () { document.documentElement.classList.remove('dlg-open'); opener.focus(); });
+  }
 
   // ヒーローの再生
   var hero = document.getElementById('hero');
