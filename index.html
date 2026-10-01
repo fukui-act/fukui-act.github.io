@@ -13,14 +13,14 @@
 <meta property="og:url" content="https://fukui-act.github.io/">
 <meta property="og:site_name" content="アクトの日 2026 福井">
 <meta property="og:locale" content="ja_JP">
-<meta property="og:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.19.1">
+<meta property="og:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.20.0">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="ワクチンで、子どもをポリオから守ることができます。10月25日（日）13:00〜15:30 福井駅前 PLAYCE 1階">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="アクトの日 2026 福井 | 世界ポリオデー">
 <meta name="twitter:description" content="ワクチンで、子どもをポリオから守ることができます。10月25日（日）13:00〜15:30 福井駅前 PLAYCE 1階">
-<meta name="twitter:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.19.1">
+<meta name="twitter:image" content="https://fukui-act.github.io/assets/ogp.png?v=1.20.0">
 <script type="application/ld+json">
 [
  {
@@ -60,7 +60,8 @@
   "performer": {
    "@type": "Person",
    "name": "貴志 英生",
-   "jobTitle": "貴志医院 院長"
+   "jobTitle": "貴志医院 院長",
+   "description": "医師。福井東ロータリークラブ会員。ロータリーのポリオ根絶の活動として、西太平洋の国々でポリオワクチンの投与に携わる。"
   },
   "organizer": [
    {
@@ -230,6 +231,16 @@
   .program .ic svg { width: 30px; height: 30px; stroke: var(--cran); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .program strong { display: block; font-size: 19px; margin-bottom: 2px; }
   .program span { font-size: 15px; color: var(--ink-sub); }
+  .speaker { margin-top: 28px; padding: 26px 28px; background: var(--cran-tint); border-radius: 14px; }
+  .speaker .label { display: inline-block; font-size: 13px; font-weight: 700; color: var(--white); background: var(--cran); border-radius: 999px; padding: 2px 12px; margin-bottom: 10px; }
+  .speaker h3 { margin: 0 0 2px; font-size: 22px; }
+  .speaker h3 small { font-size: 14px; font-weight: 500; color: var(--ink-sub); margin-left: .5em; }
+  .speaker .role { margin: 0 0 14px; font-size: 15px; color: var(--ink-sub); }
+  .speaker p { margin: 0 0 12px; font-size: 16px; }
+  .speaker dl { display: grid; grid-template-columns: 8.5em 1fr; gap: 6px 12px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 15px; }
+  .speaker dt { font-weight: 700; color: var(--cran-deep); }
+  .speaker dd { margin: 0; }
+  @media (max-width: 374px) { .speaker .nowrap { white-space: normal; display: inline; } }
 
   .nurie { background: var(--cran-tint); }
   .nurie-grid { display: grid; grid-template-columns: 1fr 200px; gap: 32px; align-items: center; }
@@ -277,6 +288,9 @@
     .outline dt { border-bottom: 0; padding-bottom: 0; }
     .outline dd { padding-top: 4px; }
     .program { grid-template-columns: 1fr; }
+    .speaker { padding: 22px 18px; }
+    .speaker dl { grid-template-columns: 1fr; gap: 2px; }
+    .speaker dd { margin-bottom: 8px; }
     .map-frame { aspect-ratio: 4 / 3; }
     .nurie-grid, .about-grid { grid-template-columns: 1fr; }
     .nurie-art { max-width: 160px; }
@@ -387,6 +401,22 @@
           <div><strong>子ども向けの塗り絵</strong><span>塗り絵を持ってきてくれたお子さんに、お菓子をお渡しします。</span></div>
         </li>
       </ul>
+      <div class="speaker reveal" id="speaker" aria-labelledby="h-speaker">
+        <span class="label">ミニセミナーの講師</span>
+        <h3 id="h-speaker">貴志 英生 先生<small>福井東ロータリークラブ</small></h3>
+        <p class="role"><span class="nowrap">医療法人英和会 貴志医院 院長</span>／<span class="nowrap">特別養護老人ホーム美山貴寿苑 理事長</span></p>
+        <!-- 写真が届いたら assets/kishi.jpg に置き、ここに入れる -->
+        <p>福井市出身。1988年に兵庫医科大学を卒業し、福井医科大学（現在の福井大学）の精神医学教室に入りました。1993年から、伯父の診療所を継いで貴志医院を開いています。</p>
+        <p>ロータリーのポリオ根絶の活動として、WHO（世界保健機関）と協力し、ラオス、フィリピン、パプアニューギニア、ソロモン諸島、フィジー、キリバス、サモアなど、西太平洋の国々で子どもたちにポリオワクチンを届けてきました。</p>
+        <dl>
+          <dt>ロータリー</dt>
+          <dd><span class="nowrap">1998年 福井東ロータリークラブ入会、</span><span class="nowrap">2007-08年度 クラブ会長</span></dd>
+          <dt>地区での役職</dt>
+          <dd><span class="nowrap">世界社会奉仕委員会、</span><span class="nowrap">ロータリー財団委員会、</span><span class="nowrap">大口寄付・ポリオプラス委員会、</span><span class="nowrap">国際奉仕委員会</span>などを務め、<span class="nowrap">2021-23年度はガバナー補佐</span></dd>
+          <dt>表彰</dt>
+          <dd><span class="nowrap">2010年 ロータリーポリオ撲滅運動特別功労賞</span><br><span class="nowrap">2012年 ポリオのない世界を目指す国際奉仕賞</span></dd>
+        </dl>
+      </div>
       <p class="note reveal" style="margin-top:14px">内容は変わることがあります。</p>
     </div>
   </section>
