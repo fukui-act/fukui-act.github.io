@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://fukui-act.github.io/</loc>
-    <lastmod>2026-09-28</lastmod>
+    <lastmod>2026-10-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fukui-act.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fukui-act.github.io/en/"/>
+  </url>
+  <url>
+    <loc>https://fukui-act.github.io/en/</loc>
+    <lastmod>2026-10-01</lastmod>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://fukui-act.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fukui-act.github.io/en/"/>
   </url>
 </urlset>

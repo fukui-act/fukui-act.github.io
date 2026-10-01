@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="Pr5hMQMBPZFhzEFWG4FFHYChh_o5mVt60m1KGkx9ru4">
 <link rel="canonical" href="https://fukui-act.github.io/">
+<link rel="alternate" hreflang="ja" href="https://fukui-act.github.io/">
+<link rel="alternate" hreflang="en" href="https://fukui-act.github.io/en/">
+<link rel="alternate" hreflang="x-default" href="https://fukui-act.github.io/">
 <title>アクトの日 2026 福井｜10月25日 世界ポリオデーのイベント（福井駅前 PLAYCE）</title>
 <meta name="description" content="2026年10月25日（日）13:00〜15:30、福井駅前のPLAYCE（プレイス）1階で、世界ポリオデーにあわせた「アクトの日」を開きます。医師のお話「みんなで学ぼう！ポリオのこと」、募金、パネル展示、子ども向けの塗り絵。入場無料で、どなたでもお越しください。主催は国際ロータリー第2650地区 福井ゾーンのローターアクトクラブ（福井・福井東・鯖江）です。">
 <meta property="og:type" content="website">
@@ -318,6 +321,11 @@
     .ripple { display: none; }
     .js .crayon { stroke-dashoffset: 0 !important; transition: none !important; }
   }
+  /* 言語の切り替え */
+  .brandbar .bb-side { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .brandbar .lang-sw { display: inline-block; font-size: 13px; line-height: 1.4; font-weight: 700; color: var(--cran); text-decoration: none; border: 1px solid currentColor; border-radius: 999px; padding: 2px 12px; white-space: nowrap; }
+  .brandbar .lang-sw:hover, .brandbar .lang-sw:focus-visible { background: var(--cran); color: #fff; }
+  @media (max-width: 720px) { .brandbar .lang-sw { font-size: 12px; padding: 1px 10px; } }
 </style>
 <script>document.documentElement.className = 'js';</script>
 </head>
@@ -327,7 +335,7 @@
 <div class="brandbar">
   <div class="wrap">
     <a class="logo-link" data-track="link_rotaract2650" href="https://rac-2650.com/" target="_blank" rel="noopener"><img src="assets/logo-rotaract-epn.svg" alt="国際ロータリー第2650地区 ローターアクトの公式サイトを開く" width="671" height="156"></a>
-    <p>アクトの日 2026 福井<br>世界ポリオデー</p>
+    <div class="bb-side"><p>アクトの日 2026 福井<br>世界ポリオデー</p><a class="lang-sw" data-track="lang_en" href="en/" hreflang="en" lang="en">English</a></div>
   </div>
 </div>
 

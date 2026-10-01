@@ -3,7 +3,7 @@
 国際ロータリー第2650地区 福井ゾーンのローターアクトクラブが、2026年10月25日（日）に行う「アクトの日」（世界ポリオデー）の案内ページ。
 
 - 公開URL：https://fukui-act.github.io/
-- バージョン：1.22.0（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
+- バージョン：1.23.0（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
 - 制作：瀬戸 浩太郎（福井東ローターアクトクラブ 2026-27 会長）
 - 公開方法：GitHub Pages（main ブランチのルートをそのまま公開）
 
@@ -72,3 +72,11 @@ CHANGELOG.md      更新履歴
 - story/ の「1979年9月29日、マニラ」の見出し：Noto Serif JP 900（Google Fonts、SIL OFL）。使う文字だけを読み込む。
 
 - 最初の画面とSNSサムネの盾の中の子ども2人、タブやホーム画面のアイコン：Font Awesome Free 7.3.1「children」（https://fontawesome.com 、アイコンは CC BY 4.0）。クレジットは index.html と assets/favicon.svg のコメントに入れている。
+
+
+## 英語版（1.23.0〜）
+
+- 英語のページは `en/`（トップ）、`en/kids/`、`en/story/`、`en/history/`。日本語のページと同じ見た目で、文章だけ英語。
+- 上部のロゴの右に「English／日本語」の切り替えがある。各ページの head に hreflang（ja / en / x-default）を入れている。
+- 作り方：日本語のページを直したら、英語版の作成スクリプトを動かし直す（作業用フォルダの en_in/ にある en_index.py・en_kids.py・en_story.py・en_history.py）。最後に add_lang.py を動かして、切り替えと hreflang を全ページに入れ直す。story と history は日本語のビルドのあとにも add_lang.py が要る。
+- 英語版の文章を変えたいときは、上のスクリプトの対訳を直して作り直す（英語のHTMLを直接直すと、次に作り直したときに消える）。
