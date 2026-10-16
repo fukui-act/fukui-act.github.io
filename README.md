@@ -3,7 +3,7 @@
 国際ロータリー第2650地区 福井ゾーンのローターアクトクラブが、2026年10月25日（日）に行う「アクトの日」（世界ポリオデー）の案内ページ。
 
 - 公開URL：https://fukui-act.github.io/
-- バージョン：1.25.0（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
+- バージョン：1.26.0（更新のたびに上げる。履歴は CHANGELOG.md。ページには表示しない）
 - 制作：瀬戸 浩太郎（福井東ローターアクトクラブ 2026-27 会長）
 - 公開方法：GitHub Pages（main ブランチのルートをそのまま公開）
 
@@ -26,7 +26,7 @@ assets/
   logo-rotaract-d2650.png        地区ロゴ（クランベリー。幹事用/地区ロゴ.png を切り抜いたもの）
   logo-rotaract-d2650-white.png  地区ロゴの白版（フッター用）
   drop.svg        雫の形（トップでは1.1.0から未使用。story/ の雫で使う）
-  nurie.pdf       塗り絵（内海さんから届いたら置く。まだ無い）
+  nurie.pdf       塗り絵（A4・1ページ。チラシ裏面と同じ絵。届いた4:5のPDFをA4の中央に原寸で置いたもの。1.26.0〜）
 favicon.ico       古いブラウザ用のアイコン
 site.webmanifest  ホーム画面に追加したときの名前とアイコン
 robots.txt        検索エンジン向けの案内（sitemap.xml の場所）
@@ -51,11 +51,11 @@ CHANGELOG.md      更新履歴
 - QRの行き先：チラシ `https://fukui-act.github.io/?utm_source=flyer&utm_medium=qr`、ポケットティッシュ `https://fukui-act.github.io/?utm_source=tissue&utm_medium=qr`。GA4の「集客」で参照元（flyer／tissue）ごとに数えられる。
 - タップの計測は `data-track` の付いたリンク。イベント名は map_open／link_rotaract2650／link_rid2650／link_rc_fukui／link_rc_fukuihigashi／link_rc_fukuisuisen／nurie_download。story/ では story_to_top（トップへ）／story_to_outline（開催のご案内を見る）。
 
-## 塗り絵を公開するとき
+## 塗り絵
 
-1. `assets/nurie.pdf` に置く。
-2. `index.html` の「準備中」の `span` を、直前のコメントにある `a` タグに差し替える。
-3. バージョンを上げて CHANGELOG に書く。
+- 1.26.0 で公開。日本語・英語のトップの「塗り絵をダウンロード」から `assets/nurie.pdf` を落とせる（押した回数は nurie_download）。
+- 届いたPDF（Canva、18×22.5cm）はA4ではないので、絵の大きさは変えずにA4の中央に置いた版にしている。差し替えるときも同じ形にする。
+- 英語版トップのボタンは en/index.html を直接直した。英語版を作成スクリプトから作り直すときは、ボタンの対訳（「塗り絵（PDF）をダウンロード」→「Download the coloring page (PDF)」）を入れること。
 
 ## 未確定（調整中の札を外すもの）
 
